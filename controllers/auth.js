@@ -1,5 +1,6 @@
 // import packages
 const jwt = require('jsonwebtoken');
+const expressJwt = require('express-jwt');
 const User = require('../models/user');
 
 // import env variables
@@ -58,6 +59,14 @@ exports.signin = (req, res) => {
             });
     });
 }
+
+// required sign in controller
+// restricts posts to logged in users
+exports.signInRequired = expressJwt({
+    secret: process.env.JWT_SECRET,
+    algorithms: ["HS256"], // added later
+    userProperty: "auth",
+});
 
 // signout controller
 exports.signout = (req, res) => {
