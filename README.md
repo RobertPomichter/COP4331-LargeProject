@@ -1,5 +1,5 @@
 # COP 4331 Large Group Project
-## sous.chef
+## sous.chef - let's get cooking
 
 ### General Requirements
 
