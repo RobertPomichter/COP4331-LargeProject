@@ -1,3 +1,6 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
 exports.createPostValidation = (req, res, next) => {
     //title validation
     req.check('title', "Please enter a title.").notEmpty();
@@ -36,7 +39,7 @@ exports.userSignupValidation = (req, res, next) => {
     //email validation using RFC 5322 official standard REGEX
     req.check('email', "Please enter an email.").notEmpty();
     req.check('email', "Email must be between 1 and 35 characters.")
-    .matches(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+    .matches(process.env.RFC)
     .withMessage("Email must be a valid email address.");
 
     //password validation
