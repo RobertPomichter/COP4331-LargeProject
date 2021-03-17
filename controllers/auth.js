@@ -19,6 +19,7 @@ exports.signup = async (req, res) => {
     res.status(200).json({message: "Successfully registered!"});
 }
 
+// sign in controller
 exports.signin = (req, res) => {
     // deconstruct the request
     const { email, password } = req.body;
@@ -55,5 +56,13 @@ exports.signin = (req, res) => {
                 name, 
                 email }
             });
+    });
+}
+
+// signout controller
+exports.signout = (req, res) => {
+    res.clearCookie("Q");
+    res.status(200).json({
+        message: "Succesfully signed out!"
     });
 }
