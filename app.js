@@ -32,6 +32,12 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use('/', postRoutes);
 app.use('/', authRoutes);
+// middleware to handle error for signInRequired
+app.use(function (err, req, res, next) {
+    if (err.name === 'UnauthorizedError') {
+      res.status(401).json({error: "You must be signed in to complete this action."});
+    }
+  });
 
 const PORT = process.env.PORT || 8080;
 
