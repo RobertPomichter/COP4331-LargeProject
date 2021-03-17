@@ -24,3 +24,36 @@ exports.createPostValidation = (req, res, next) => {
     // go to next middleware
     next();
 };
+
+exports.userSignupValidation = (req, res, next) => {
+    //name validation
+    req.check('name', "Please enter a name.").notEmpty();
+    req.check('name', "Title must be between 1 and 50 characters.").isLength({
+        min: 1,
+        max: 50
+    });
+    
+    //email validation using RFC 5322 official standard REGEX
+    req.check('email', "Please enter an email.").notEmpty();
+    req.check('email', "Email must be between 1 and 35 characters.")
+    .matches(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+    .withMessage("Email must be a valid email address.");
+
+    //password validation
+    req.check('password', "Please enter a password.").notEmpty();
+    req.check('email', "Password must be between 6 and 20 characters.").isLength({
+        min: 6,
+        max: 20
+    });
+
+    // check for errors
+    const errors = req.validationErrors();
+    // if errors exist show them as they appear
+    if(errors){
+        const firstError = errors.map((err) => err.msg)[0]
+        return res.status(400).json({error: firstError});
+    }
+
+    // go to next middleware
+    next();
+};
