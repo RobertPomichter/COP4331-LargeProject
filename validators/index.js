@@ -38,9 +38,7 @@ exports.userSignupValidation = (req, res, next) => {
     
     //email validation using RFC 5322 official standard REGEX
     req.check('email', "Please enter an email.").notEmpty();
-    req.check('email', "Email must be between 1 and 35 characters.")
-    .matches(process.env.RFC)
-    .withMessage("Email must be a valid email address.");
+    req.check('email', "Email must be between 1 and 35 characters.").matches(process.env.RFC).withMessage("Email must be a valid email address.");
 
     //password validation
     req.check('password', "Please enter a password.").notEmpty();
