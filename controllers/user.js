@@ -93,3 +93,28 @@ exports.updateUser = (req, res, next) => {
         res.status(200).json({user});
     });
 };
+
+// function to update the user
+exports.deleteUser = (req, res, next) => {
+    // get the user profile
+    let user = req.profile;
+
+    // use the remove function to delete the user
+    user.remove( (err, deletedUser) => {
+        // handle any unexpected errors
+        if(err){
+            res.status(400).json({ error: "Encountered an error attempting to delete your account."});
+        }
+
+        // scrub the deleted users password and salt
+        user.hashed_password = undefined;
+        user.salt = undefined;
+
+        // otherwise send a success response
+        res.json({
+            message: "Successfully deleted your account. We're sorry to see you go!",
+            deletedUser: user 
+        });
+    })
+    
+};

@@ -5,6 +5,7 @@ const {
     userById, 
     getUser, 
     updateUser,
+    deleteUser,
     hasAuthorization 
 } = require('../controllers/user');
 const { signInRequired } = require('../controllers/auth');
@@ -21,5 +22,7 @@ router.get('/users', signInRequired, allUsers);
 router.get('/user/:userId', signInRequired, getUser); 
 // route to put a user update
 router.put('/user/:userId', signInRequired, hasAuthorization, updateUser);
+// route to put a delete user
+router.delete('/user/:userId', signInRequired, hasAuthorization, deleteUser);
 
 module.exports = router;
