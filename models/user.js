@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
 // virtual field
 userSchema.virtual("password")
 .set( function(password) {
-    // temporary password variabl
+    // temporary password variable
     this._password = password;
     // generate the timestamp
     this.salt = uuidv1();

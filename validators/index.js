@@ -2,6 +2,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 exports.createPostValidation = (req, res, next) => {
+    
     //title validation
     req.check('title', "Please enter a title.").notEmpty();
     req.check('title', "Title must be between 1 and 50 characters.").isLength({
@@ -42,10 +43,7 @@ exports.userSignupValidation = (req, res, next) => {
 
     //password validation
     req.check('password', "Please enter a password.").notEmpty();
-    req.check('email', "Password must be between 6 and 20 characters.").isLength({
-        min: 6,
-        max: 20
-    });
+    req.check('email', "Password must be between 6 and 20 characters.").isLength({min: 6, max: 50});
 
     // check for errors
     const errors = req.validationErrors();

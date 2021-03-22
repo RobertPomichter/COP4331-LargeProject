@@ -4,12 +4,13 @@ const _ = require('lodash');
 
 // function to update the user profile
 exports.userById = (req, res, next, id) => {
+    
     // find the user in db by their id
     User.findById(id).exec((err, user) => {
         // if there is an error or user is not found
-        if(err){
+        if(err || !user){
             // return the 400 status and send error message
-            return res.status(400).json({error: err});
+            return res.status(400).json({error: "User not found."});
         }
 
         // otherwise the user was found 
@@ -57,6 +58,8 @@ exports.allUsers = (req, res) => {
 
 // function to get a single user
 exports.getUser = (req, res) => {
+    console.log("get user function");
+    
     // scrub the hashed password and salt
     req.profile.hashed_password = undefined;
     req.profile.salt = undefined;

@@ -1,5 +1,5 @@
 const express = require('express');
-const { signup, signin, signout } = require('../controllers/auth');
+const { signup, signin, signout, signInRequired } = require('../controllers/auth');
 const { userById } = require('../controllers/user');
 const { userSignupValidation } = require('../validators/index');
 
@@ -12,7 +12,7 @@ router.post('/signup', userSignupValidation, signup);
 router.post('/signin', signin);
 
 // sign out route
-router.get('/signout', signout); 
+router.get('/signout', signInRequired, signout); 
 
 // any request with userId will go through middleware
 router.param('userId', userById);
