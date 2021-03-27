@@ -43,7 +43,7 @@ exports.userSignupValidation = (req, res, next) => {
 
     //password validation
     req.check('password', "Please enter a password.").notEmpty();
-    req.check('email', "Password must be between 6 and 20 characters.").isLength({min: 6, max: 50});
+    req.check('email', "Password must be between 6 and 50 characters.").isLength({min: 6, max: 50});
 
     // check for errors
     const errors = req.validationErrors();
@@ -54,5 +54,25 @@ exports.userSignupValidation = (req, res, next) => {
     }
 
     // go to next middleware
+    next();
+};
+
+// function to validate the reset password
+exports.passwordResetValidator = (req, res, next) => {
+    // check for password
+    req.check("newPassword", "Password is required").notEmpty();
+    req.check("newPassword")
+        .isLength({ min: 6, max: 50 })
+        .withMessage("Password must be between 6 and 50 characters.");
+ 
+    // check for errors
+    const errors = req.validationErrors();
+    
+    // if error show the first one as they happen
+    if (errors) {
+        const firstError = errors.map(error => error.msg)[0];
+        return res.status(400).json({ error: firstError });
+    }
+    // proceed to next middleware or ...
     next();
 };

@@ -1,9 +1,15 @@
 const express = require('express');
-const { signup, signin, signout, signInRequired } = require('../controllers/auth');
+const { signup, 
+        signin, 
+        signout, 
+        signInRequired,
+        forgotPassword,
+        resetPassword } = require('../controllers/auth');
 const { userById } = require('../controllers/user');
-const { userSignupValidation } = require('../validators/index');
+const { userSignupValidation,
+        passwordResetValidator } = require('../validators/index');
 
-const router = express.Router();
+const router = express.Router(); 
 
 // sign up route
 router.post('/signup', userSignupValidation, signup);
@@ -13,6 +19,10 @@ router.post('/signin', signin);
 
 // sign out route
 router.get('/signout', signInRequired, signout); 
+
+// password forgot and reset routes
+router.put("/forgot-password", forgotPassword);
+router.put("/reset-password", passwordResetValidator, resetPassword);
 
 // any request with userId will go through middleware
 router.param('userId', userById);
