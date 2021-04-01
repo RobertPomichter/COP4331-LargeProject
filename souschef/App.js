@@ -2,12 +2,10 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button, ImageBackground, TouchableOpacity } from 'react-native';
 
 import Routes from './src/Routes';
-import Login from './src/pages/Login'
 
 class App extends React.Component{
 
   render(){
-
 
     return (
       <View style={styles.container}>

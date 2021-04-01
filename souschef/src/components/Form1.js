@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button, ImageBackground, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Alert, Button, ImageBackground, TouchableOpacity } from 'react-native';
 
-class Form extends React.Component{
+class Form1 extends React.Component{
 
     
   render(){
@@ -15,7 +15,7 @@ class Form extends React.Component{
         secureTextEntry={true}/>
       
       <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>{this.props.type}</Text>
+          <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
       
       </View>
@@ -46,4 +46,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Form;
+export default Form1;

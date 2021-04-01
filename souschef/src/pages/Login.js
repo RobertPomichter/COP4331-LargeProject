@@ -5,7 +5,7 @@ import '@react-navigation/native';
 import '@react-navigation/stack';
 
 import Logo from '../components/Logo';
-import Form from '../components/Form';
+import Form1 from '../components/Form1';
 
 class Login extends React.Component{
 
@@ -15,11 +15,11 @@ class Login extends React.Component{
     return (
       <View style={styles.container}>
           <Logo/> 
-          <Form type="Login"/>   
+          <Form1/>   
 
           <View style={styles.registerTextCont}>
             <Text>Don't have an account?</Text>
-            <TouchableOpacity onPress={ () => Alert.alert("To Register page")}>
+            <TouchableOpacity onPress={ () => this.props.navigation.navigate('Register')}>
               <Text style={styles.signUpBttn}> Sign up</Text>
             </TouchableOpacity>
           </View>

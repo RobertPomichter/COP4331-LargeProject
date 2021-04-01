@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TextInput, Button, ImageBackground, TouchableOp
 import 'react-native-gesture-handler';
 
 import Logo from '../components/Logo';
-import Form from '../components/Form';
+import Form2 from '../components/Form2';
 
 class Signup extends React.Component{
 
@@ -12,12 +12,12 @@ class Signup extends React.Component{
     return (
       <View style={styles.container}>
           <Logo/> 
-          <Form type="Signup"/>   
+          <Form2/>   
 
           <View style={styles.registerTextCont}>
             <Text>Already have an account?</Text>
-            <TouchableOpacity onPress={ () => Alert.alert("To Register page")}>
-             <Text style={styles.signUpBttn}> Sign in</Text>
+            <TouchableOpacity onPress={ () => this.props.navigation.navigate('Login')}>
+             <Text style={styles.signUpBttn}> Login</Text>
             </TouchableOpacity>
           </View>
       </View>
