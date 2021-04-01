@@ -21,7 +21,7 @@ class Form2 extends React.Component{
         placeholder="Password..."
         secureTextEntry={true}/>
       
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={()=> this.props.navigation.navigate('Home')}>
           <Text style={styles.buttonText}>Sign up</Text>
       </TouchableOpacity>
       

@@ -12,7 +12,7 @@ class Signup extends React.Component{
     return (
       <View style={styles.container}>
           <Logo/> 
-          <Form2/>   
+          <Form2 navigation={this.props.navigation}/>   
 
           <View style={styles.registerTextCont}>
             <Text>Already have an account?</Text>

@@ -10,7 +10,8 @@ class Home extends React.Component{
     render(){
   
       return (
-       <View styles={styles.container}>
+      
+      <View style={styles.container}>
            <Text>Welcome</Text>
 
            <TouchableOpacity onPress={()=> Alert.alert("Go to ingredients")}>
@@ -20,6 +21,10 @@ class Home extends React.Component{
            <TouchableOpacity onPress={()=> Alert.alert("Go to recipes")}>
                <Text>My Recipes</Text>
            </TouchableOpacity>
+
+           <TouchableOpacity style={styles.button} onPress={()=> this.props.navigation.navigate('Login')}>
+              <Text style={styles.buttonText}>Logout</Text>
+            </TouchableOpacity>
        </View>
       );
       }
@@ -33,6 +38,16 @@ class Home extends React.Component{
       alignItems: 'center',
       justifyContent: 'center',
     },
+    button:{
+      borderRadius: 25,
+      width: 300,
+      backgroundColor: 'grey',
+      paddingVertical: 16,
+      marginTop: 20,
+    },
+    buttonText:{
+      textAlign: 'center',
+  }
   });
 
 
