@@ -34,7 +34,8 @@ const userSchema = new mongoose.Schema({
     resetPasswordLink: {
         data: String,
         default: ""
-    }
+    }, 
+    ingedientsId: mongoose.Schema.Types.ObjectId
 });
 
 // virtual field
