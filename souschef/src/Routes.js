@@ -13,8 +13,8 @@ class Routes extends React.Component{
     render(){
 
         return(
-            <NavigationContainer>
-            <Stack.Navigator initialRouteName='Login'>
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName='Login' screenOptions={{headerShown: false}}>
                 <Stack.Screen name='Login' component={Login}/>
                 <Stack.Screen name='Register' component={Signup}/>
             </Stack.Navigator>

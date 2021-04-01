@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button, ImageBackground, TouchableOpacity } from 'react-native';
-import {Actions} from 'react-native-router-flux';
+import 'react-native-gesture-handler';
 
 import Logo from '../components/Logo';
 import Form from '../components/Form';
@@ -16,7 +16,7 @@ class Signup extends React.Component{
 
           <View style={styles.registerTextCont}>
             <Text>Already have an account?</Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={ () => Alert.alert("To Register page")}>
              <Text style={styles.signUpBttn}> Sign in</Text>
             </TouchableOpacity>
           </View>
