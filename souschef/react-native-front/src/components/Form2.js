@@ -19,6 +19,19 @@ class Form2 extends React.Component{
   submit(){
 
     console.warn(this.state);
+
+    //destructure the state
+    const {name, email, password} = this.state;
+
+    //create user object to hold the state
+    const user = {
+
+      name,
+      email,
+      password
+      
+    };
+
     this.props.navigation.navigate('Home');
 
   }
