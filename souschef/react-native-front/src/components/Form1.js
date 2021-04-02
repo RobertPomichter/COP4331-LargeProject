@@ -3,14 +3,29 @@ import { StyleSheet, Text, View, TextInput, Alert, Button, ImageBackground, Touc
 
 class Form1 extends React.Component{
 
+constructor(){
+
+  super();
+  this.state = {
+
+    name: " ",
+    email: " ",
+  }
+}
+
     
   render(){
 
     return (
       <View style={styles.container}>
-        <TextInput style={styles.inputBox} underlineColorAndroid='black'placeholder="Name..."/>
+        <TextInput style={styles.inputBox} 
+        underlineColorAndroid='black'
+        onChangeText = { (text) => {this.setState({name: text})}}
+        placeholder="Name..."/>
+
         <TextInput style={styles.inputBox}
         underlineColorAndroid='black'
+        onChangeText = { (text) => {this.setState({name: text})}}
         placeholder="Password..."
         secureTextEntry={true}/>
       

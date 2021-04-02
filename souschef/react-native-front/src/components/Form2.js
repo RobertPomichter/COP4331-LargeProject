@@ -4,24 +4,44 @@ import { StyleSheet, Text, View, TextInput, Button, ImageBackground, TouchableOp
 class Form2 extends React.Component{
 
     
+  constructor(){
+
+    super();
+    this.state = {
+  
+      name: " ",
+      email: " ",
+      password: " ",
+    }
+  }
+
+  submit(){
+
+    console.warn(this.state)
+
+  }
+
   render(){
 
     return (
       <View style={styles.container}>
         <TextInput style={styles.inputBox}
         underlineColorAndroid='black'
+        onChangeText = { (text) => {this.setState({name: text})}}
         placeholder="Name..."/>
         
         <TextInput style={styles.inputBox} 
         underlineColorAndroid='black'
+        onChangeText = { (text) => {this.setState({email: text})}}
         placeholder="Email..."/>
         
         <TextInput style={styles.inputBox}
         underlineColorAndroid='black'
+        onChangeText = { (text) => {this.setState({password: text})}}
         placeholder="Password..."
         secureTextEntry={true}/>
       
-      <TouchableOpacity style={styles.button} onPress={()=> this.props.navigation.navigate('Home')}>
+      <TouchableOpacity style={styles.button} onPress={()=> {this.submit()}}>
           <Text style={styles.buttonText}>Sign up</Text>
       </TouchableOpacity>
       
