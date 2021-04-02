@@ -8,9 +8,28 @@ $testColor: #b4da5b;
 // Code from full page example: https://mdbootstrap.com/docs/react/css/background-image/
 .homeContainer {
     background-image: url('./images/Background1440p.png');
+
+    // These lines control the scaling & positioning of the homeContainer, and the
+    // background image by extension
     height: 100vh;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
+.homeUIContainer {
+    padding-top: 150px;   // used to vertical positioning of the Home UI
+}
+
+.logoHeader {
+    // These 3 lines center the logo element, which is a child of logoHeader
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 200px;  // used to control the size of the logo
+}
+
+.logo {
+    height: inherit;    // have logo image inherit height of logoHeader div
+}

@@ -13,7 +13,8 @@ import ResetPassword from "./user/ResetPassword";
 
 const MainRouter = () => (
     <div>
-        <Menu />
+        <Menu />    {/* Eventually, move/remove the Menu component
+                        so it doesn't show up on every page*/}
         <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/signup' component={Signup} />
