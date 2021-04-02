@@ -1,0 +1,16 @@
+// This is the main styling sheet for the Web App, which uses SASS
+// and not standard CSS. SASS allows for more powerful SCSS styling code to
+// be compiled into normal CSS
+
+$testColor: #b4da5b;
+
+// ##################################### -- Login Page -- ###################################
+// Code from full page example: https://mdbootstrap.com/docs/react/css/background-image/
+.homeContainer {
+    background-image: url('./images/Background1440p.png');
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+

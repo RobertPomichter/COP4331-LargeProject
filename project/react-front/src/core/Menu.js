@@ -21,6 +21,7 @@ const Menu = ({history}) => (
                 </Link>
             </li>
 
+            {/* Menu Options when User is not Logged In */}
             {!isAuthenticated() && (
                 <>
                     <li className="nav-item">
@@ -36,6 +37,7 @@ const Menu = ({history}) => (
                 </>
             )}
 
+            {/* Menu Options when User is Logged In */}
             {isAuthenticated() && (
                 <>
                     <li className="nav-item">
