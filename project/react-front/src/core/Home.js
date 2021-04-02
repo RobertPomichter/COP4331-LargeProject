@@ -17,7 +17,7 @@ const Home = () => (
             <div className='logoHeader'>
                 <img className='logo' src={logo} />
             </div>
-            <Carousel indicators={true} interval={null} defaultActiveIndex={1}>
+            <Carousel className='carousel' indicators={true} interval={null} defaultActiveIndex={1}>
                 {/* Section for Forgot Password form (index 0) */}
                 <CarouselItem>
                     <ForgotPassword></ForgotPassword>

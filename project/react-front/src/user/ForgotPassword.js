@@ -43,7 +43,7 @@ class ForgotPassword extends Component {
                     <h4>{this.state.error}</h4>
                 )} 
                 
-                <form>
+                <form className="landingPageForm">
                     <div className="form-group mt-5">
                         <input
                             type="email"

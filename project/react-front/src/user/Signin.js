@@ -58,7 +58,7 @@ class Signin extends Component{
 
     // signin form method
     signinForm =(email, password) => {
-        return (<form>
+        return (<form className='landingPageForm'>
                     <div className='form-group'>
                         <label className='text-muted'>Email</label>
                         <input 

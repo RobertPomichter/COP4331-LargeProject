@@ -1,10 +1,10 @@
 // This is the main styling sheet for the Web App, which uses SASS
 // and not standard CSS. SASS allows for more powerful SCSS styling code to
-// be compiled into normal CSS
+// be compiled into normal CSS.
 
 $testColor: #b4da5b;
 
-// ##################################### -- Login Page -- ###################################
+// ##################################### -- Landing Page -- ###################################
 // Code from full page example: https://mdbootstrap.com/docs/react/css/background-image/
 .homeContainer {
     background-image: url('./images/Background1440p.png');
@@ -18,7 +18,10 @@ $testColor: #b4da5b;
 }
 
 .homeUIContainer {
-    padding-top: 150px;   // used to vertical positioning of the Home UI
+    padding-top: 10%;   // used to vertical positioning of the Home UI (280px = old)
+    padding-bottom: 30%;
+    width: 1000px;
+    margin: auto;   // auto-centers the UI container horizontally
 }
 
 .logoHeader {
@@ -32,4 +35,21 @@ $testColor: #b4da5b;
 
 .logo {
     height: inherit;    // have logo image inherit height of logoHeader div
+}
+
+.carousel {
+    width: 1000px;
+    margin: auto;
+}
+
+// Styling for all form containers
+.landingPageForm {
+    width: 80%; // controls how wide input fields are
+    margin: auto;   // centers input fields
+}
+
+// Styling for all input fields
+.form-group {
+    background-color: #ffffff;
+    
 }

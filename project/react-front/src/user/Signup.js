@@ -58,7 +58,7 @@ class Signup extends Component{
 
     // signup form method
     signupForm =(name, email, password) => {
-        return (<form>
+        return (<form className='landingPageForm'>
                     <div className='form-group'>
                         <label className='text-muted'>Name</label>
                         <input 
