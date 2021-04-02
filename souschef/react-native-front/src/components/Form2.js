@@ -12,12 +12,14 @@ class Form2 extends React.Component{
       name: " ",
       email: " ",
       password: " ",
+      error: " ",
     }
   }
 
   submit(){
 
-    console.warn(this.state)
+    console.warn(this.state);
+    this.props.navigation.navigate('Home');
 
   }
 
