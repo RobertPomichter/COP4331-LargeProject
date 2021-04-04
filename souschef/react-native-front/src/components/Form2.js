@@ -3,8 +3,7 @@ import { StyleSheet, Text, View, TextInput, Button, ImageBackground, TouchableOp
 import {signup} from '../functions/signup';
 
 class Form2 extends React.Component{
-
-    
+  
   constructor(){
 
     super();
@@ -52,7 +51,7 @@ class Form2 extends React.Component{
     });
 
     //now go to the home page
-    this.props.navigation.navigate('Home');
+    this.props.navigation.navigate('Login');
 
   }
 

@@ -18,6 +18,7 @@ export const signup = user => {
         })
         .catch( err => console.log(err));
 };
+
 //${process.env.REACT_APP_API_URL}/signup
 //https://run.mocky.io/v3/4d213e1a-01a4-476e-93e6-490d7fb379dd
 
