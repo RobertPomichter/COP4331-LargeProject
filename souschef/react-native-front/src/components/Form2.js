@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button, ImageBackground, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, ImageBackground, TouchableOpacity, Alert } from 'react-native';
 import {signup} from '../functions/signup';
 
 class Form2 extends React.Component{
@@ -10,16 +10,14 @@ class Form2 extends React.Component{
     super();
     this.state = {
   
-      name: " ",
-      email: " ",
-      password: " ",
-      error: " ",
+      name: "",
+      email: "",
+      password: "",
+      error: "",
     }
   }
 
   submit(){
-
-    console.warn(this.state);
 
     //destructure the state
     const {name, email, password} = this.state;
@@ -32,6 +30,26 @@ class Form2 extends React.Component{
       password
 
     };
+
+    console.log(JSON.stringify(user));
+
+    signup(user)
+    .then((data) => {
+      //alert(JSON.stringify(data));
+      if(data.error){
+        this.setState({
+          error: data.error
+        });
+      }
+      else{
+        this.setState({
+          name: "",
+          email: "",
+          password: "",
+          error: "",
+        });
+      }
+    });
 
     //now go to the home page
     this.props.navigation.navigate('Home');
@@ -61,6 +79,8 @@ class Form2 extends React.Component{
       <TouchableOpacity style={styles.button} onPress={()=> {this.submit()}}>
           <Text style={styles.buttonText}>Sign up</Text>
       </TouchableOpacity>
+
+      <Text>{this.error}</Text>
       
       </View>
     );
