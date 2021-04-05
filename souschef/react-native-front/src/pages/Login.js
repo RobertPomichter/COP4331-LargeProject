@@ -16,6 +16,7 @@ class Login extends React.Component{
     return (
       <View style={styles.container}>
           <Logo/> 
+          
           <Form1 navigation={this.props.navigation}/>   
 
           <View style={styles.registerTextCont}>
@@ -25,6 +26,7 @@ class Login extends React.Component{
             </TouchableOpacity>
 
           </View>
+
       </View>
     );
     }
@@ -43,9 +45,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
+    //margin: 10,
   },
   signUpBttn:{
     fontWeight: 'bold',
-  }
+  },
 });
 export default Login;

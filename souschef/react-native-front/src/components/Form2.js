@@ -79,6 +79,9 @@ class Form2 extends React.Component{
           <Text style={styles.buttonText}>Sign up</Text>
       </TouchableOpacity>
 
+      {//why does this not show up?
+      }
+
       <Text>{this.error}</Text>
       
       </View>

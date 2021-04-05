@@ -3,9 +3,9 @@ import { StyleSheet, Text, View, Alert, TextInput, Button, ImageBackground, Touc
 import 'react-native-gesture-handler';
 import '@react-navigation/native';
 import '@react-navigation/stack';
-import Welcome from '../components/Welcome';
 
-class Home extends React.Component{
+
+class ForgotPassword extends React.Component{
 
   
     render(){
@@ -13,19 +13,10 @@ class Home extends React.Component{
       return (
       
       <View style={styles.container}>
-           <Welcome/>
 
-           <TouchableOpacity onPress={()=> Alert.alert("Go to ingredients")}>
-               <Text>My Ingredients</Text>
+          <TouchableOpacity style={styles.button} onPress={ () => this.props.navigation.navigate('Login')}>
+                <Text style={styles.backHome}>Back to Login</Text>
            </TouchableOpacity>
-
-           {/*<TouchableOpacity onPress={()=> Alert.alert("Go to recipes")}>
-               <Text>My Recipes</Text>
-            </TouchableOpacity>*/}
-
-           <TouchableOpacity style={styles.button} onPress={()=> this.props.navigation.navigate('Login')}>
-              <Text style={styles.buttonText}>Logout</Text>
-            </TouchableOpacity>
        </View>
       );
       }
@@ -45,15 +36,16 @@ class Home extends React.Component{
       backgroundColor: 'grey',
       paddingVertical: 16,
       marginTop: 20,
+      alignItems: 'center',
     },
     buttonText:{
       textAlign: 'center',
   },
-  test:{
-    flexDirection: 'row',
+  backHome:{
+    fontWeight: 'bold',
   }
 
   });
 
 
-  export default Home;
+  export default ForgotPassword;
