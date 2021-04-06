@@ -20,13 +20,10 @@ exports.signup = async (req, res) => {
     // create the new ingredient list
     const ingredients = await new Ingredients();
     await ingredients.save();
-
     // else create the new user
     const user = await new User(req.body);
-
     // now add the ingredient's objectid to the relevant field in the user data
     user.ingedientsId = ingredients._id; 
-
     // saving the user
     await user.save();
     res.status(200).json({message: "Successfully registered!"});
