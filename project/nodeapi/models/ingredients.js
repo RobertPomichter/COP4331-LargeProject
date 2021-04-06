@@ -331,12 +331,6 @@ const ingredientsSchema = new mongoose.Schema({
         default: 0,
         "category": "dairy",
         "unit": ""
-    },
-    template: {
-        type: Number,
-        default: 0,
-        "category": "",
-        "unit": ""
     }
 });
 
