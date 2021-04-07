@@ -39,6 +39,7 @@ class Form2 extends React.Component{
         this.setState({
           error: data.error
         });
+       // alert(this.state.error);
       }
       else{
         this.setState({
@@ -47,11 +48,9 @@ class Form2 extends React.Component{
           password: "",
           error: "",
         });
+        this.props.navigation.navigate('Login');
       }
     });
-
-    //now go to the home page
-    this.props.navigation.navigate('Login');
 
   }
 
@@ -79,10 +78,8 @@ class Form2 extends React.Component{
           <Text style={styles.buttonText}>Sign up</Text>
       </TouchableOpacity>
 
-      {//why does this not show up?
-      }
 
-      <Text>{this.error}</Text>
+      <Text style={styles.errorMsg}>{this.state.error}</Text>
       
       </View>
     );
@@ -109,7 +106,12 @@ const styles = StyleSheet.create({
   },
   buttonText:{
       textAlign: 'center',
-  }
+  },
+  errorMsg:{
+    marginTop: 25,
+    marginLeft: 50,
+    marginRight: 50,
+  },
 });
 
 export default Form2;
