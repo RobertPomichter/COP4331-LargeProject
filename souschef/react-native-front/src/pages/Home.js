@@ -4,10 +4,17 @@ import 'react-native-gesture-handler';
 import '@react-navigation/native';
 import '@react-navigation/stack';
 import Welcome from '../components/Welcome';
+import {signout} from '../functions/logout';
 
 class Home extends React.Component{
 
   
+    logout(){
+
+      signout();
+      this.props.navigation.navigate('Home');  
+    }
+
     render(){
   
       return (
