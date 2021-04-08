@@ -16,17 +16,20 @@ class ForgotPassword extends React.Component{
   
       email: "",
       error: "",
+      message: "",
     }
   }
 
   submit(){
 
+    //use forgotPassword.js
     
   }
 
     render(){
   
       return (
+      
       
       <View style={styles.container}>
 
@@ -40,7 +43,11 @@ class ForgotPassword extends React.Component{
 
 
           <TouchableOpacity style={styles.button} onPress={ () => this.props.navigation.navigate('Login')}>
-                <Text style={styles.backHome}>Back to Login</Text>
+                <Text style={styles.bold}>Send Password Reset Link</Text>
+           </TouchableOpacity>
+
+           <TouchableOpacity style={styles.backLoginBttn} onPress={ () => this.props.navigation.navigate('Login')}>
+             <Text style={styles.bold}>Back to Login</Text>
            </TouchableOpacity>
        </View>
       );
@@ -66,7 +73,7 @@ class ForgotPassword extends React.Component{
     buttonText:{
       textAlign: 'center',
   },
-  backHome:{
+  bold:{
     fontWeight: 'bold',
   },
   inputBox: {
@@ -78,6 +85,9 @@ class ForgotPassword extends React.Component{
     fontWeight: 'bold',
     marginBottom: 30,
   },
+  backLoginBttn:{
+    marginTop: 30,
+  }
   });
 
 
