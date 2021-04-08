@@ -15,8 +15,30 @@ import ForgotPassword from '../user/ForgotPassword.js'
 // OLD COMPONENT DECLARATION:
 // const Home = () => (
 class Home extends Component {
+    // state constructor
+    constructor(){
+        super()
+        this.state = {
+            index: 1    // controls which slide/form the carousel has selected
+        }
+    }
 
-    clickRegister() {
+    // set carousel slide to the Forgot Password form
+    goToForgotPassword = () => {
+        this.setState({index: 0});
+    }
+
+    // set carousel slide to the Sign In form
+    goToSignin = () => {
+        this.setState({index: 1});
+    }
+
+    // set carousel slide to the Sign Up form
+    goToRegister = () => {
+        this.setState({index: 2});
+    }
+
+    clickSignin = () => {
         
     }
 
@@ -27,18 +49,27 @@ class Home extends Component {
                     <div className='logoHeader'>
                         <img className='logo' src={logo} />
                     </div>
-                    <Carousel className='carousel' indicators={true} interval={null} defaultActiveIndex={1}>
+                    <Carousel className='carousel' indicators={false} controls={false} activeIndex={this.state.index}>
+                        {/* Forgot Password Menu (slide index: 0) */}
                         <CarouselItem>
-                            <ForgotPassword></ForgotPassword>
+                            <ForgotPassword />
+                            <button className='btn btn-block landing' onClick={this.goToSignin}>
+                                Return to Login
+                            </button>
                         </CarouselItem>
+                        {/* Sign In Menu (slide index: 1 (default)) */}
                         <CarouselItem>
-                            <Signin></Signin>
-                            <button className='btn btn-block landing' onClick={this.clickRegister}>
+                            <Signin />
+                            <button className='btn btn-block landing' onClick={this.goToRegister}>
                                 Register
                             </button>
                         </CarouselItem>
+                        {/* Sign Up Menu (slide index: 2) */}
                         <CarouselItem>
-                            <Signup></Signup>
+                            <Signup />
+                            <button className='btn btn-block landing' onClick={this.goToSignin}>
+                                Return to Login
+                            </button>
                         </CarouselItem>
                     </Carousel>
                 </div>

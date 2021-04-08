@@ -82,9 +82,11 @@ class Signin extends Component{
                     <button onClick={this.clickSubmit} className='btn btn-raised btn-primary'>
                         Submit
                     </button>*/}
+
                     <button onClick={this.clickSubmit} className='btn btn-block landing'>
-                        Submit
+                        Sign In
                     </button>
+
                     {/*
                         <button onClick={this.clickRegister} className='btn btn-block landing'>
                             Register
@@ -95,7 +97,7 @@ class Signin extends Component{
     };
     
     // render the JSX to a page 
-    render(){
+    render() {
         // destructure the state
         const {email, password, error, redirectToReferer, loading} = this.state;
         
@@ -118,6 +120,7 @@ class Signin extends Component{
 
                 {this.signinForm(email, password)}
 
+                {/*}
                 <p>
                     <Link to="/forgot-password" 
                         className="btn btn-raised btn-danger"
@@ -126,6 +129,7 @@ class Signin extends Component{
                         Forgot Password
                     </Link>
                 </p>
+                */}
             </div>
         ); 
     }
