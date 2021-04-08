@@ -4,15 +4,40 @@ import 'react-native-gesture-handler';
 import '@react-navigation/native';
 import '@react-navigation/stack';
 
+import PasswordRecovery from '../components/PasswordRecovery';
+
 
 class ForgotPassword extends React.Component{
 
+  constructor(){
+
+    super();
+    this.state = {
   
+      email: "",
+      error: "",
+    }
+  }
+
+  submit(){
+
+    
+  }
+
     render(){
   
       return (
       
       <View style={styles.container}>
+
+        <Text style={styles.title}>Password Recovery</Text>
+
+        <TextInput style={styles.inputBox}
+        underlineColorAndroid='black'
+        onChangeText = { (text) => {this.setState({email: text})}}
+        placeholder="Email..."
+        secureTextEntry={true}/>
+
 
           <TouchableOpacity style={styles.button} onPress={ () => this.props.navigation.navigate('Login')}>
                 <Text style={styles.backHome}>Back to Login</Text>
@@ -43,8 +68,16 @@ class ForgotPassword extends React.Component{
   },
   backHome:{
     fontWeight: 'bold',
-  }
+  },
+  inputBox: {
+    width: 300,
+  },
+  title:{
 
+    fontSize: 40,
+    fontWeight: 'bold',
+    marginBottom: 30,
+  },
   });
 
 
