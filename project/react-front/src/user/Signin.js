@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import Loading from '../Loading'; 
 import { signin, authenticate } from "../auth";
+import { Carousel } from "react-bootstrap";
 
 class Signin extends Component{
     // state constructor
@@ -77,9 +78,19 @@ class Signin extends Component{
                             value={password}    
                         />
                     </div>
+                    {/* Old Button: 
                     <button onClick={this.clickSubmit} className='btn btn-raised btn-primary'>
                         Submit
+                    </button>*/}
+                    <button onClick={this.clickSubmit} className='btn btn-block landing'>
+                        Submit
                     </button>
+                    {/*
+                        <button onClick={this.clickRegister} className='btn btn-block landing'>
+                            Register
+                        </button>
+                    */}
+ 
                 </form>);
     };
     
