@@ -80,6 +80,7 @@ exports.userPhoto = (req, res, next) => {
     next();
 }
 
+// function to update the user
 exports.updateUser = (req, res, next) => {
     // grab the form
     let form = new formidable.IncomingForm();
@@ -132,7 +133,7 @@ exports.updateUser = (req, res, next) => {
     });
 }
 
-// function to update the user
+// function to delete the user
 exports.deleteUser = (req, res, next) => {
     // get the user profile
     let user = req.profile;

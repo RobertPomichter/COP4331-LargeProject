@@ -15,11 +15,11 @@ const {
 const router = express.Router();
 
 // any request with userId will go through middleware
-router.param('ingredientID', ingredientsById);
+router.param('ingredientId', ingredientsById);
 
 // route to get all ingredients
-// route.get('/', );
+route.get('/ingredients/:ingredientId', );
 // route to update all ingredients
-// route.get('/', );
+route.put('/', );
 
 module.exports = router;
