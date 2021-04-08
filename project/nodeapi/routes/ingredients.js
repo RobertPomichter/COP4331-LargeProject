@@ -17,9 +17,9 @@ const router = express.Router();
 // any request with userId will go through middleware
 router.param('ingredientId', ingredientsById);
 
-// route to get all ingredients
-route.get('/ingredients/:ingredientId', );
+// route to get all in one model ingredients
+route.get('/ingredients/:ingredientId', getIngredients);
 // route to update all ingredients
-route.put('/', );
+route.put('/ingredients/:ingredientId', updateIngredients);
 
 module.exports = router;
