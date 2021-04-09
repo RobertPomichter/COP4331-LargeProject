@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import Loading from '../Loading'; 
 import { signin, authenticate } from "../auth";
-import { Carousel } from "react-bootstrap";
 
 class Signin extends Component{
     // state constructor
@@ -61,21 +60,21 @@ class Signin extends Component{
     signinForm =(email, password) => {
         return (<form className='landingPageForm'>
                     <div className='form-group'>
-                        <label className='text-muted'>Email</label>
                         <input 
                             onChange={this.handleChange("email")} 
                             type='email' 
                             className='form-control'
-                            value={email} 
+                            value={email}
+                            placeholder='Email'
                         />
                     </div>
                     <div className='form-group'>
-                        <label className='text-muted'>Password</label>
                         <input 
                             onChange={this.handleChange("password")} 
                             type='password' 
                             className='form-control' 
-                            value={password}    
+                            value={password}
+                            placeholder='Password'    
                         />
                     </div>
                     {/* Old Button: 

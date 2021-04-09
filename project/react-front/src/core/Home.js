@@ -28,7 +28,7 @@ class Home extends Component {
         this.setState({index: 0});
     }
 
-    // set carousel slide to the Sign In form
+    // set carousel slide to the Sign In form (passed to Signup, ForgotPassword components)
     goToSignin = () => {
         this.setState({index: 1});
     }

@@ -39,7 +39,7 @@ $testColor: #b4da5b;
 
 .carousel {
     width: 1000px;
-    margin: auto;
+    //margin: auto;
 }
 
 // Styling for all form containers
@@ -48,13 +48,33 @@ $testColor: #b4da5b;
     margin: auto;   // centers input fields
 }
 
-// Styling for all input fields
+// Styling for all input fields' containers
 .form-group {
     background-color: #ffffff;
-    
+    border-radius: 50px;
+    height: 60px;
+    margin-top: 50px;
 }
 
-// Login Button testing
+// Styling for all input fields' content/interactive elements
+.form-control {
+    background-color: white;
+    height: 100%;    // inherit the height of form-group (the input field containers)
+    width: 100%;
+    border-radius: 50px;
+    padding-top: 15px;
+    padding-left: 28px;
+    padding-bottom: 16px;
+    font-size: 32px;
+}
+
+.form-control::placeholder {
+    font-size: 32px;
+}
+
+// Styling for all landing page buttons
 .btn.landing {
     color: #ffffff;
+    background-color: #D17A22;
+    border-radius: 12px;
 }

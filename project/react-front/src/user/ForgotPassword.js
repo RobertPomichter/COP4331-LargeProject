@@ -65,7 +65,7 @@ class ForgotPassword extends Component {
                         onClick={this.forgotPassword}
                         className="btn btn-raised btn-primary"
                     >
-                        Send Password Rest Link
+                        Send Password Reset Link
                     </button>
                     <button type="button" className='btn btn-block landing' onClick={this.props.goToSignin}>
                         Return to Login
