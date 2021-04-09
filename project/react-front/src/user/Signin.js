@@ -82,9 +82,15 @@ class Signin extends Component{
                     <button onClick={this.clickSubmit} className='btn btn-raised btn-primary'>
                         Submit
                     </button>*/}
+                    <button type="button" onClick={this.props.goToForgotPassword} className='btn btn-block landing'>
+                        Forgot Password?
+                    </button>
 
                     <button onClick={this.clickSubmit} className='btn btn-block landing'>
                         Sign In
+                    </button>
+                    <button type="button" className='btn btn-block landing' onClick={this.props.goToRegister}>
+                        Register
                     </button>
 
                     {/*

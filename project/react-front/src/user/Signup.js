@@ -86,8 +86,12 @@ class Signup extends Component{
                             value={password}    
                         />
                     </div>
-                    <button onClick={this.clickSubmit} className='btn btn-raised btn-primary'>
+                    <button onClick={this.clickSubmit} className='btn btn-block landing'>
                         Submit
+                    </button>
+                    {/* Setting type="button" disables default page refreshing on button press*/}
+                    <button type="button" className='btn btn-block landing' onClick={this.props.goToSignin}>
+                        Return to Login
                     </button>
                 </form>);
     };

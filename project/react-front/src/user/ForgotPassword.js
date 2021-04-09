@@ -67,6 +67,9 @@ class ForgotPassword extends Component {
                     >
                         Send Password Rest Link
                     </button>
+                    <button type="button" className='btn btn-block landing' onClick={this.props.goToSignin}>
+                        Return to Login
+                    </button>
                 </form>
             </div>
         );

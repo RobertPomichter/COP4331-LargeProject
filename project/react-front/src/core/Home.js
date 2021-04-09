@@ -9,13 +9,13 @@ import ForgotPassword from '../user/ForgotPassword.js'
 
 // Home Page Component, which will contain all JSX for the Login, Sign Up,
 // and Forgot Password functions. Currently implementing each function using
-// a Carousel and CarouselItem for each form.
+// a Carousel, with CarouselItems for each form.
 
 
 // OLD COMPONENT DECLARATION:
 // const Home = () => (
 class Home extends Component {
-    // state constructor
+    // state constructor, testing use of props (previously props were not used)
     constructor(){
         super()
         this.state = {
@@ -23,7 +23,7 @@ class Home extends Component {
         }
     }
 
-    // set carousel slide to the Forgot Password form
+    // set carousel slide to the Forgot Password form (passed to Signin component)
     goToForgotPassword = () => {
         this.setState({index: 0});
     }
@@ -33,13 +33,9 @@ class Home extends Component {
         this.setState({index: 1});
     }
 
-    // set carousel slide to the Sign Up form
+    // set carousel slide to the Sign Up form (passed to Signin component)
     goToRegister = () => {
         this.setState({index: 2});
-    }
-
-    clickSignin = () => {
-        
     }
 
     render() {
@@ -52,24 +48,16 @@ class Home extends Component {
                     <Carousel className='carousel' indicators={false} controls={false} activeIndex={this.state.index}>
                         {/* Forgot Password Menu (slide index: 0) */}
                         <CarouselItem>
-                            <ForgotPassword />
-                            <button className='btn btn-block landing' onClick={this.goToSignin}>
-                                Return to Login
-                            </button>
+                            <ForgotPassword goToSignin={this.goToSignin}/>
                         </CarouselItem>
                         {/* Sign In Menu (slide index: 1 (default)) */}
                         <CarouselItem>
-                            <Signin />
-                            <button className='btn btn-block landing' onClick={this.goToRegister}>
-                                Register
-                            </button>
+                            <Signin goToForgotPassword={this.goToForgotPassword}
+                                    goToRegister={this.goToRegister}/>
                         </CarouselItem>
                         {/* Sign Up Menu (slide index: 2) */}
                         <CarouselItem>
-                            <Signup />
-                            <button className='btn btn-block landing' onClick={this.goToSignin}>
-                                Return to Login
-                            </button>
+                            <Signup goToSignin={this.goToSignin}/>
                         </CarouselItem>
                     </Carousel>
                 </div>
