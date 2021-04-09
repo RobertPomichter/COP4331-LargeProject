@@ -47,16 +47,16 @@ class Home extends Component {
                     </div>
                     <Carousel className='carousel' indicators={false} controls={false} activeIndex={this.state.index}>
                         {/* Forgot Password Menu (slide index: 0) */}
-                        <CarouselItem>
+                        <CarouselItem className='carouselSlide'>
                             <ForgotPassword goToSignin={this.goToSignin}/>
                         </CarouselItem>
                         {/* Sign In Menu (slide index: 1 (default)) */}
-                        <CarouselItem>
+                        <CarouselItem className='carouselSlide'>
                             <Signin goToForgotPassword={this.goToForgotPassword}
                                     goToRegister={this.goToRegister}/>
                         </CarouselItem>
                         {/* Sign Up Menu (slide index: 2) */}
-                        <CarouselItem>
+                        <CarouselItem className='carouselSlide'>
                             <Signup goToSignin={this.goToSignin}/>
                         </CarouselItem>
                     </Carousel>

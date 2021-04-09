@@ -21,6 +21,7 @@ $testColor: #b4da5b;
     padding-top: 10%;   // used to vertical positioning of the Home UI (280px = old)
     padding-bottom: 30%;
     width: 1000px;
+    height: inherit;    // inherit height from homeContainer
     margin: auto;   // auto-centers the UI container horizontally
 }
 
@@ -42,6 +43,10 @@ $testColor: #b4da5b;
     //margin: auto;
 }
 
+.carouselSlide {
+    height: 800px;
+}
+
 // Styling for all form containers
 .landingPageForm {
     width: 80%; // controls how wide input fields are
@@ -54,6 +59,7 @@ $testColor: #b4da5b;
     border-radius: 50px;
     height: 60px;
     margin-top: 50px;
+    margin-bottom: 0px;
 }
 
 // Styling for all input fields' content/interactive elements
@@ -68,13 +74,28 @@ $testColor: #b4da5b;
     font-size: 32px;
 }
 
+// Styling for placeholder text in input fields
 .form-control::placeholder {
     font-size: 32px;
+}
+
+.forgotPasswordText {
+    margin-left: 73%;
+    font-size: 25px;
+}
+
+.forgotPasswordText:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 // Styling for all landing page buttons
 .btn.landing {
     color: #ffffff;
+    height: 50px;
     background-color: #D17A22;
-    border-radius: 12px;
+    border-radius: 50px;
+    font-size: 20px;
+
+    text-transform: none;   // prevents the button text from defaulting to ALL CAPS
 }

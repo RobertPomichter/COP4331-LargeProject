@@ -61,10 +61,7 @@ class ForgotPassword extends Component {
                             autoFocus
                         />
                     </div>
-                    <button
-                        onClick={this.forgotPassword}
-                        className="btn btn-raised btn-primary"
-                    >
+                    <button onClick={this.forgotPassword} className="btn btn-block landing">
                         Send Password Reset Link
                     </button>
                     <button type="button" className='btn btn-block landing' onClick={this.props.goToSignin}>
