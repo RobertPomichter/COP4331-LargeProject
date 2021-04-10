@@ -101,9 +101,9 @@ class Signin extends Component{
         // destructure the state
         const {email, password, error, redirectToReferer, loading} = this.state;
         
-        // if user is authenticated then redirect
+        // if user is authenticated then redirect to dashboard
         if(redirectToReferer){
-            return <Redirect to='/' />
+            return <Redirect to='/dashboard' />
         }
 
         return(
@@ -120,16 +120,6 @@ class Signin extends Component{
 
                 {this.signinForm(email, password)}
 
-                {/*}
-                <p>
-                    <Link to="/forgot-password" 
-                        className="btn btn-raised btn-danger"
-                    >
-                        {" "}
-                        Forgot Password
-                    </Link>
-                </p>
-                */}
             </div>
         ); 
     }

@@ -31,18 +31,22 @@ class ForgotPassword extends Component {
 
     // render the page
     render() {
+        // destructure the state
+        const {message, error} = this.state;
 
         return (
             <div className="container">
                 <h2 className="mt-5 mb-5 LPTitle">Reset Password</h2>
-                
-                {this.state.message && (
-                    <h4>{this.state.message}</h4>
-                )} 
-                {this.state.error && (
-                    <h4>{this.state.error}</h4>
-                )} 
-                
+                <div 
+                    className='alert alert-danger' 
+                    style={{display: message ? "" : 'none'}}>
+                        {message}
+                </div>
+                <div 
+                    className='alert alert-danger' 
+                    style={{display: error ? "" : 'none'}}>
+                        {error}
+                </div>
                 <form className="landingPageForm">
                     <div className="form-group mt-5">
                         <input

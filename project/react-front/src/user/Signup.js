@@ -112,11 +112,11 @@ class Signup extends Component{
                     style={{display: error ? "" : 'none'}}>
                         {error}
                 </div>
-
                 <div 
                     className='alert alert-info' 
                     style={{display: open ? "" : 'none'}}>
-                        Successfully created an account! Please <Link to='/signin'>sign in</Link>
+                        Successfully created an account! Please
+                            <span onClick={this.props.goToSignin} className='signinText'>sign in</span>
                 </div>
 
                 {this.signupForm(name, email, password)}

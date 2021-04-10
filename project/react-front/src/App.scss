@@ -95,6 +95,17 @@ $testColor: #b4da5b;
     text-decoration: underline;
 }
 
+.signinText {
+    color: #009688;
+    margin-left: 4px;
+}
+
+.signinText:hover {
+    color: #02587f;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 // Styling for all landing page buttons
 .btn.landing {
     color: #ffffff;

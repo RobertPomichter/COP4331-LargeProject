@@ -10,6 +10,7 @@ import EditProfile from "./user/EditProfile";
 import PrivateRoute from "./auth/PrivateRoute"
 import ForgotPassword from "./user/ForgotPassword";
 import ResetPassword from "./user/ResetPassword";
+import Dashboard from "./core/Dashboard";
 
 const MainRouter = () => (
     <div>
@@ -17,6 +18,9 @@ const MainRouter = () => (
                         so it doesn't show up on every page*/}
         <Switch>
             <Route exact path='/' component={Home} />
+            <Route exact path='/dashboard' component={Dashboard}>
+
+            </Route>
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/signin' component={Signin} />
             <PrivateRoute exact path='/user/:userId' component={Profile} />
