@@ -38,6 +38,12 @@ $testColor: #b4da5b;
     height: inherit;    // have logo image inherit height of logoHeader div
 }
 
+.LPTitle {
+    font-size: 70px;
+    text-align: center;
+    color: #727272;
+}
+
 .carousel {
     width: 1000px;
     //margin: auto;
@@ -96,6 +102,21 @@ $testColor: #b4da5b;
     background-color: #D17A22;
     border-radius: 50px;
     font-size: 20px;
+    margin-top: 15px;
+    margin-bottom: 25px;
 
     text-transform: none;   // prevents the button text from defaulting to ALL CAPS
+}
+
+.btn.landing:hover {
+    background-color: #dea164;
+}
+
+.btn.landing:active {
+    color: white;   // prevents text from flashing black when clicked
+}
+
+.landingPageSpacer {
+    display: block;
+    height: 30px;
 }

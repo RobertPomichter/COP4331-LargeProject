@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import Loading from '../Loading'; 
 import { signin, authenticate } from "../auth";
+import { Button } from'@material-ui/core';
 
 class Signin extends Component{
     // state constructor
@@ -77,27 +78,21 @@ class Signin extends Component{
                             placeholder='Password'    
                         />
                     </div>
-                    {/* Old Button: 
-                    <button onClick={this.clickSubmit} className='btn btn-raised btn-primary'>
-                        Submit
-                    </button>*/}
                     <span onClick={this.props.goToForgotPassword} className='forgotPasswordText'>
                         Forgot Password?
                     </span>
 
+                    {/* Bootstrap Button
                     <button onClick={this.clickSubmit} className='btn btn-block landing'>
                         Sign In
                     </button>
-                    <button type="button" className='btn btn-block landing' onClick={this.props.goToRegister}>
-                        Register
-                    </button>
-
-                    {/*
-                        <button onClick={this.clickRegister} className='btn btn-block landing'>
-                            Register
-                        </button>
                     */}
- 
+                    <Button variant="contained" onClick={this.clickSubmit} className='btn btn-block landing'>
+                        Sign In
+                    </Button>
+                    <Button variant="contained" type="button" className='btn btn-block landing' onClick={this.props.goToRegister}>
+                        Register
+                    </Button>
                 </form>);
     };
     
@@ -113,7 +108,7 @@ class Signin extends Component{
 
         return(
             <div className='container'>
-                <h2 className='mt-5 mb-5'>Sign In</h2>
+                <h2 className='mt-5 mb-5 LPTitle'>Sign In</h2>
 
                 <div 
                     className='alert alert-danger' 

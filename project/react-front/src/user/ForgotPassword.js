@@ -1,6 +1,7 @@
 // import functions and packages
 import React, { Component, useState } from "react";
 import { forgotPassword } from "../auth";
+import { Button } from'@material-ui/core';
 
 // forgot password component
 class ForgotPassword extends Component {
@@ -33,8 +34,7 @@ class ForgotPassword extends Component {
 
         return (
             <div className="container">
-                <h2 className="mt-5 mb-5">Request Password Reset</h2>
-
+                <h2 className="mt-5 mb-5 LPTitle">Reset Password</h2>
                 
                 {this.state.message && (
                     <h4>{this.state.message}</h4>
@@ -61,12 +61,13 @@ class ForgotPassword extends Component {
                             autoFocus
                         />
                     </div>
-                    <button onClick={this.forgotPassword} className="btn btn-block landing">
+                    <div className="landingPageSpacer"></div>
+                    <Button variant="contained" onClick={this.forgotPassword} className="btn btn-block landing">
                         Send Password Reset Link
-                    </button>
-                    <button type="button" className='btn btn-block landing' onClick={this.props.goToSignin}>
+                    </Button>
+                    <Button variant="contained" type="button" className='btn btn-block landing' onClick={this.props.goToSignin}>
                         Return to Login
-                    </button>
+                    </Button>
                 </form>
             </div>
         );

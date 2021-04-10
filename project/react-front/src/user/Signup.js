@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { signup } from "../auth";
+import { Button } from'@material-ui/core';
 
 class Signup extends Component{
     // state constructor
@@ -86,13 +87,14 @@ class Signup extends Component{
                             placeholder='Password'  
                         />
                     </div>
-                    <button onClick={this.clickSubmit} className='btn btn-block landing'>
+                    <div className="landingPageSpacer"></div>
+                    <Button variant="contained" onClick={this.clickSubmit} className='btn btn-block landing'>
                         Submit
-                    </button>
+                    </Button>
                     {/* Setting type="button" disables default page refreshing on button press*/}
-                    <button type="button" className='btn btn-block landing' onClick={this.props.goToSignin}>
+                    <Button variant="contained" type="button" className='btn btn-block landing' onClick={this.props.goToSignin}>
                         Return to Login
-                    </button>
+                    </Button>
                 </form>);
     };
     
@@ -103,7 +105,7 @@ class Signup extends Component{
         
         return(
             <div className='container'>
-                <h2 className='mt-5 mb-5'>Register</h2>
+                <h2 className='mt-5 mb-5 LPTitle'>Create Your Account</h2>
 
                 <div 
                     className='alert alert-danger' 
