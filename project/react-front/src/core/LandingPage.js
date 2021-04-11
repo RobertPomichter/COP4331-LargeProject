@@ -14,7 +14,7 @@ import ForgotPassword from '../user/ForgotPassword.js'
 
 // OLD COMPONENT DECLARATION:
 // const Home = () => (
-class Home extends Component {
+class LandingPage extends Component {
     // state constructor, testing use of props (previously props were not used)
     constructor(){
         super()
@@ -40,8 +40,8 @@ class Home extends Component {
 
     render() {
         return (
-            <div className='homeContainer'>
-                <div className='homeUIContainer'>
+            <div className='landingPageContainer'>
+                <div className='landingPageUIContainer'>
                     <div className='logoHeader'>
                         <img className='logo' src={logo} />
                     </div>
@@ -64,40 +64,6 @@ class Home extends Component {
             </div>
         );
     }
-    /*
-    <div className='homeContainer'>
-        <div className='homeUIContainer'>
-            <div className='logoHeader'>
-                <img className='logo' src={logo} />
-            </div>
-            <Carousel className='carousel' indicators={true} interval={null} defaultActiveIndex={1}>
-                <CarouselItem>
-                    <ForgotPassword></ForgotPassword>
-                </CarouselItem>
-                <CarouselItem>
-                    <Signin></Signin>
-                    <button className='btn btn-block landing'>
-                        Register
-                    </button>
-                </CarouselItem>
-                <CarouselItem>
-                    <Signup></Signup>
-                </CarouselItem>
-            </Carousel>
-        </div>
-    </div>
-    */
-
-    /* OLD HOME PAGE SETUP
-    <div>
-        <div className="bg">
-        </div>
-        <div className='jumbotron' style={{ backgroundImage: `url($background)`}}>
-            <h2>Home</h2>
-            <p className='lead'>Welcome to the React Frontend</p>
-        </div>
-    </div>
-    */
 }
 
-export default Home;
+export default LandingPage;

@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
+import {Switch, Route} from 'react-router-dom';
 import '../App.scss';
 import Menu from './Menu.js';
+import Profile from '../user/Profile.js';
+import Users from '../user/Users';
+import EditProfile from '../user/EditProfile';
+import ResetPassword from '../user/ResetPassword.js';
+import PrivateRoute from "../auth/PrivateRoute";
+import Home from '../user/Home.js';
 import { Carousel, CarouselItem } from 'react-bootstrap';
 import logo from '../images/LogoResized.svg';
-import Signin from '../user/Signin.js'
-import Signup from '../user/Signup.js'
-import ForgotPassword from '../user/ForgotPassword.js'
+import Signin from '../user/Signin.js';
+import Signup from '../user/Signup.js';
+import ForgotPassword from '../user/ForgotPassword.js';
 
 // Home Page Component, which will contain all JSX for the Login, Sign Up,
 // and Forgot Password functions. Currently implementing each function using
@@ -18,48 +25,22 @@ class Dashboard extends Component {
 
     render() {
         return (
-            <div className='homeContainer'>
+            <div className='landingPageContainer'>
                 <Menu />
-                <div className='jumbotron'>
-                    <h1>Welcome to the Dashboard!</h1>
+                <div className='activeComponent'>
+                <Switch>
+                    {/* Changing these routes to be nested inside the Dashboard component */}
+                    <PrivateRoute exact path='/dashboard' component={Home}/>
+                    <PrivateRoute exact path='/dashboard/user/:userId' component={Profile} />
+                    <PrivateRoute exact path='/dashboard/users' component={Users} />
+                    <PrivateRoute exact path='/dashboard/user/edit/:userId' component={EditProfile} />
+                    
+                    <Route exact path="/dashboard/reset-password/:resetPasswordToken" component={ResetPassword} />
+                </Switch>
                 </div>
             </div>
         );
     }
-    /*
-    <div className='homeContainer'>
-        <div className='homeUIContainer'>
-            <div className='logoHeader'>
-                <img className='logo' src={logo} />
-            </div>
-            <Carousel className='carousel' indicators={true} interval={null} defaultActiveIndex={1}>
-                <CarouselItem>
-                    <ForgotPassword></ForgotPassword>
-                </CarouselItem>
-                <CarouselItem>
-                    <Signin></Signin>
-                    <button className='btn btn-block landing'>
-                        Register
-                    </button>
-                </CarouselItem>
-                <CarouselItem>
-                    <Signup></Signup>
-                </CarouselItem>
-            </Carousel>
-        </div>
-    </div>
-    */
-
-    /* OLD HOME PAGE SETUP
-    <div>
-        <div className="bg">
-        </div>
-        <div className='jumbotron' style={{ backgroundImage: `url($background)`}}>
-            <h2>Home</h2>
-            <p className='lead'>Welcome to the React Frontend</p>
-        </div>
-    </div>
-    */
 }
 
 export default Dashboard;

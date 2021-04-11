@@ -6,7 +6,7 @@ $testColor: #b4da5b;
 
 // ##################################### -- Landing Page -- ###################################
 // Code from full page example: https://mdbootstrap.com/docs/react/css/background-image/
-.homeContainer {
+.landingPageContainer {
     background-image: url('./images/Background1440p.png');
 
     // These lines control the scaling & positioning of the homeContainer, and the
@@ -17,7 +17,7 @@ $testColor: #b4da5b;
     background-size: cover;
 }
 
-.homeUIContainer {
+.landingPageUIContainer {
     padding-top: 10%;   // used to vertical positioning of the Home UI (280px = old)
     padding-bottom: 30%;
     width: 1000px;
@@ -50,7 +50,9 @@ $testColor: #b4da5b;
 }
 
 .carouselSlide {
-    height: 800px;
+    height: 800px;  // height must be specified here in order to force all carousel slides
+                    // to be the same size, which fixes a rendering glitch when changing
+                    // slides
 }
 
 // Styling for all form containers
@@ -85,6 +87,7 @@ $testColor: #b4da5b;
     font-size: 32px;
 }
 
+// Styling for forgot passwork clickable text on Sign In form
 .forgotPasswordText {
     margin-left: 73%;
     font-size: 25px;
@@ -95,6 +98,7 @@ $testColor: #b4da5b;
     text-decoration: underline;
 }
 
+// Styling for clickable "sign in" text inside the successfully registered message
 .signinText {
     color: #009688;
     margin-left: 4px;
@@ -127,6 +131,8 @@ $testColor: #b4da5b;
     color: white;   // prevents text from flashing black when clicked
 }
 
+// Empty div used to solve a spacing requirement beneath
+// the "Forgot Password?" text in the Sign In form
 .landingPageSpacer {
     display: block;
     height: 30px;
