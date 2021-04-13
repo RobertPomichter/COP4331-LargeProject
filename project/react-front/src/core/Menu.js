@@ -16,11 +16,12 @@ const Menu = ({history}) => (
     <div>
         <ul className="nav nav-tabs bg-dark">
             <li className="nav-item">
-                <Link className='nav-link' style={isActive(history, '/')} to='/'>
+                <Link className='nav-link' style={isActive(history, '/')} to='/dashboard'>
                     Home
                 </Link>
             </li>
 
+            {/* Menu Options when User is not Logged In */}
             {!isAuthenticated() && (
                 <>
                     <li className="nav-item">
@@ -36,8 +37,26 @@ const Menu = ({history}) => (
                 </>
             )}
 
+            {/* Menu Options when User is Logged In */}
             {isAuthenticated() && (
                 <>
+                    <li className="nav-item">
+                        <Link className='nav-link' 
+                            style={isActive(history, '/users')}
+                            to='/dashboard/users'
+                        >
+                                Users
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link
+                            className='nav-link' 
+                            to={`/dashboard/user/${isAuthenticated().user._id}`}
+                            style={isActive(history, `/user/${isAuthenticated().user._id}`)}
+                        >
+                                {isAuthenticated().user.name}'s Profile
+                        </Link>
+                    </li>
                     <li className="nav-item">
                         <a className='nav-link' 
                             style={isActive(history, '/signout'),
@@ -46,23 +65,6 @@ const Menu = ({history}) => (
                         >
                                 Sign Out
                         </a>
-                    </li>
-                    <li className="nav-item">
-                        <Link className='nav-link' 
-                            style={isActive(history, '/users')}
-                            to='/users'
-                        >
-                                Users
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link
-                            className='nav-link' 
-                            to={`/user/${isAuthenticated().user._id}`}
-                            style={isActive(history, `/user/${isAuthenticated().user._id}`)}
-                        >
-                                {isAuthenticated().user.name}'s Profile
-                        </Link>
                     </li>
                 </>
             )}

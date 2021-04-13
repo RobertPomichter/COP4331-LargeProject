@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import Loading from '../Loading'; 
 import { signin, authenticate } from "../auth";
+import { Button } from'@material-ui/core';
 
 class Signin extends Component{
     // state constructor
@@ -58,44 +59,56 @@ class Signin extends Component{
 
     // signin form method
     signinForm =(email, password) => {
-        return (<form>
+        return (<form className='landingPageForm'>
                     <div className='form-group'>
-                        <label className='text-muted'>Email</label>
                         <input 
                             onChange={this.handleChange("email")} 
                             type='email' 
                             className='form-control'
-                            value={email} 
+                            value={email}
+                            placeholder='Email'
                         />
                     </div>
                     <div className='form-group'>
-                        <label className='text-muted'>Password</label>
                         <input 
                             onChange={this.handleChange("password")} 
                             type='password' 
                             className='form-control' 
-                            value={password}    
+                            value={password}
+                            placeholder='Password'    
                         />
                     </div>
-                    <button onClick={this.clickSubmit} className='btn btn-raised btn-primary'>
-                        Submit
+                    <span onClick={this.props.goToForgotPassword} className='forgotPasswordText'>
+                        Forgot Password?
+                    </span>
+
+                    {/* Bootstrap Button
+                    <button onClick={this.clickSubmit} className='btn btn-block landing'>
+                        Sign In
                     </button>
+                    */}
+                    <Button variant="contained" onClick={this.clickSubmit} className='btn btn-block landing'>
+                        Sign In
+                    </Button>
+                    <Button variant="contained" type="button" className='btn btn-block landing' onClick={this.props.goToRegister}>
+                        Register
+                    </Button>
                 </form>);
     };
     
     // render the JSX to a page 
-    render(){
+    render() {
         // destructure the state
         const {email, password, error, redirectToReferer, loading} = this.state;
         
-        // if user is authenticated then redirect
+        // if user is authenticated then redirect to dashboard
         if(redirectToReferer){
-            return <Redirect to='/' />
+            return <Redirect to='/dashboard' />
         }
 
         return(
             <div className='container'>
-                <h2 className='mt-5 mb-5'>Sign In</h2>
+                <h2 className='mt-5 mb-5 LPTitle'>Sign In</h2>
 
                 <div 
                     className='alert alert-danger' 
@@ -103,18 +116,10 @@ class Signin extends Component{
                         {error}
                 </div>
 
-                {loading ? (<Loading />):("")}
-
                 {this.signinForm(email, password)}
 
-                <p>
-                    <Link to="/forgot-password" 
-                        className="btn btn-raised btn-danger"
-                    >
-                        {" "}
-                        Forgot Password
-                    </Link>
-                </p>
+                {loading ? (<Loading />):("")}
+
             </div>
         ); 
     }

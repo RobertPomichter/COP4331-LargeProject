@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { signup } from "../auth";
+import { Button } from'@material-ui/core';
 
 class Signup extends Component{
     // state constructor
@@ -58,37 +59,42 @@ class Signup extends Component{
 
     // signup form method
     signupForm =(name, email, password) => {
-        return (<form>
+        return (<form className='landingPageForm'>
                     <div className='form-group'>
-                        <label className='text-muted'>Name</label>
                         <input 
                             onChange={this.handleChange("name")} 
                             type='text' 
                             className='form-control'
-                            value={name} 
+                            value={name}
+                            placeholder='Name' 
                         />
                     </div>
                     <div className='form-group'>
-                        <label className='text-muted'>Email</label>
                         <input 
                             onChange={this.handleChange("email")} 
                             type='email' 
                             className='form-control'
-                            value={email} 
+                            value={email}
+                            placeholder='Email'
                         />
                     </div>
                     <div className='form-group'>
-                        <label className='text-muted'>Password</label>
                         <input 
                             onChange={this.handleChange("password")} 
                             type='password' 
                             className='form-control' 
-                            value={password}    
+                            value={password}
+                            placeholder='Password'  
                         />
                     </div>
-                    <button onClick={this.clickSubmit} className='btn btn-raised btn-primary'>
+                    <div className="landingPageSpacer"></div>
+                    <Button variant="contained" onClick={this.clickSubmit} className='btn btn-block landing'>
                         Submit
-                    </button>
+                    </Button>
+                    {/* Setting type="button" disables default page refreshing on button press*/}
+                    <Button variant="contained" type="button" className='btn btn-block landing' onClick={this.props.goToSignin}>
+                        Return to Login
+                    </Button>
                 </form>);
     };
     
@@ -99,18 +105,18 @@ class Signup extends Component{
         
         return(
             <div className='container'>
-                <h2 className='mt-5 mb-5'>Register</h2>
+                <h2 className='mt-5 mb-5 LPTitle'>Create Your Account</h2>
 
                 <div 
                     className='alert alert-danger' 
                     style={{display: error ? "" : 'none'}}>
                         {error}
                 </div>
-
                 <div 
                     className='alert alert-info' 
                     style={{display: open ? "" : 'none'}}>
-                        Successfully created an account! Please <Link to='/signin'>sign in</Link>
+                        Successfully created an account! Please
+                            <span onClick={this.props.goToSignin} className='signinText'>sign in</span>
                 </div>
 
                 {this.signupForm(name, email, password)}

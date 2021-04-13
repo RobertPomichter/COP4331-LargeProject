@@ -1,6 +1,6 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
-import Home from './core/Home';
+import LandingPage from './core/LandingPage.js';
 import Signin from './user/Signin';
 import Signup from './user/Signup';
 import Menu from './core/Menu';
@@ -10,19 +10,22 @@ import EditProfile from "./user/EditProfile";
 import PrivateRoute from "./auth/PrivateRoute"
 import ForgotPassword from "./user/ForgotPassword";
 import ResetPassword from "./user/ResetPassword";
+import Dashboard from "./core/Dashboard";
 
 const MainRouter = () => (
     <div>
-        <Menu />
         <Switch>
-            <Route exact path='/' component={Home} />
-            <Route exact path='/signup' component={Signup} />
-            <Route exact path='/signin' component={Signin} />
+            <Route exact path='/' component={LandingPage} />
+            <Route path='/dashboard' component={Dashboard} />
+
+            {/* Changing these routes to be nested inside the Dashboard component */}
+            {/*
             <PrivateRoute exact path='/user/:userId' component={Profile} />
             <PrivateRoute exact path='/users' component={Users} />
             <PrivateRoute exact path='/user/edit/:userId' component={EditProfile} />
-            <Route exact path="/forgot-password" component={ForgotPassword} />
+            */}
             <Route exact path="/reset-password/:resetPasswordToken" component={ResetPassword} />
+            
         </Switch>
     </div>
 )
