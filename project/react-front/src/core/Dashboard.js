@@ -34,8 +34,6 @@ class Dashboard extends Component {
                     <PrivateRoute exact path='/dashboard/user/:userId' component={Profile} />
                     <PrivateRoute exact path='/dashboard/users' component={Users} />
                     <PrivateRoute exact path='/dashboard/user/edit/:userId' component={EditProfile} />
-                    
-                    <Route exact path="/dashboard/reset-password/:resetPasswordToken" component={ResetPassword} />
                 </Switch>
                 </div>
             </div>

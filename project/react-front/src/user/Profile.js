@@ -86,7 +86,7 @@ class Profile extends Component {
                                 <div className='d-inline-block'>
                                     <Link 
                                         className='btn btn-raised btn-success mr-5'
-                                        to={`/user/edit/${user._id}`}    
+                                        to={`/dashboard/user/edit/${user._id}`}    
                                     >
                                         Edit Profile
                                     </Link>

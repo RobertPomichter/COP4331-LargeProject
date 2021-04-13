@@ -198,7 +198,7 @@ class EditProfile extends Component {
         // check if redirect
         if(redirectToProfile){
             return (
-                <Redirect to={`/user/${userId}`}/>
+                <Redirect to={`/dashboard/user/${userId}`}/>
             );
         }
 

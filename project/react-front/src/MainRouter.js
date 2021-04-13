@@ -23,9 +23,9 @@ const MainRouter = () => (
             <PrivateRoute exact path='/user/:userId' component={Profile} />
             <PrivateRoute exact path='/users' component={Users} />
             <PrivateRoute exact path='/user/edit/:userId' component={EditProfile} />
-            
-            <Route exact path="/reset-password/:resetPasswordToken" component={ResetPassword} />
             */}
+            <Route exact path="/reset-password/:resetPasswordToken" component={ResetPassword} />
+            
         </Switch>
     </div>
 )

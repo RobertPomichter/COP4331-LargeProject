@@ -116,9 +116,9 @@ class Signin extends Component{
                         {error}
                 </div>
 
-                {loading ? (<Loading />):("")}
-
                 {this.signinForm(email, password)}
+
+                {loading ? (<Loading />):("")}
 
             </div>
         ); 
