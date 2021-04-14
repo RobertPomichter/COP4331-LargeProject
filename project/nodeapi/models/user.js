@@ -34,35 +34,7 @@ const userSchema = new mongoose.Schema({
     resetPasswordLink: {
         data: String,
         default: ""
-    }, 
-    ingedientsId: mongoose.Schema.Types.ObjectId,
-    testArray: [String],
-    /*
-    ingredients: [
-        {
-            name: {
-                type: String,
-                trim: true
-            },
-            category: {
-                type: String,
-                trim: true
-            },
-            unit: {
-                type: String,
-                trim: true
-            },
-            amount: {
-                type: Number,
-                default: 0
-            },
-            photo: {
-                data: Buffer,
-                contentType: String
-            }
-        }
-    ]
-    */
+    }
 });
 
 // virtual field

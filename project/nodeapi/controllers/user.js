@@ -159,33 +159,6 @@ exports.deleteUser = (req, res, next) => {
     
 };
 
-//exports.getIngredients = (req, res, next) => {
-//    
-//};
-/*
-exports.addIngredient = (req, res, next) => {
-    console.log("Add ingredient start");
-    const apple = {
-        name: "apple",
-        category: "fruit",
-        unit: "amount"
-    }
-    console.log("Add ingredient middle");
-
-    User.findOneAndUpdate(
-        { name: "john smith" },
-        { $push: { ingredients: apple}}
-    )
- 
-
-    console.log("Add ingredient middle 2");
-
-    res.json({
-        message: "Add Ingredient"
-    })
-    console.log("Add ingredient end");
-};
-*/
 exports.addTestElement = (req, res, next) => {
     console.log("Add test start");
     const testc = 'test';

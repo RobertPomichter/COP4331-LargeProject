@@ -1,11 +1,6 @@
 const { intersection, isInteger } = require('lodash');
 const mongoose = require('mongoose');
 
-// each user has an inventory of ingredients
-    // inventory 
-    // inventory has an unlimited number of ingredients
-
-
 const ingredientSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -14,7 +9,7 @@ const ingredientSchema = new mongoose.Schema({
     },
     category: {
         type: String,
-        required: true,
+        default: "misc",
         trim: true
     },
     unit: {
@@ -29,7 +24,6 @@ const ingredientSchema = new mongoose.Schema({
         data: Buffer,
         contentType: String
     },
-    user_id: mongoose.Schema.Types.ObjectId,
     user_email: {
         type: String,
         trim: true

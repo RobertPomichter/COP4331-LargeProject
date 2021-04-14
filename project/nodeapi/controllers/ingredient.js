@@ -3,6 +3,8 @@ const Ingredient = require('../models/ingredient'); // import User from "../mode
 const { db } = require('../models/ingredient');
 
 exports.addIngredient = async (req, res) => {
+    // check if ingredient exists via similar robert code in auth.js (don't forget comma for name and user_email)
+
     // create the new ingredient
     const ingredient = await new Ingredient(req.body);
     //save the new ingredient
@@ -10,24 +12,15 @@ exports.addIngredient = async (req, res) => {
     res.status(200).json({message: "Ingredient Added!"});
 }
 
-exports.getUserIngredients = async (req, res) => {
+exports.getUserIngredients = (req, res) => {
     console.log("Beginning of getUserIngredients");
     const email = req.profile.email;
 
-    //best working one
     db.collection("ingredients").find({user_email: email}).toArray(function(err, result) {
-        if (err) throw err;
-        console.log(result);
+        if (err) {
+            return res.json({error: "Error fetching ingredients from the db"}); 
+        }
+        console.log("Ingredients fetched successfully.");
+        return res.json(result);
     });
-    
-    /* 
-    // alternate implementation to consider
-    Ingredient.find({user_email: email}).exec((err, ingredients) => {
-        if(err || !ingredients) return res.status(400).json({error: "Ingredients not found."});
-        console.log(ingredients);
-    });
-    */
-
-    console.log("End of getUserIngredients");
-    res.json(email);
 }
