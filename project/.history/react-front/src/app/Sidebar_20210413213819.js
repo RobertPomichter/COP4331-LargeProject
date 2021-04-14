@@ -50,8 +50,8 @@ class Sidebar extends Component {
                             <span className="login-status " status></span>
                         </div>
                         <div className="nav-profile-text">
-                            <span className="font-weight-bold mb-2">user.name</span>
-                            <span className="text-secondary text-small">user.email</span>
+                            <span className="font-weight-bold mb-2"><Trans>user.name</Trans></span>
+                            <span className="text-secondary text-small"><Trans>user.email</Trans></span>
                         </div>
                         </a>
                     </li>
