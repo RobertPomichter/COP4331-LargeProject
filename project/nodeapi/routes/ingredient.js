@@ -4,7 +4,8 @@ const express = require('express');
 const {
     allIngredients,
     addIngredient,
-    getUserIngredients
+    getUserIngredients,
+    getUserIngredientsByCategory
 } = require('../controllers/ingredient');
 
 const { 
@@ -27,5 +28,7 @@ router.param('userId', userById);
 router.post('/ingredient', addIngredient);
 // route to get a user's ingredients
 router.get('/ingredient/:userId', getUserIngredients);
+// route to get user's ingredients of a certain category
+router.get('/ingredientCategory/:userId', getUserIngredientsByCategory);
 
 module.exports = router;

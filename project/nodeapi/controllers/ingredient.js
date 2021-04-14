@@ -24,3 +24,17 @@ exports.getUserIngredients = (req, res) => {
         return res.json(result);
     });
 }
+
+exports.getUserIngredientsByCategory = (req, res) => {
+    console.log("Beginning of getUserIngredients");
+    const email = req.profile.email;
+    const category = req.body.category;
+
+    db.collection("ingredients").find({user_email: email, category: category}).toArray(function(err, result) {
+        if (err) {
+            return res.json({error: "Error fetching ingredients from the db"}); 
+        }
+        console.log("Ingredients fetched successfully.");
+        return res.json(result);
+    });
+}
