@@ -43,6 +43,30 @@ const Menu = ({history}) => (
                     <li className="nav-item">
                         <Link className='nav-link' 
                             style={isActive(history, '/users')}
+                            to='/dashboard/ingredientTesting'
+                        >
+                                Ingredient Testing
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className='nav-link' 
+                            style={isActive(history, '/users')}
+                            to='/dashboard/inventoryTesting'
+                        >
+                                Inventory Testing
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className='nav-link' 
+                            style={isActive(history, '/users')}
+                            to='/dashboard/recipeTesting'
+                        >
+                                Recipe API Testing
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className='nav-link' 
+                            style={isActive(history, '/users')}
                             to='/dashboard/users'
                         >
                                 Users

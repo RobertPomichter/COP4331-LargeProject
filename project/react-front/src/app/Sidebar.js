@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import {BrowserRouter} from 'react-router-dom';
 import { Collapse } from 'react-bootstrap';
+import DefaultUserAvatar from "../images/user_avatar.png";
 
 class Sidebar extends Component {
 
