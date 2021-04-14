@@ -11,39 +11,23 @@ exports.addIngredient = async (req, res) => {
 }
 
 exports.getUserIngredients = async (req, res) => {
+    console.log("Beginning of getUserIngredients");
     const email = req.profile.email;
 
-    //res.json({message: "this is working"});
-    //res.json(req.profile);
-
-    console.log("pre");
-
-    //var ings = db.collection("ingredients").find({"email": email});
-    //console.log(ings);
-
-    
-    db.collection("ingredients").find({email: email}).toArray(function(err, result) {
+    //best working one
+    db.collection("ingredients").find({user_email: email}).toArray(function(err, result) {
         if (err) throw err;
         console.log(result);
     });
     
-
-    /*
-    var MongoClient = require('mongodb').MongoClient;
-    var url = "mongodb://localhost:5000/";
-
-    MongoClient.connect(url, function(err, db) {
-        if (err) throw err;
-        var dbo = db.db("mydb");
-        var query = {email: email2};
-        dbo.collection("ingredients").find(query).toArray(function(err, result) {
-            if (err) throw err;
-            console.log(result);
-            db.close();
-        });
+    /* 
+    // alternate implementation to consider
+    Ingredient.find({user_email: email}).exec((err, ingredients) => {
+        if(err || !ingredients) return res.status(400).json({error: "Ingredients not found."});
+        console.log(ingredients);
     });
     */
 
-    console.log("post");
+    console.log("End of getUserIngredients");
     res.json(email);
 }
