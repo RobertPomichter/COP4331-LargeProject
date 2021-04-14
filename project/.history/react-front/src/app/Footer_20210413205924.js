@@ -12,10 +12,10 @@ class Footer extends Component {
 
                 </NavItem>
             </Nav>
-            <div classname="groupinfo">
-                {new Date().getFullYear} Group 22 @ {" "}
-                <a href="https://cs.ucf.edu/">UCF</a>{" "}
-            </div>
+        <div classname="groupinfo">
+            {new Date().getFullYear} Group 22 @ {" "}
+            <a href="https://cs.ucf.edu/">UCF</a>{" "}
+        </div>
         </Container>
         </footer>
     }

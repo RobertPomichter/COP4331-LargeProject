@@ -53,6 +53,7 @@ class Sidebar extends Component {
                             <span className="font-weight-bold mb-2"><Trans>user.name</Trans></span>
                             <span className="text-secondary text-small"><Trans>user.email</Trans></span>
                         </div>
+                        <i className="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
                         </a>
                     </li>
                 </ul>

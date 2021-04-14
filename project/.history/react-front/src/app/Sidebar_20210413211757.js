@@ -2,17 +2,11 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import {BrowserRouter} from 'react-router-dom';
 import { Collapse } from 'react-bootstrap';
+import Users from '../user/Users';
+
 class Sidebar extends Component {
 
-    constructor(){
-        super();
-        this.state = {
-            user: "",
-            status: "online",
-            menuState: true,
-            redirectToSignin: false
-        };
-    }
+    state = {};
   
     toggleMenuState(menuState) {
         if (this.state[menuState]) {
@@ -38,26 +32,20 @@ class Sidebar extends Component {
           }));
     }
     render() {
-        const { user } = this.state;
-
         return (
             <nav className="sidebar sidebar-offcanvas" id="sidebar">
                 <ul className="nav">
                     <li className="nav-item nav-profile">
-                        <a href="!#" className="nav-link" onClick={evt =>evt.preventDefault()}>
-                        <div className="nav-profile-image">
-                            <img src = { require(user.user_avatar) } alt="profile" />
-                            <span className="login-status " status></span>
-                        </div>
-                        <div className="nav-profile-text">
-                            <span className="font-weight-bold mb-2"><Trans>user.name</Trans></span>
-                            <span className="text-secondary text-small"><Trans>user.email</Trans></span>
-                        </div>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        );
+                    <a href="!#" className="nav-link" onClick={evt =>evt.preventDefault()}>
+                    <div className="nav-profile-image">
+                        <img src = { require("../../assets/images/faces/face1.jpg") } alt="profile" />
+                        <span className="login-status online"></span> {/* change to offline or busy as needed */}
+                    </div>
+                    <div className="nav-profile-text">
+                        <span className="font-weight-bold mb-2"><Trans>David Grey. H</Trans></span>
+                        <span className="text-secondary text-small"><Trans>Project Manager</Trans></span>
+              </div>
+        )
     }
 }
 
