@@ -3,6 +3,7 @@ const User = require('../models/user'); // import User from "../models/user"
 const _ = require('lodash');
 const fs = require('fs');
 const formidable = require('formidable');
+const { db } = require('../models/user');
 
 // function to update the user profile
 exports.userById = (req, res, next, id) => {
@@ -80,6 +81,7 @@ exports.userPhoto = (req, res, next) => {
     next();
 }
 
+// function to update the user
 exports.updateUser = (req, res, next) => {
     // grab the form
     let form = new formidable.IncomingForm();
@@ -132,7 +134,7 @@ exports.updateUser = (req, res, next) => {
     });
 }
 
-// function to update the user
+// function to delete the user
 exports.deleteUser = (req, res, next) => {
     // get the user profile
     let user = req.profile;
@@ -154,5 +156,28 @@ exports.deleteUser = (req, res, next) => {
             deletedUser: user 
         });
     })
+    
+};
+
+exports.addTestElement = (req, res, next) => {
+    console.log("Add test start");
+    const testc = 'test';
+    try{
+        User.findOneAndUpdate(
+            { name: "Kermit Frog" },
+            { $push: { testArray: testc},}
+        )
+        //await User.save();
+        console.log("Post user");
+    }
+    catch(err) {
+        console.log("There was an error");
+    }
+    finally {
+        res.json({
+        message: "Add Test"
+        })
+        console.log("Add test end");
+    }
     
 };

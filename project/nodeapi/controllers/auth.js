@@ -2,6 +2,7 @@
 const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
 const User = require('../models/user');
+//const Ingredients = require('../models/ingredients');
 const _ = require("lodash");
 const { sendEmail } = require("../helpers");
 
@@ -18,6 +19,7 @@ exports.signup = async (req, res) => {
     });
     // else create the new user
     const user = await new User(req.body);
+    // saving the user
     await user.save();
     res.status(200).json({message: "Successfully registered!"});
 }
