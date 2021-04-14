@@ -15,25 +15,24 @@ class Sidebar extends Component {
         };
     }
 
-    pathActive(path) {
+    isPathActive(path) {
         return this.props.location.pathname.startsWith(path);
     }
 
     componentDidMount() {
-
         this.onRouteChanged();
         // add class 'hover-open' to sidebar navitem while hover in sidebar-icon-only menu
         const body = document.querySelector('body');
         document.querySelectorAll('.sidebar .nav-item').forEach((element) => {
           
           element.addEventListener('mouseover', function() {
-            if (body.classList.contains('sidebar-icon-only')) {
-                element.classList.add('hover-open');
+            if(body.classList.contains('sidebar-icon-only')) {
+              element.classList.add('hover-open');
             }
           });
           element.addEventListener('mouseout', function() {
-            if (body.classList.contains('sidebar-icon-only')) {
-                element.classList.remove('hover-open');
+            if(body.classList.contains('sidebar-icon-only')) {
+              element.classList.remove('hover-open');
             }
           });
         });
@@ -44,13 +43,13 @@ class Sidebar extends Component {
         Object.keys(this.state).forEach(i => {
           this.setState({[i]: false});
         });
-
+        
         const dropdown = [
 
         ];
 
         dropdown.forEach((obj => {
-            if (this.pathActive(obj.path)) {
+            if (this.isPathActive(obj.path)) {
               this.setState({[obj.state] : true})
             }
           }));

@@ -15,47 +15,28 @@ class Sidebar extends Component {
         };
     }
 
-    pathActive(path) {
+    isPathActive(path) {
         return this.props.location.pathname.startsWith(path);
-    }
-
-    componentDidMount() {
-
+      }
+    
+      componentDidMount() {
         this.onRouteChanged();
         // add class 'hover-open' to sidebar navitem while hover in sidebar-icon-only menu
         const body = document.querySelector('body');
-        document.querySelectorAll('.sidebar .nav-item').forEach((element) => {
+        document.querySelectorAll('.sidebar .nav-item').forEach((el) => {
           
-          element.addEventListener('mouseover', function() {
-            if (body.classList.contains('sidebar-icon-only')) {
-                element.classList.add('hover-open');
+          el.addEventListener('mouseover', function() {
+            if(body.classList.contains('sidebar-icon-only')) {
+              el.classList.add('hover-open');
             }
           });
-          element.addEventListener('mouseout', function() {
-            if (body.classList.contains('sidebar-icon-only')) {
-                element.classList.remove('hover-open');
+          el.addEventListener('mouseout', function() {
+            if(body.classList.contains('sidebar-icon-only')) {
+              el.classList.remove('hover-open');
             }
           });
         });
-    }
-
-    onRouteChanged() {
-        document.querySelector('#sidebar').classList.remove('active');
-        Object.keys(this.state).forEach(i => {
-          this.setState({[i]: false});
-        });
-
-        const dropdown = [
-
-        ];
-
-        dropdown.forEach((obj => {
-            if (this.pathActive(obj.path)) {
-              this.setState({[obj.state] : true})
-            }
-          }));
-    }
-
+  
     toggleMenuState(menuState) {
         if (this.state[menuState]) {
         this.setState({[menuState] : false});
@@ -69,7 +50,15 @@ class Sidebar extends Component {
             });
             this.setState({[menuState] : true});
         }
-        
+        const dropdown = [
+
+        ];
+
+        dropdown.forEach((obj => {
+            if (this.isPathActive(obj.path)) {
+              this.setState({[obj.state] : true})
+            }
+          }));
     }
 
     render() {

@@ -15,28 +15,8 @@ class Sidebar extends Component {
         };
     }
 
-    pathActive(path) {
+    isPathActive(path) {
         return this.props.location.pathname.startsWith(path);
-    }
-
-    componentDidMount() {
-
-        this.onRouteChanged();
-        // add class 'hover-open' to sidebar navitem while hover in sidebar-icon-only menu
-        const body = document.querySelector('body');
-        document.querySelectorAll('.sidebar .nav-item').forEach((element) => {
-          
-          element.addEventListener('mouseover', function() {
-            if (body.classList.contains('sidebar-icon-only')) {
-                element.classList.add('hover-open');
-            }
-          });
-          element.addEventListener('mouseout', function() {
-            if (body.classList.contains('sidebar-icon-only')) {
-                element.classList.remove('hover-open');
-            }
-          });
-        });
     }
 
     onRouteChanged() {
@@ -44,16 +24,25 @@ class Sidebar extends Component {
         Object.keys(this.state).forEach(i => {
           this.setState({[i]: false});
         });
+    
 
-        const dropdown = [
-
-        ];
-
-        dropdown.forEach((obj => {
-            if (this.pathActive(obj.path)) {
-              this.setState({[obj.state] : true})
+    componentDidMount() {
+        this.onRouteChanged();
+        // add class 'hover-open' to sidebar navitem while hover in sidebar-icon-only menu
+        const body = document.querySelector('body');
+        document.querySelectorAll('.sidebar .nav-item').forEach((element) => {
+          
+          element.addEventListener('mouseover', function() {
+            if(body.classList.contains('sidebar-icon-only')) {
+              element.classList.add('hover-open');
             }
-          }));
+          });
+          element.addEventListener('mouseout', function() {
+            if(body.classList.contains('sidebar-icon-only')) {
+              element.classList.remove('hover-open');
+            }
+          });
+        });
     }
 
     toggleMenuState(menuState) {
@@ -69,7 +58,15 @@ class Sidebar extends Component {
             });
             this.setState({[menuState] : true});
         }
-        
+        const dropdown = [
+
+        ];
+
+        dropdown.forEach((obj => {
+            if (this.isPathActive(obj.path)) {
+              this.setState({[obj.state] : true})
+            }
+          }));
     }
 
     render() {
