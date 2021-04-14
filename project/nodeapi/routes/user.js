@@ -8,7 +8,9 @@ const {
     updateUser,
     deleteUser,
     hasAuthorization,
-    userPhoto 
+    userPhoto,
+    addIngredient,
+    addTestElement
 } = require('../controllers/user');
 
 const { 
@@ -32,5 +34,9 @@ router.get('/user/photo/:userId', userPhoto);
 router.put('/user/:userId', signInRequired, hasAuthorization, updateUser);
 // route to put a delete user
 router.delete('/user/:userId', signInRequired, hasAuthorization, deleteUser);
+// route to add an ingredient
+// router.put('/addIngredient/:userId', addIngredient);
+// route to add an ingredient
+router.put('/addTest/:userId', addTestElement);
 
 module.exports = router;

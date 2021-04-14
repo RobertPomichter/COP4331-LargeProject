@@ -2,7 +2,7 @@
 const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
 const User = require('../models/user');
-const Ingredients = require('../models/ingredients');
+//const Ingredients = require('../models/ingredients');
 const _ = require("lodash");
 const { sendEmail } = require("../helpers");
 
@@ -18,12 +18,12 @@ exports.signup = async (req, res) => {
         error: "Email is already taken"
     });
     // create the new ingredient list
-    const ingredients = await new Ingredients();
-    await ingredients.save();
+    //const ingredients = await new Ingredients();
+    //await ingredients.save();
     // else create the new user
     const user = await new User(req.body);
     // now add the ingredient's objectid to the relevant field in the user data
-    user.ingedientsId = ingredients._id; 
+    //user.ingedientsId = ingredients._id; 
     // saving the user
     await user.save();
     res.status(200).json({message: "Successfully registered!"});

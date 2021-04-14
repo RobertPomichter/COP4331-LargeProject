@@ -3,6 +3,7 @@ const User = require('../models/user'); // import User from "../models/user"
 const _ = require('lodash');
 const fs = require('fs');
 const formidable = require('formidable');
+const { db } = require('../models/user');
 
 // function to update the user profile
 exports.userById = (req, res, next, id) => {
@@ -155,5 +156,55 @@ exports.deleteUser = (req, res, next) => {
             deletedUser: user 
         });
     })
+    
+};
+
+//exports.getIngredients = (req, res, next) => {
+//    
+//};
+/*
+exports.addIngredient = (req, res, next) => {
+    console.log("Add ingredient start");
+    const apple = {
+        name: "apple",
+        category: "fruit",
+        unit: "amount"
+    }
+    console.log("Add ingredient middle");
+
+    User.findOneAndUpdate(
+        { name: "john smith" },
+        { $push: { ingredients: apple}}
+    )
+ 
+
+    console.log("Add ingredient middle 2");
+
+    res.json({
+        message: "Add Ingredient"
+    })
+    console.log("Add ingredient end");
+};
+*/
+exports.addTestElement = (req, res, next) => {
+    console.log("Add test start");
+    const testc = 'test';
+    try{
+        User.findOneAndUpdate(
+            { name: "Kermit Frog" },
+            { $push: { testArray: testc},}
+        )
+        //await User.save();
+        console.log("Post user");
+    }
+    catch(err) {
+        console.log("There was an error");
+    }
+    finally {
+        res.json({
+        message: "Add Test"
+        })
+        console.log("Add test end");
+    }
     
 };
