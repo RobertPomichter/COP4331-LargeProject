@@ -58,7 +58,7 @@ class Sidebar extends Component {
     toggleMenuState(menuState) {
         if (this.state[menuState]) {
         this.setState({[menuState] : false});
-        }
+        } 
         else if(Object.keys(this.state).length === 0) {
             this.setState({[menuState] : true});
         }
@@ -86,8 +86,8 @@ class Sidebar extends Component {
                             <span className="login-status " status></span>
                         </div>
                         <div className="nav-profile-text">
-                            <span className="font-weight-bold mb-2">{user.name}</span>
-                            <span className="text-secondary text-small">{user.email}</span>
+                            <span className="font-weight-bold mb-2">user.name</span>
+                            <span className="text-secondary text-small">user.email</span>
                         </div>
                         </a>
                     </li>
