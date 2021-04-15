@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Ingredient from './Ingredient.js';
+import Ingredient from '../app/Ingredient.js';
 
 // Testing panel for the ingredient components
 

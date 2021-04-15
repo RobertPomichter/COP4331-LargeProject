@@ -9,8 +9,8 @@ import PrivateRoute from "../auth/PrivateRoute";
 import Home from '../user/Home.js';
 import InventoryPanel from './InventoryPanel.js';
 import Sidebar from '../app/Sidebar.js';
-import RecipeTesting from '../app/RecipeTesting.js';
-import IngredientTesting from '../app/IngredientTesting.js';
+import RecipeTesting from '../core/RecipeTesting.js';
+import IngredientTesting from '../core/IngredientTesting.js';
 
 
 class Dashboard extends Component {
