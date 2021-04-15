@@ -24,3 +24,60 @@ exports.getUserIngredients = (req, res) => {
         return res.json(result);
     });
 }
+
+exports.getUserIngredientsByCategory = (req, res) => {
+    console.log("Beginning of getUserIngredients");
+    const email = req.profile.email;
+    const category = req.body.category;
+
+    db.collection("ingredients").find({user_email: email, category: category}).toArray(function(err, result) {
+        if (err) {
+            return res.json({error: "Error fetching ingredients from the db"}); 
+        }
+        console.log("Ingredients fetched successfully.");
+        return res.json(result);
+    });
+}
+
+exports.getUserIngredientsByCategoryDontHave = (req, res) => {
+    console.log("Beginning of getUserIngredients");
+    const email = req.profile.email;
+    const category = req.body.category;
+
+    db.collection("ingredients").find({user_email: email, category: category, amount: 0}).toArray(function(err, result) {
+        if (err) {
+            return res.json({error: "Error fetching ingredients from the db"}); 
+        }
+        console.log("Ingredients fetched successfully.");
+        return res.json(result);
+    });
+}
+
+exports.getUserIngredientsByCategoryHave = (req, res) => {
+    console.log("Beginning of getUserIngredients");
+    const email = req.profile.email;
+    const category = req.body.category;
+
+    db.collection("ingredients").find({user_email: email, category: category, amount: { $ne : 0 } }).toArray(function(err, result) {
+        if (err) {
+            return res.json({error: "Error fetching ingredients from the db"}); 
+        }
+        console.log("Ingredients fetched successfully.");
+        return res.json(result);
+    });
+}
+
+// custom querry currently under construction
+exports.getUserIngredientsQuery = (req, res) => {
+    console.log("Beginning of getUserIngredients");
+    const query = req.query;
+
+    // dont forget to also pass the email in this query
+    db.collection("ingredients").find(query).toArray(function(err, result) {
+        if (err) {
+            return res.json({error: "Error fetching ingredients from the db"}); 
+        }
+        console.log("Ingredients fetched successfully.");
+        return res.json(result);
+    });
+}

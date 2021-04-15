@@ -4,7 +4,11 @@ const express = require('express');
 const {
     allIngredients,
     addIngredient,
-    getUserIngredients
+    getUserIngredients,
+    getUserIngredientsByCategory,
+    getUserIngredientsByCategoryHave,
+    getUserIngredientsByCategoryDontHave,
+    getUserIngredientsQuery
 } = require('../controllers/ingredient');
 
 const { 
@@ -27,5 +31,13 @@ router.param('userId', userById);
 router.post('/ingredient', addIngredient);
 // route to get a user's ingredients
 router.get('/ingredient/:userId', getUserIngredients);
+// route to get user's ingredients of a certain category
+router.get('/ingredientCategory/:userId', getUserIngredientsByCategory);
+// route to get user's ingredients of a certain category they have in stock
+router.get('/ingredientCategoryHave/:userId', getUserIngredientsByCategoryHave);
+// route to get user's ingredients of a certain category they are out of
+router.get('/ingredientCategoryDont/:userId', getUserIngredientsByCategoryDontHave);
+// route to get user's ingridents by a custom front end query
+router.get('/ingredientQuery/:userId', getUserIngredientsQuery);
 
 module.exports = router;
