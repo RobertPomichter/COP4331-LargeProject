@@ -2,6 +2,9 @@
 // Master Styling sheet that imports all other Partial Styling sheets for better
 // organization (avoids one long sheet that is difficult to navigate)
 
+// NOTE: @import is not recommended, @use should be used instead (couldn't figure out
+// how to get @use to work though)
 
 @import 'LandingPageStyles';
 @import 'GlobalStyles';
+@import 'IngredientStyles';

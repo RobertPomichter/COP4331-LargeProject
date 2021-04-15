@@ -1,0 +1,35 @@
+
+// Styling Sheet for All Ingredient Components
+
+.ingredientCircleContainer {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;  // makes the circle container rounded into a circle
+    border-width: 1px;
+    // old: rgb(61, 0, 0);
+    border-color: rgb(61, 0, 0);
+    border-style: solid;
+
+    // these lines center the ingredient image horizontally and vertically
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    // gradient (tilt, start color, end color)
+    // tilt is based on rotating (clockwise) the default of the gradient
+    // starting from the bottom and ending on the top
+    // old: linear-gradient(-40deg, rgb(68, 0, 0), rgb(148, 0, 0));
+    background: linear-gradient(-40deg, rgb(68, 0, 0), rgb(148, 0, 0) 70%);
+
+    // code for the box-shadow from https://css-tricks.com/neumorphism-and-css/
+    box-shadow:
+    12px 12px 16px 0 rgba(0, 0, 0, 0.25),
+    -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+}
+
+.ingredientImage {
+    display: true;  // just used to easily disable the image for color testing
+    width: 130px;
+    height: 130px;
+    border-radius: 50%; // makes the image rounded into a circle
+}
