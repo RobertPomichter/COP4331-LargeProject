@@ -115,8 +115,7 @@ class Signup extends Component{
                 <div 
                     className='alert alert-info' 
                     style={{display: open ? "" : 'none'}}>
-                        Successfully created an account! Please
-                            <span onClick={this.props.goToSignin} className='signinText'>sign in</span>
+                        Please check your email at { this.state.email } to finish registering your account!
                 </div>
 
                 {this.signupForm(name, email, password)}
