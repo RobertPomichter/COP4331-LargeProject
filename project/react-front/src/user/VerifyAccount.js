@@ -45,7 +45,7 @@ class VerifyAccount extends Component {
                     <div className='logoHeader'>
                         <img className='logo' src={logo} />
                     </div>
-                    <h2 className='mt-5 mb-5 LPTitle'>Account Activation Page</h2>
+                    <h2 className='mt-5 mb-5 LPTitle'>Account Activation</h2>
 
                     {this.state.message && (
                     <h4 className="alert alert-info">{this.state.message}</h4>

@@ -238,7 +238,7 @@ exports.verifyEmail = (req, res) => {
                 });
             }
             res.json({
-                message: `You're account has been activated!`
+                message: `You're account was successfully activated!`
             });
         });
     });

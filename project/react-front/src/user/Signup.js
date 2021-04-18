@@ -115,7 +115,7 @@ class Signup extends Component{
                 <div 
                     className='alert alert-info' 
                     style={{display: open ? "" : 'none'}}>
-                        Please check your email at { this.state.email } to finish registering your account!
+                        Please check your email and follow the instructions to activate your account!
                 </div>
 
                 {this.signupForm(name, email, password)}
