@@ -5,7 +5,7 @@ import '@react-navigation/native';
 import '@react-navigation/stack';
 
 import PasswordRecovery from '../components/PasswordRecovery';
-
+import {forgotPassword} from '../functions/forgotPassword';
 
 class ForgotPassword extends React.Component{
 
@@ -23,6 +23,26 @@ class ForgotPassword extends React.Component{
   submit(){
 
     //use forgotPassword.js
+     // destructure the state
+
+  const {email} = this.state;
+
+  //create user object to hold the state
+  const user = {
+    email,
+  };
+
+  
+
+  forgotPassword(this.state.email).then(data => {
+    if (data.error) {
+        console.log(data.error);
+        this.setState({ error: data.error });
+    } else {
+        console.log(data.message);
+        this.setState({ message: data.message });
+    }
+  });
     
   }
 
@@ -38,11 +58,10 @@ class ForgotPassword extends React.Component{
         <TextInput style={styles.inputBox}
         underlineColorAndroid='black'
         onChangeText = { (text) => {this.setState({email: text})}}
-        placeholder="Email..."
-        secureTextEntry={true}/>
+        placeholder="Email..."/>
 
 
-          <TouchableOpacity style={styles.button} onPress={ () => this.props.navigation.navigate('Login')}>
+          <TouchableOpacity style={styles.button} onPress={ () => {this.submit()}}>
                 <Text style={styles.bold}>Send Password Reset Link</Text>
            </TouchableOpacity>
 
