@@ -65,6 +65,9 @@ class ForgotPassword extends React.Component{
                 <Text style={styles.bold}>Send Password Reset Link</Text>
            </TouchableOpacity>
 
+           <Text style={styles.errorMsg}>{this.state.error}</Text>
+           <Text style={styles.errorMsg}>{this.state.message}</Text>
+
            <TouchableOpacity style={styles.backLoginBttn} onPress={ () => this.props.navigation.navigate('Login')}>
              <Text style={styles.bold}>Back to Login</Text>
            </TouchableOpacity>
@@ -106,7 +109,12 @@ class ForgotPassword extends React.Component{
   },
   backLoginBttn:{
     marginTop: 30,
-  }
+  },
+  errorMsg:{
+    marginTop: 25,
+    marginLeft: 50,
+    marginRight: 50,
+  },
   });
 
 
