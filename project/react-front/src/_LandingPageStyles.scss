@@ -1,18 +1,17 @@
 
 // Styling sheet for the only Landing Page's UI
 
-
 // Code from full page example: https://mdbootstrap.com/docs/react/css/background-image/
+
 .landingPageContainer {
     background-image: url('./images/Background1440p.png');
 
     // These lines control the scaling & positioning of the homeContainer, and the
     // background image by extension
-    height: 100vh;
+    height: 100vh;   // original height value
     background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
+
 
 .landingPageUIContainer {
     padding-top: 10%;   // used to vertical positioning of the Home UI (280px = old)
@@ -86,7 +85,8 @@
 
 // Styling for forgot passwork clickable text on Sign In form
 .forgotPasswordText {
-    margin-left: 73%;
+    display: block;
+    text-align: right;
     font-size: 25px;
 }
 

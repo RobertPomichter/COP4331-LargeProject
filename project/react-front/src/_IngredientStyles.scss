@@ -1,6 +1,10 @@
 
 // Styling Sheet for All Ingredient Components
 
+.ingredientContainer {
+    width: fit-content;
+}
+
 // General Styling that can be imported for each ingredient category
 // No colors are defined here, aside from the box-shadow, which
 // is constant across all ingredient categories

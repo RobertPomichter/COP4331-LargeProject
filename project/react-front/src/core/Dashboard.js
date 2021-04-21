@@ -17,7 +17,7 @@ class Dashboard extends Component {
 
     render() {
         return (
-            <div className='landingPageContainer'>
+            <div className='dashboardPageContainer'>
                 <Menu />
                 {/*<Sidebar />*/}
                 <div className='activeComponent'>

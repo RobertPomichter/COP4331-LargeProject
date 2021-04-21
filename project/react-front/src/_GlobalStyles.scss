@@ -1,0 +1,24 @@
+
+// Global Styling sheet that is used for styling components that are used across
+// the entire application.
+
+.loadingText {
+    display: block;
+    text-align: center;
+}
+
+// Styling used for controlling the background image of the Dashboard
+.dashboardPageContainer {
+    background-image: url('./images/Background1440p.png');
+
+    // These lines control the scaling & positioning of the homeContainer, and the
+    // background image by extension
+    // height: 100vh;   // original height value used by the landing page
+    height: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;   // fixes the background image when scrolling
+
+    padding-bottom: 20px;   // fixes any child elements creating a white bar after
+                            // the background image if their margins are too large
+}
