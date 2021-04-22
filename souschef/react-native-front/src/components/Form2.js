@@ -34,7 +34,7 @@ class Form2 extends React.Component{
 
     signup(user)
     .then((data) => {
-      //alert(JSON.stringify(data));
+      alert(JSON.stringify(data));
       if(data.error){
         this.setState({
           error: data.error
