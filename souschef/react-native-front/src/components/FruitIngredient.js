@@ -8,7 +8,7 @@ class FruitIngredient extends Component {
         return (
             <View className='ingredientContainer'>
                 <View className='ingredientFruitCircleContainer'>
-                    <Image className='ingredientImage' src={GenericFruitPicture}></Image>
+                    <Image className='ingredientImage' source={GenericFruitPicture}></Image>
                 </View>
             </View>
         );

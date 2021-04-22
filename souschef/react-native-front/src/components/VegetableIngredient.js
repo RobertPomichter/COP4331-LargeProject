@@ -7,7 +7,7 @@ class VegetableIngredient extends Component {
         return (
             <View className='ingredientContainer'>
                 <View className='ingredientVegetableCircleContainer'>
-                    <Image className='ingredientImage' src={GenericVegetablePicture}></Image>
+                    <Image className='ingredientImage' source={GenericVegetablePicture}></Image>
                 </View>
             </View>
         );

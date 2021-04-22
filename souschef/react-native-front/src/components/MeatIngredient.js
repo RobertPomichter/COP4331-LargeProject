@@ -8,7 +8,7 @@ class MeatIngredient extends Component {
         return (
             <View className='ingredientContainer'>
                 <View className='ingredientMeatCircleContainer'>
-                    <Image className='ingredientImage' src={GenericMeatPicture}></Image>
+                    <Image className='ingredientImage' source={GenericMeatPicture}></Image>
                 </View>
             </View>
         );
