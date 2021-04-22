@@ -3,7 +3,7 @@ import Image from 'react-bootstrap/Image';
 import GenericMeatPicture from '../images/GenericMeat.jpg';
 
 
-class MeatIngredient extends Component {
+class IngredientMeat extends Component {
     render() {
         return (
             <div className='ingredientContainer'>
@@ -15,4 +15,4 @@ class MeatIngredient extends Component {
     }
 }
 
-export default MeatIngredient;
+export default IngredientMeat;

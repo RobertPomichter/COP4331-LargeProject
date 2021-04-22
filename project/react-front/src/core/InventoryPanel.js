@@ -6,6 +6,9 @@ import Ingredient from '../app/Ingredient.js';
 import IngredientFruit from '../app/IngredientFruit.js';
 import IngredientMeat from '../app/IngredientMeat.js';
 import IngredientVegetable from '../app/IngredientVegetable.js';
+import IngredientDairy from '../app/IngredientDairy.js';
+import IngredientSpices from '../app/IngredientSpices.js';
+import IngredientMiscellaneous from '../app/IngredientMiscellaneous';
 
 
 class InventoryPanel extends Component {
@@ -34,10 +37,19 @@ class InventoryPanel extends Component {
                         Test: Get All Ingredients
                     </Button>
 
+                <Card className='searchCard'>
+                    <input className='inventorySearchBar' placeholder='Search Bar goes here :D'></input>
+                    <Button>
+
+                    </Button>
+                </Card>
+
                 {/* Do we want to use an official card component or just divs? */}
                 <Card className='inventoryResultsCard'>
                     <Card.Title>Inventory Card</Card.Title>
-                    <Card.Text>This is some sample text inside the card.</Card.Text>
+                    <Card.Text>This is some sample text inside the card.
+                        Different categories: Meat, Vegetable, Fruit, Dairy, Miscellaneous
+                    </Card.Text>
                     <Card.Body>
                         <Ingredient></Ingredient>
                     </Card.Body>
@@ -55,7 +67,7 @@ class InventoryPanel extends Component {
                     <Card.Text>This is some sample text inside the card.</Card.Text>
                     <Card.Body>
                         <div className='ingredientRowContainer'>
-                            <IngredientVegetable /><IngredientVegetable /><IngredientVegetable /><IngredientVegetable />
+                            <IngredientVegetable /><IngredientVegetable /><IngredientVegetable />
                         </div>
                     </Card.Body>
                 </Card>
@@ -67,6 +79,33 @@ class InventoryPanel extends Component {
                             <IngredientFruit /><IngredientFruit /><IngredientFruit /><IngredientFruit /><IngredientFruit />
                         </div>
                     </Card.Body>
+                </Card>
+                <Card className='categoryCard'>
+                    <Card.Title>Dairy Category Card</Card.Title>
+                        <Card.Text>This is some sample text inside the card.</Card.Text>
+                        <Card.Body>
+                            <div className='ingredientRowContainer'>
+                                <IngredientDairy />
+                            </div>
+                        </Card.Body>
+                </Card>
+                <Card className='categoryCard'>
+                    <Card.Title>Spices Category Card</Card.Title>
+                        <Card.Text>This is some sample text inside the card.</Card.Text>
+                        <Card.Body>
+                            <div className='ingredientRowContainer'>
+                            <IngredientSpices /><IngredientSpices /><IngredientSpices />
+                            </div>
+                        </Card.Body>
+                </Card>
+                <Card className='categoryCard'>
+                    <Card.Title>Miscellaneous Category Card</Card.Title>
+                        <Card.Text>This is some sample text inside the card.</Card.Text>
+                        <Card.Body>
+                            <div className='ingredientRowContainer'>
+                                <IngredientMiscellaneous />
+                            </div>
+                        </Card.Body>
                 </Card>
             </div>
         );

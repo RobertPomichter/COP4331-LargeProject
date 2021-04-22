@@ -5,6 +5,11 @@
     width: fit-content;
 }
 
+// just for testing/idea purposes
+.ingredientContainer:hover {
+    opacity: 0.3;
+}
+
 // General Styling that can be imported for each ingredient category
 // No colors are defined here, aside from the box-shadow, which
 // is constant across all ingredient categories
@@ -44,7 +49,27 @@
 .ingredientFruitCircleContainer {
     @include circleContainerSetup();
 
-    background: linear-gradient(-40deg, rgb(129, 131, 0), rgb(251, 255, 0) 70%);
+    background: linear-gradient(-40deg, rgb(173, 147, 0), rgb(255,215,0) 70%);
+}
+
+.ingredientDairyCircleContainer {
+    @include circleContainerSetup();
+
+    background: linear-gradient(-40deg, rgb(149, 150, 103), rgb(254, 255, 172) 70%);
+}
+
+.ingredientSpicesCircleContainer {
+    @include circleContainerSetup();
+
+    background: linear-gradient(-40deg, rgb(133, 58, 15), rgb(255, 112, 30) 70%);
+}
+
+.ingredientMiscellaneousCircleContainer {
+    @include circleContainerSetup();
+
+    background: linear-gradient(-40deg, rgb(97, 55, 14), rgb(168, 102, 35) 70%);
+    //background: linear-gradient(40deg, rgb(52, 0, 95), rgb(140, 0, 255) 70%);
+    //background: linear-gradient(-40deg, rgb(35, 66, 124), rgb(54, 125, 255) 70%);
 }
 
 .ingredientImage {

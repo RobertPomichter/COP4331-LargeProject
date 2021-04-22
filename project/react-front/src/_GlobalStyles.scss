@@ -13,7 +13,7 @@
 
     // These lines control the scaling & positioning of the homeContainer, and the
     // background image by extension
-    // height: 100vh;   // original height value used by the landing page
+    min-height: 100vh;
     height: cover;
     background-position: center;
     background-repeat: no-repeat;
