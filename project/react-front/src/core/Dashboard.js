@@ -28,7 +28,7 @@ class Dashboard extends Component {
                     <PrivateRoute exact path='/dashboard/users' component={Users} />
                     <PrivateRoute exact path='/dashboard/user/edit/:userId' component={EditProfile} />
                     <PrivateRoute exact path='/dashboard/ingredientTesting' component={IngredientTesting} />
-                    <PrivateRoute exact path='/dashboard/inventoryTesting' component={InventoryPanel} />
+                    <PrivateRoute exact path='/dashboard/inventoryTesting/:userId' component={InventoryPanel} />
                     <PrivateRoute exact path='/dashboard/recipeTesting' component={RecipeTesting}/>
                 </Switch>
                 </div>

@@ -80,15 +80,19 @@ class InventoryPanel extends Component {
 
         // get the token
         const token = isAuthenticated().token;
+        // get the userId from the parameters
+        const userId = this.props.match.params.userId;
 
         // API call to get all Meats
-        getAllMeats(token).then(data => {
+        getAllMeats(token, userId).then(data => {
             if(data.error){
                 console.log(data.error);
             } else {
                 this.setState({meats: data});
             }
         });
+
+        //console.log(data);
     }
 
     /* EXAMPLE FROM GET ALL USERS componentDidMount(){
