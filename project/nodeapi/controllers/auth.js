@@ -2,7 +2,6 @@
 const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
 const User = require('../models/user');
-//const Ingredients = require('../models/ingredients');
 const _ = require("lodash");
 const { sendEmail } = require("../helpers");
 
@@ -19,9 +18,43 @@ exports.signup = async (req, res) => {
     });
     // else create the new user
     const user = await new User(req.body);
-    // saving the user
+
+    // the user is saved to the database, but is not yet verified
     await user.save();
-    res.status(200).json({message: "Successfully registered!"});
+
+    // extract the email from the user
+    const email = user.email;
+
+    // generate a token with user id and secret
+    const token = jwt.sign(
+        { _id: user._id, iss: "NODEAPI" },
+        process.env.JWT_SECRET
+    );
+
+    // construct the email data
+    const emailData = {
+        from: "noreply@node-react.com",
+        to: email,
+        subject: "Account Verification Instructions",
+        text: `Please use the following link to verify your account: ${
+            process.env.CLIENT_URL
+        }/verify-account/${token}`,
+        html: `<p>Please use the following link to verify your account:</p> <p>${
+            process.env.CLIENT_URL
+        }/verify-account/${token}</p>`
+    };
+
+    // update the user by storing the token in the verifyEmailLink property of the user
+    return user.updateOne({ verifyEmailLink: token }, (err, success) => {
+        if (err) {
+            return res.json({ message: err });
+        } else {
+            sendEmail(emailData);
+            return res.status(200).json({
+                message: `Email has been sent to ${email}. Follow the instructions to verify your account.`
+            });
+        }
+    });
 }
 
 // sign in controller
@@ -39,10 +72,16 @@ exports.signin = (req, res) => {
         }
 
         // if findOne returns the user verify the password/email combo
-        // use authenticate method in the user model
+        // use authenticate method in the user model and make sure the email was verified
         if(!user.authenticate(password)) {
             return res.status(401).json({
                 error: "Sorry, the password and email combination is incorrect.",
+            });
+        }
+
+        if(user.verified === false) {
+            return res.status(403).json({
+                error: "Please check your email and verify your account before signing in.",
             });
         }
 
@@ -164,6 +203,42 @@ exports.resetPassword = (req, res) => {
             }
             res.json({
                 message: `You can now login with your new password.`
+            });
+        });
+    });
+};
+
+// function to reset the user's password
+exports.verifyEmail = (req, res) => {
+    // extract the email verification token from the request
+    const { verifyEmailLink } = req.body;
+ 
+    // find the user in the database with user's verifyEmailLink value
+    User.findOne({ verifyEmailLink }, (err, user) => {
+        // if err or no user
+        if (err || !user)
+            return res.status("401").json({
+                error: "Invalid Link!"
+            });
+ 
+        // give the user access to their account
+        const updatedFields = {
+            verified: true
+        };
+ 
+        // update the user using lodash extend method
+        user = _.extend(user, updatedFields);
+        user.updated = Date.now();
+ 
+        // save the user to the db
+        user.save((err, result) => {
+            if (err) {
+                return res.status(400).json({
+                    error: err
+                });
+            }
+            res.json({
+                message: `You're account was successfully activated!`
             });
         });
     });
