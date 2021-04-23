@@ -10,6 +10,7 @@ import EditProfile from "./user/EditProfile";
 import PrivateRoute from "./auth/PrivateRoute"
 import ForgotPassword from "./user/ForgotPassword";
 import ResetPassword from "./user/ResetPassword";
+import VerifyAccount from "./user/VerifyAccount";
 import Dashboard from "./core/Dashboard";
 
 const MainRouter = () => (
@@ -25,6 +26,7 @@ const MainRouter = () => (
             <PrivateRoute exact path='/user/edit/:userId' component={EditProfile} />
             */}
             <Route exact path="/reset-password/:resetPasswordToken" component={ResetPassword} />
+            <Route exact path="/verify-account/:verifyEmailLink" component={VerifyAccount} />
             
         </Switch>
     </div>
