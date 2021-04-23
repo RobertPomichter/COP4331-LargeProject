@@ -8,7 +8,9 @@ const {
     getUserIngredientsByCategory,
     getUserIngredientsByCategoryHave,
     getUserIngredientsByCategoryDontHave,
-    getUserIngredientsQuery
+    getUserIngredientsQuery,
+    updateIngredients,
+    ingredientById
 } = require('../controllers/ingredient');
 
 const { 
@@ -24,6 +26,7 @@ const router = express.Router();
 
 // any request with userId will go through middleware
 router.param('userId', userById);
+router.param('ingredientId', ingredientById);
 
 // route to get all ingredients
 //router.get('/ingredients', allIngredients);
@@ -39,5 +42,7 @@ router.get('/ingredientCategoryHave/:userId', getUserIngredientsByCategoryHave);
 router.get('/ingredientCategoryDont/:userId', getUserIngredientsByCategoryDontHave);
 // route to get user's ingridents by a custom front end query
 router.get('/ingredientQuery/:userId', getUserIngredientsQuery);
+// route to put an ingredient update
+router.put('/ingredientUpdate/:ingredientId', updateIngredients); 
 
 module.exports = router;
