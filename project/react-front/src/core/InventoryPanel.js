@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Card, Carousel } from 'react-bootstrap';
 import { Button } from'@material-ui/core';
 import { getAllIngredients, getAllMeats } from '../apiCalls/apiInventory.js';
+import { isAuthenticated } from "../auth";
 import Ingredient from '../app/Ingredient.js';
 import IngredientFruit from '../app/IngredientFruit.js';
 import IngredientMeat from '../app/IngredientMeat.js';
@@ -11,6 +12,7 @@ import IngredientSpices from '../app/IngredientSpices.js';
 import IngredientMiscellaneous from '../app/IngredientMiscellaneous';
 import AddCircleTwoToneIcon from '@material-ui/icons/AddCircleTwoTone';
 import IconButton from '@material-ui/core/IconButton';
+import { read } from "../user/apiUser";
 
 
 class InventoryPanel extends Component {
@@ -18,6 +20,10 @@ class InventoryPanel extends Component {
     constructor(){
         super();
         this.state = {
+            userId: "",
+            name: "",
+            email: "",
+            error: "",
             meats: [],
             vegetables: [],
             fruit: [],
@@ -26,6 +32,40 @@ class InventoryPanel extends Component {
             miscellaneous: []
         }
     }
+
+    /* // method to initialize fetch to backend
+    init = (userId) => {
+        const token = isAuthenticated().token;
+        
+        // call to get the user from the backend (in apiUser)
+        read(userId, token)
+            .then( data => {
+                if(data.error){
+                    this.setState({redirectToProfile: true});
+                } else {
+                    this.setState({
+                        userId: data._id, 
+                        name: data.name, 
+                        email: data.email,
+                        about: data.about,
+                        error: ""});
+                }
+            });
+    } */
+
+    // method to get userId from parameters
+    componentDidMount(){
+        // use FormData api to store formData in userData
+        //this.userData = new FormData();
+
+        // get the userId from the parameters
+        const userId = this.props.match.params.userId;
+        console.log(userId);
+        this.setState({ userId: userId });
+
+        // call to back-end fetch method
+        //this.init(userId);
+    }    
 
     clickGetAllIngredients = event => {
         // prevent default page reload
@@ -38,8 +78,32 @@ class InventoryPanel extends Component {
         // prevent default page reload
         event.preventDefault();
 
-        getAllMeats();
+        // get the token
+        const token = isAuthenticated().token;
+
+        // API call to get all Meats
+        getAllMeats(token).then(data => {
+            if(data.error){
+                console.log(data.error);
+            } else {
+                this.setState({meats: data});
+            }
+        });
     }
+
+    /* EXAMPLE FROM GET ALL USERS componentDidMount(){
+        // get the token
+        const token = isAuthenticated().token;
+        
+        // call to api for users
+        list(token).then(data => {
+            if(data.error){
+                console.log(data.error);
+            } else {
+                this.setState({users: data});
+            }
+        }) 
+    } */
 
     render() {
         return (
