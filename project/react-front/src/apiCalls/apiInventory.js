@@ -5,3 +5,8 @@ export const getAllIngredients = () => {
     // console log prints in the browser's page inspection terminal
     console.log("Henlo, I'm going to start trying to getAllIngredients...");
 };
+
+export const getAllMeats = () => {
+    // console log prints in the browser's page inspection terminal
+    console.log("Henlo, I'm going to start trying to getAllMeats...");
+};

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Carousel } from 'react-bootstrap';
 import { Button } from'@material-ui/core';
-import { getAllIngredients } from '../apiCalls/apiInventory.js';
+import { getAllIngredients, getAllMeats } from '../apiCalls/apiInventory.js';
 import Ingredient from '../app/Ingredient.js';
 import IngredientFruit from '../app/IngredientFruit.js';
 import IngredientMeat from '../app/IngredientMeat.js';
@@ -9,6 +9,8 @@ import IngredientVegetable from '../app/IngredientVegetable.js';
 import IngredientDairy from '../app/IngredientDairy.js';
 import IngredientSpices from '../app/IngredientSpices.js';
 import IngredientMiscellaneous from '../app/IngredientMiscellaneous';
+import AddCircleTwoToneIcon from '@material-ui/icons/AddCircleTwoTone';
+import IconButton from '@material-ui/core/IconButton';
 
 
 class InventoryPanel extends Component {
@@ -16,7 +18,12 @@ class InventoryPanel extends Component {
     constructor(){
         super();
         this.state = {
-            ingredients: []
+            meats: [],
+            vegetables: [],
+            fruit: [],
+            dairy: [],
+            spices: [],
+            miscellaneous: []
         }
     }
 
@@ -27,6 +34,13 @@ class InventoryPanel extends Component {
         getAllIngredients();
     }
 
+    clickGetMeats = event => {
+        // prevent default page reload
+        event.preventDefault();
+
+        getAllMeats();
+    }
+
     render() {
         return (
             <div>
@@ -35,6 +49,9 @@ class InventoryPanel extends Component {
                 </div>
                     <Button variant="contained" onClick={this.clickGetAllIngredients}>
                         Test: Get All Ingredients
+                    </Button> <br />
+                    <Button variant="contained" onClick={this.clickGetMeats}>
+                        Test: Get Meats
                     </Button>
 
                 <Card className='searchCard'>
@@ -44,8 +61,10 @@ class InventoryPanel extends Component {
                     </Button>
                 </Card>
 
-                {/* Do we want to use an official card component or just divs? */}
-                <Card className='inventoryResultsCard'>
+                {/* Do we want to use an official card component or just divs?
+                    Just divs might be easier and more flexible */}
+
+                {/* <Card className='inventoryResultsCard'>
                     <Card.Title>Inventory Card</Card.Title>
                     <Card.Text>This is some sample text inside the card.
                         Different categories: Meat, Vegetable, Fruit, Dairy, Miscellaneous
@@ -53,16 +72,47 @@ class InventoryPanel extends Component {
                     <Card.Body>
                         <Ingredient></Ingredient>
                     </Card.Body>
-                </Card>
+                </Card> */}
 
-                <Card className='categoryCard'>
-                <Card.Title>Meats Category Card</Card.Title>
+                {/* Bootstrap Card Version */}
+                {/* <Card className='categoryCard'>
+                <Card.Title>Meats Category Card (Bootstrap)</Card.Title>
                     <Card.Text>This is some sample text inside the card.</Card.Text>
                         <div className='ingredientRowContainer'>
                             <IngredientMeat /><IngredientMeat /><IngredientMeat /><IngredientMeat />
                         </div>
-                </Card>
-                <Card className='categoryCard'>
+                </Card> */}
+
+                {/* Manual Card Version */}
+                <div className='categoryCard'>
+                    <div className='cardHeader'>
+                        <div className='cardTitle'>
+                            <span className='cardTitleText'>Meats Category Card (Live)</span>
+                        </div>
+                        <IconButton>
+                            <AddCircleTwoToneIcon className='addIngredientButton' fontSize='large'/>
+                        </IconButton>  
+                    </div>
+                    <div className='ingredientRowContainer'>
+                    </div>
+                </div>
+
+                {/* Manual Card Version */}
+                <div className='categoryCard'>
+                    <div className='cardHeader'>
+                        <div className='cardTitle'>
+                            <span className='cardTitleText'>Meats Category Card (Manual)</span>
+                        </div>
+                        <IconButton>
+                            <AddCircleTwoToneIcon className='addIngredientButton' fontSize='large'/>
+                        </IconButton>  
+                    </div>
+                    <div className='ingredientRowContainer'>
+                        <IngredientMeat /><IngredientMeat /><IngredientMeat /><IngredientMeat />
+                    </div>
+                </div>
+
+                {/* <Card className='categoryCard'>
                 <Card.Title>Vegetables Category Card</Card.Title>
                     <Card.Text>This is some sample text inside the card.</Card.Text>
                     <Card.Body>
@@ -106,7 +156,7 @@ class InventoryPanel extends Component {
                                 <IngredientMiscellaneous />
                             </div>
                         </Card.Body>
-                </Card>
+                </Card> */}
             </div>
         );
     }

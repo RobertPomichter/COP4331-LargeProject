@@ -3,6 +3,7 @@
 
 @mixin inventoryCardSetup {
     width: 70%;
+    max-width: 1200px;
     height: fit-content;
     text-align: center;
     margin: auto;
@@ -10,6 +11,15 @@
     margin-bottom: 40px;
 
     border-radius: 20px;
+
+    background-color: white;
+
+    // shadow & hover shadow animation
+    transition: 0.3s;
+    box-shadow: 0 8px 40px -12px rgba(0,0,0,0.3);
+    &:hover {
+        box-shadow: 0 16px 70px -12.125px rgba(0,0,0,0.3);
+    }
 }
 
 .searchCard {
@@ -27,6 +37,27 @@
 
 .categoryCard {
     @include inventoryCardSetup();
+}
+
+.cardHeader {
+    display: flex;
+    //height: 70px;
+    //text-align: left;
+    justify-content: space-between;
+}
+
+.cardTitle {
+    height: inherit;
+    //display: flex;
+    //justify-content: left;
+    //float: left;
+    font-size: 35px;
+    margin-left: 20px;
+}
+
+.addIngredientButton {
+    color: black;
+    //background-color: black;
 }
 
 .ingredientRowContainer {
