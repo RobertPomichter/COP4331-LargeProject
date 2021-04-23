@@ -61,7 +61,7 @@ exports.getUserIngredients = (req, res) => {
 exports.getUserIngredientsByCategory = (req, res) => {
     console.log("Beginning of getUserIngredients");
     const email = req.profile.email;
-    const category = req.body.category;
+    const category = req.query.cat;
 
     db.collection("ingredients").find({user_email: email, category: category}).toArray(function(err, result) {
         if (err) {
@@ -75,7 +75,7 @@ exports.getUserIngredientsByCategory = (req, res) => {
 exports.getUserIngredientsByCategoryDontHave = (req, res) => {
     console.log("Beginning of getUserIngredients");
     const email = req.profile.email;
-    const category = req.body.category;
+    const category = req.query.cat;
 
     db.collection("ingredients").find({user_email: email, category: category, amount: 0}).toArray(function(err, result) {
         if (err) {
@@ -89,7 +89,7 @@ exports.getUserIngredientsByCategoryDontHave = (req, res) => {
 exports.getUserIngredientsByCategoryHave = (req, res) => {
     console.log("Beginning of getUserIngredients");
     const email = req.profile.email;
-    const category = req.body.category;
+    const category = req.query.cat;
 
     db.collection("ingredients").find({user_email: email, category: category, amount: { $ne : 0 } }).toArray(function(err, result) {
         if (err) {
