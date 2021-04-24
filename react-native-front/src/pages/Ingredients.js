@@ -25,24 +25,24 @@ class Ingredients extends React.Component{
   
       return (
         <View>
-            <Card className='categoryCard'>
-            <Card.Title>Meats Category Card</Card.Title>
+            <Card style={styles.inventoryCardSetup}>
+            <Card.Title>Meat Category Card</Card.Title>
                 <Text>This is some sample text inside the card.</Text>
-                    <View className='ingredientRowContainer'>
-                        <MeatIngredient /><MeatIngredient /><MeatIngredient /><MeatIngredient />
+                    <View style={styles.ingredientRowContainer}>
+                        <MeatIngredient /><MeatIngredient /><MeatIngredient /><MeatIngredient /><MeatIngredient />
                     </View>
             </Card>
-            <Card className='categoryCard'>
-            <Card.Title>Vegetables Category Card</Card.Title>
+            <Card style={styles.inventoryCardSetup}>
+            <Card.Title>Vegetable Category Card</Card.Title>
                 <Text>This is some sample text inside the card.</Text>
-                    <View className='ingredientRowContainer'>
-                        <VegetableIngredient /><VegetableIngredient /><VegetableIngredient /><VegetableIngredient />
+                    <View style={styles.ingredientRowContainer}>
+                        <VegetableIngredient /><VegetableIngredient /><VegetableIngredient /><VegetableIngredient /><VegetableIngredient />
                     </View>
             </Card>
-            <Card className='categoryCard'>
+            <Card style={styles.inventoryCardSetup}>
             <Card.Title>Fruit Category Card</Card.Title>
                 <Text>This is some sample text inside the card.</Text>
-                    <View className='ingredientRowContainer'>
+                    <View style={styles.ingredientRowContainer}>
                         <FruitIngredient /><FruitIngredient /><FruitIngredient /><FruitIngredient /><FruitIngredient />
                     </View>
             </Card>
@@ -53,11 +53,22 @@ class Ingredients extends React.Component{
   }
   
   const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
+    inventoryCardSetup : {
+      width: '70%',
+      height: 'fit-content',
+      textAlign: 'center',
+      margin: 'auto',
+      marginTop: 40,
+      marginBottom: 40,
+  
+      borderRadius: 10,
+    },
+    
+    ingredientRowContainer : {
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',    // allows for ingrediet items to wrap if overflowing
+        justifyContent: 'center',
     },
   });
 
