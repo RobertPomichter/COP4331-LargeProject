@@ -5,7 +5,7 @@ export const signout = (next) => {
     next();
 
     // fetch backend
-    return fetch(`http://10.0.2.2:5000/signout`, {
+    return fetch(`http://161.35.13.212/api/signout`, {
         method: 'GET'
     })
         .then( response => {
