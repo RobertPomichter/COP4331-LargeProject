@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Card, Carousel } from 'react-bootstrap';
-import { Button } from'@material-ui/core';
-import { getAllIngredients, getAllMeats } from '../apiCalls/apiInventory.js';
+import { Card, Modal } from 'react-bootstrap';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@material-ui/core';
+import { getAllIngredients, getAllMeats, getAllVegetables, getAllFruit, getAllDairy, getAllSpices, getAllMiscellaneous } from '../apiCalls/apiInventory.js';
 import { isAuthenticated } from "../auth";
-import Ingredient from '../app/Ingredient.js';
 import IngredientFruit from '../app/IngredientFruit.js';
 import IngredientMeat from '../app/IngredientMeat.js';
 import IngredientVegetable from '../app/IngredientVegetable.js';
@@ -12,12 +11,12 @@ import IngredientSpices from '../app/IngredientSpices.js';
 import IngredientMiscellaneous from '../app/IngredientMiscellaneous';
 import AddCircleTwoToneIcon from '@material-ui/icons/AddCircleTwoTone';
 import IconButton from '@material-ui/core/IconButton';
-import { read } from "../user/apiUser";
+
 
 
 class InventoryPanel extends Component {
     // copied from Users.js - idea is to hold an array of ingredients
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             userId: "",
@@ -30,54 +29,43 @@ class InventoryPanel extends Component {
             dairy: [],
             spices: [],
             miscellaneous: [],
-            test: 0
+            test: 0,
+            showAddForm: false
         }
     }
 
-    /* // method to initialize fetch to backend
-    init = (userId) => {
-        const token = isAuthenticated().token;
-        
-        // call to get the user from the backend (in apiUser)
-        read(userId, token)
-            .then( data => {
-                if(data.error){
-                    this.setState({redirectToProfile: true});
-                } else {
-                    this.setState({
-                        userId: data._id, 
-                        name: data.name, 
-                        email: data.email,
-                        about: data.about,
-                        error: ""});
-                }
-            });
-    } */
-
     // method to get userId from parameters
-    componentDidMount(){
-        // use FormData api to store formData in userData
-        //this.userData = new FormData();
-
+    componentDidMount() {
         // get the userId from the parameters
         const userId = this.props.match.params.userId;
         console.log(userId);
         this.setState({ userId: userId });
-
-        // call to back-end fetch method
-        //this.init(userId);
-    }
-
-    // method to handle changes to the state
-    componentDidUpdate() {
-
     }
 
     clickGetAllIngredients = event => {
         // prevent default page reload
         event.preventDefault();
 
-        getAllIngredients();
+        this.clickGetMeats(event);
+        this.clickGetVegetables(event);
+        this.clickGetFruit(event);
+        this.clickGetDairy(event);
+        this.clickGetSpices(event);
+        this.clickGetMiscellaneous(event);
+    }
+
+    clickClearAllIngredients = event => {
+        // prevent default page reload
+        event.preventDefault();
+
+        this.setState ({
+            meats: [],
+            vegetables: [],
+            fruit: [],
+            dairy: [],
+            spices: [],
+            miscellaneous: [],
+        });
     }
 
     clickGetMeats = event => {
@@ -91,87 +79,107 @@ class InventoryPanel extends Component {
 
         // API call to get all Meats
         getAllMeats(token, userId).then(data => {
-            if(data.error){
+            if (data.error) {
                 console.log(data.error);
             } else {
-                this.setState({meats: data});
+                this.setState({ meats: data });
             }
         });
-
-        //console.log(data);
     }
 
-    /* EXAMPLE FROM GET ALL USERS 
-    componentDidMount(){
-        // get the token
-        const token = isAuthenticated().token;
-        
-        // call to api for users
-        list(token).then(data => {
-            if(data.error){
-                console.log(data.error);
-            } else {
-                this.setState({users: data});
-            }
-        }) 
-    } */
-
-    displayMeats = (meats) => {
-        {meats.map((meat, i) => (
-            <IngredientMeat key={meat}/>
-        ))}
-    }
-
-    /* EXAMPLE FOR RENDERING STATE ARRAY FROM USERS 
-    renderUsers = (users) => (
-        
-        <div className='row'>
-            {users.map((user, i) => (
-                <div className="card col-md-4" style={{width: '18rem'}} key={user}>
-                    <img 
-                        style={{width: '100%', 
-                                height: '50%', 
-                                objectFit: 'contain'}}
-                        className='img-thumbnail'
-                        src={`${
-                                process.env.REACT_APP_API_URL
-                                }/user/photo/${user._id}`} 
-                        onError={i => i.target.src = `${DefaultUserAvatar}`}
-                        alt={user.name}
-                        />
-                    <div className="card-body">
-                        <h5 className="card-title">{user.name}</h5>
-                        <p className="card-text">{user.email}</p>
-                        <Link className="btn btn-raised btn-primary btn-sm" 
-                                    style={{backgroundColor: '#ff9900'}}
-                                    to={`/user/${user._id}`}
-                        >
-                            {user.name}'s Profile
-                        </Link>
-                    </div>
-              </div>
-            ))}
-        </div>
-    )
-
-    render(){
-        // grab the users array from the state
-        const {users} = this.state;
-
-        return(
-            <div className='container'>
-                <h2 className='mt-5 mb-5'>Users</h2>
-                
-                {this.renderUsers(users)}
-            </div>
-        );
-    } */
-
-    clickForceReRender = event => {
+    clickGetVegetables = event => {
         // prevent default page reload
         event.preventDefault();
 
-        this.forceUpdate();
+        // get the token
+        const token = isAuthenticated().token;
+        // get the userId from the parameters
+        const userId = this.props.match.params.userId;
+
+        // API call to get all Vegetables
+        getAllVegetables(token, userId).then(data => {
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                this.setState({ vegetables: data });
+            }
+        });
+    }
+
+    clickGetFruit = event => {
+        // prevent default page reload
+        event.preventDefault();
+
+        // get the token
+        const token = isAuthenticated().token;
+        // get the userId from the parameters
+        const userId = this.props.match.params.userId;
+
+        // API call to get all Fruit
+        getAllFruit(token, userId).then(data => {
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                this.setState({ fruit: data });
+            }
+        });
+    }
+
+    clickGetDairy = event => {
+        // prevent default page reload
+        event.preventDefault();
+
+        // get the token
+        const token = isAuthenticated().token;
+        // get the userId from the parameters
+        const userId = this.props.match.params.userId;
+
+        // API call to get all Dairy
+        getAllDairy(token, userId).then(data => {
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                this.setState({ dairy: data });
+            }
+        });
+    }
+
+    clickGetSpices = event => {
+        // prevent default page reload
+        event.preventDefault();
+
+        // get the token
+        const token = isAuthenticated().token;
+        // get the userId from the parameters
+        const userId = this.props.match.params.userId;
+
+        // API call to get all Spices
+        getAllSpices(token, userId).then(data => {
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                this.setState({ spices: data });
+            }
+        });
+    }
+
+    clickGetMiscellaneous = event => {
+        // prevent default page reload
+        event.preventDefault();
+
+        // get the token
+        const token = isAuthenticated().token;
+        // get the userId from the parameters
+        const userId = this.props.match.params.userId;
+
+        // API call to get all Miscellaneous
+        getAllMiscellaneous(token, userId).then(data => {
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                this.setState({ miscellaneous: data });
+            }
+        });
     }
 
     clickAddOne = (event) => {
@@ -181,28 +189,48 @@ class InventoryPanel extends Component {
         this.setState({ test: this.state.test + 1 });
     }
 
+    handleClose = () => this.setState({ showAddForm: false });
+    handleShow = () => this.setState({ showAddForm: true });
+
     render() {
         return (
             <div>
                 <div className='jumbotron'>
                     <h1>Inventory Testing Area</h1>
                 </div>
-                    <Button variant="contained" onClick={this.clickGetAllIngredients}>
-                        Test: Get All Ingredients
-                    </Button> <br />
-                    <Button variant="contained" onClick={this.clickGetMeats}>
-                        Test: Get Meats
-                    </Button> <br />
-                    <Button variant="contained" onClick={this.clickForceReRender}>
-                        Test: Force Re-Render (DEBUG ONLY)
-                    </Button> <br />
-                    <Button variant="contained" onClick={this.clickAddOne}>
-                        Test: Add 1
-                    </Button>
 
-                    <div>
-                        <span>{this.state.test}</span>
-                    </div>
+                {/* Testing Buttons :) */}
+                <Button variant="contained" onClick={this.clickGetAllIngredients}>
+                Test: Get All Ingredients
+                </Button> <br />
+                <Button variant="contained" onClick={this.clickClearAllIngredients}>
+                Test: Clear All Ingredients
+                </Button> <br />
+                <Button variant="contained" onClick={this.clickGetMeats}>
+                Test: Get Meats
+                </Button> <br />
+                <Button variant="contained" onClick={this.clickGetVegetables}>
+                Test: Get Vegetables
+                </Button> <br />
+                <Button variant="contained" onClick={this.clickGetFruit}>
+                Test: Get Fruit
+                </Button> <br />
+                <Button variant="contained" onClick={this.clickGetDairy}>
+                Test: Get Dairy
+                </Button> <br />
+                <Button variant="contained" onClick={this.clickGetSpices}>
+                Test: Get Spices
+                </Button> <br />
+                <Button variant="contained" onClick={this.clickGetMiscellaneous}>
+                Test: Get Miscellaneous
+                </Button> <br />
+                <Button variant="contained" onClick={this.clickAddOne}>
+                Test: Add 1
+                </Button>
+
+                <div>
+                    <span>{this.state.test}</span>
+                </div>
 
                 <Card className='searchCard'>
                     <input className='inventorySearchBar' placeholder='Search Bar goes here :D'></input>
@@ -211,113 +239,195 @@ class InventoryPanel extends Component {
                     </Button>
                 </Card>
 
-                {/* Do we want to use an official card component or just divs?
-                    Just divs might be easier and more flexible */}
+                {/* AddIngredient Dialog Form (a better form of Modal) */}
+                <Dialog open={this.state.showAddForm} onClose={this.handleClose} disableScrollLock='true'
+                        aria-labelledby="form-dialog-title">
+                    <DialogTitle id="form-dialog-title">Add Ingredient</DialogTitle>
+                    <DialogContent>
+                    <DialogContentText>Please fill out the following fields</DialogContentText>
+                    <TextField margin="dense" label="Ingredient Name" fullWidth/>
+                    <TextField margin="dense" label="Category" fullWidth/>
+                    <TextField margin="dense" label="Unit of Measurement" fullWidth/>
+                    <TextField margin="dense" label="Amount" fullWidth/>
+                    <TextField margin="dense" label="Reminder to check adding a photo" fullWidth/>
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={this.handleClose} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={this.handleClose} color="primary">
+                        Submit
+                    </Button>
+                    </DialogActions>
+                </Dialog>
 
-                {/* <Card className='inventoryResultsCard'>
-                    <Card.Title>Inventory Card</Card.Title>
-                    <Card.Text>This is some sample text inside the card.
-                        Different categories: Meat, Vegetable, Fruit, Dairy, Miscellaneous
-                    </Card.Text>
-                    <Card.Body>
-                        <Ingredient></Ingredient>
-                    </Card.Body>
-                </Card> */}
+                {/* name: {
+                    type: String,
+                    required: true,
+                    trim: true
+                },
+                category: {
+                    type: String,
+                    default: "misc",
+                    trim: true
+                },
+                unit: {
+                    type: String,
+                    trim: true
+                },
+                amount: {
+                    type: Number,
+                    default: 0
+                },
+                photo: {
+                    data: Buffer,
+                    contentType: String
+                },
+                user_email: {
+                    type: String,
+                    trim: true
+                } */}
 
-                {/* Bootstrap Card Version */}
-                {/* <Card className='categoryCard'>
-                <Card.Title>Meats Category Card (Bootstrap)</Card.Title>
-                    <Card.Text>This is some sample text inside the card.</Card.Text>
-                        <div className='ingredientRowContainer'>
-                            <IngredientMeat /><IngredientMeat /><IngredientMeat /><IngredientMeat />
-                        </div>
-                </Card> */}
-
-                {/* Manual Card Version */}
+                {/* Meat Card */}
                 <div className='categoryCard'>
                     <div className='cardHeader'>
                         <div className='cardTitle'>
-                            <span className='cardTitleText'>Meats Category Card (Live)</span>
+                            <span className='cardTitleText'>Meats</span>
                         </div>
-                        <IconButton>
-                            <AddCircleTwoToneIcon className='addIngredientButton' fontSize='large'/>
-                        </IconButton>  
+                        <IconButton onClick={this.handleShow}>
+                            <AddCircleTwoToneIcon className='addIngredientButton'
+                                                  fontSize='large'/>
+                        </IconButton>
                     </div>
                     <div className='ingredientRowContainer'>
-                        {this.displayMeats(this.state.meats)}
-                        {
-                            this.state.meats.map((item, index) => (
-                                <p>{item.name}</p>
-                            ))
-                        }
-                        {
-                            this.state.meats.map((item, index) => (
-                                <IngredientMeat meatName={item.name} meatAmount={item.amount}/>
-                            ))
-                        }
+                        {/* This section performs the Ingredient Component creation and information
+                        mapping */}
+                        {this.state.meats.map((item, index) => (
+                            <IngredientMeat meatName={item.name} meatUnit={item.unit}
+                                            meatAmount={item.amount}/>
+                        ))}
                     </div>
                 </div>
 
-                {/* Manual Card Version */}
+                {/* Vegetables Card */}
                 <div className='categoryCard'>
                     <div className='cardHeader'>
                         <div className='cardTitle'>
-                            <span className='cardTitleText'>Meats Category Card (Manual)</span>
+                            <span className='cardTitleText'>Vegetables</span>
+                        </div>
+                        <IconButton onClick={this.handleShow}>
+                            <AddCircleTwoToneIcon className='addIngredientButton'
+                                                  fontSize='large' />
+                        </IconButton>
+                    </div>
+                    <div className='ingredientRowContainer'>
+                        {/* This section performs the Ingredient Component creation and information
+                        mapping */}
+                        {this.state.vegetables.map((item, index) => (
+                            <IngredientVegetable vegetableName={item.name} vegetableUnit={item.unit}
+                                                 vegetableAmount={item.amount}/>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Fruit Card */}
+                <div className='categoryCard'>
+                    <div className='cardHeader'>
+                        <div className='cardTitle'>
+                            <span className='cardTitleText'>Fruit</span>
+                        </div>
+                        <IconButton onClick={this.handleShow}>
+                            <AddCircleTwoToneIcon className='addIngredientButton'
+                                                  fontSize='large'/>
+                        </IconButton>
+                    </div>
+                    <div className='ingredientRowContainer'>
+                        {/* This section performs the Ingredient Component creation and information
+                        mapping */}
+                        {this.state.fruit.map((item, index) => (
+                            <IngredientFruit fruitName={item.name} fruitUnit={item.unit}
+                                             fruitAmount={item.amount}/>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Dairy Card */}
+                <div className='categoryCard'>
+                    <div className='cardHeader'>
+                        <div className='cardTitle'>
+                            <span className='cardTitleText'>Dairy</span>
+                        </div>
+                        <IconButton onClick={this.handleShow}>
+                            <AddCircleTwoToneIcon className='addIngredientButton'
+                                                  fontSize='large'/>
+                        </IconButton>
+                    </div>
+                    <div className='ingredientRowContainer'>
+                        {/* This section performs the Ingredient Component creation and information
+                        mapping */}
+                        {this.state.dairy.map((item, index) => (
+                            <IngredientDairy dairyName={item.name} dairyUnit={item.unit}
+                                             dairyAmount={item.amount}/>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Spices Card */}
+                <div className='categoryCard'>
+                    <div className='cardHeader'>
+                        <div className='cardTitle'>
+                            <span className='cardTitleText'>Spices</span>
+                        </div>
+                        <IconButton onClick={this.handleShow}>
+                            <AddCircleTwoToneIcon className='addIngredientButton'
+                                                  fontSize='large'/>
+                        </IconButton>
+                    </div>
+                    <div className='ingredientRowContainer'>
+                        {/* This section performs the Ingredient Component creation and information
+                        mapping */}
+                        {this.state.spices.map((item, index) => (
+                            <IngredientSpices spicesName={item.name} spicesUnit={item.unit}
+                                              spicesAmount={item.amount}/>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Miscellaneous Card */}
+                <div className='categoryCard'>
+                    <div className='cardHeader'>
+                        <div className='cardTitle'>
+                            <span className='cardTitleText'>Miscellaneous</span>
+                        </div>
+                        <IconButton onClick={this.handleShow}>
+                            <AddCircleTwoToneIcon className='addIngredientButton'
+                                                  fontSize='large'/>
+                        </IconButton>
+                    </div>
+                    <div className='ingredientRowContainer'>
+                        {/* This section performs the Ingredient Component creation and information
+                        mapping */}
+                        {this.state.miscellaneous.map((item, index) => (
+                            <IngredientMiscellaneous miscellaneousName={item.name} miscellaneousUnit={item.unit}
+                                                     miscellaneousAmount={item.amount}/>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Meat Example Card */}
+                <div className='categoryCard'>
+                    <div className='cardHeader'>
+                        <div className='cardTitle'>
+                            <span className='cardTitleText'>Meats Example Card</span>
                         </div>
                         <IconButton>
-                            <AddCircleTwoToneIcon className='addIngredientButton' fontSize='large'/>
-                        </IconButton>  
+                            <AddCircleTwoToneIcon className='addIngredientButton' fontSize='large' />
+                        </IconButton>
                     </div>
                     <div className='ingredientRowContainer'>
                         <IngredientMeat /><IngredientMeat /><IngredientMeat /><IngredientMeat />
                     </div>
                 </div>
-
-                {/* <Card className='categoryCard'>
-                <Card.Title>Vegetables Category Card</Card.Title>
-                    <Card.Text>This is some sample text inside the card.</Card.Text>
-                    <Card.Body>
-                        <div className='ingredientRowContainer'>
-                            <IngredientVegetable /><IngredientVegetable /><IngredientVegetable />
-                        </div>
-                    </Card.Body>
-                </Card>
-                <Card className='categoryCard'>
-                <Card.Title>Fruit Category Card</Card.Title>
-                    <Card.Text>This is some sample text inside the card.</Card.Text>
-                    <Card.Body>
-                        <div className='ingredientRowContainer'>
-                            <IngredientFruit /><IngredientFruit /><IngredientFruit /><IngredientFruit /><IngredientFruit />
-                        </div>
-                    </Card.Body>
-                </Card>
-                <Card className='categoryCard'>
-                    <Card.Title>Dairy Category Card</Card.Title>
-                        <Card.Text>This is some sample text inside the card.</Card.Text>
-                        <Card.Body>
-                            <div className='ingredientRowContainer'>
-                                <IngredientDairy />
-                            </div>
-                        </Card.Body>
-                </Card>
-                <Card className='categoryCard'>
-                    <Card.Title>Spices Category Card</Card.Title>
-                        <Card.Text>This is some sample text inside the card.</Card.Text>
-                        <Card.Body>
-                            <div className='ingredientRowContainer'>
-                            <IngredientSpices /><IngredientSpices /><IngredientSpices />
-                            </div>
-                        </Card.Body>
-                </Card>
-                <Card className='categoryCard'>
-                    <Card.Title>Miscellaneous Category Card</Card.Title>
-                        <Card.Text>This is some sample text inside the card.</Card.Text>
-                        <Card.Body>
-                            <div className='ingredientRowContainer'>
-                                <IngredientMiscellaneous />
-                            </div>
-                        </Card.Body>
-                </Card> */}
             </div>
         );
     }

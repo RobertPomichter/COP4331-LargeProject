@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Image from 'react-bootstrap/Image';
 import GenericMeatPicture from '../images/GenericMeat.jpg';
 import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone';
 import EditTwoToneIcon from '@material-ui/icons/EditTwoTone';
 
@@ -18,6 +16,8 @@ class IngredientMeat extends Component {
                 <span className='meatName'>{this.props.meatName}</span>
                 <br/>
                 <span className='meatAmount'>{this.props.meatAmount}</span>
+                {" "}
+                <span className='meatUnit'>{this.props.meatUnit}</span>
                 <br />
                 <IconButton aria-label="delete">
                     <DeleteTwoToneIcon />
