@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Alert, TextInput, Button, ImageBackground, Touc
 import 'react-native-gesture-handler';
 import '@react-navigation/native';
 import '@react-navigation/stack';
+import backgroundImage from '../images/BackgroundImage.png';
 
 
 import Logo from '../components/Logo';
@@ -15,18 +16,19 @@ class Login extends React.Component{
 
     return (
       <View style={styles.container}>
+        <ImageBackground source={backgroundImage} style={styles.image}>
           <Logo/> 
           
           <Form1 navigation={this.props.navigation}/>   
 
           <View style={styles.registerTextCont}>
-            <Text>Don't have an account?</Text>
-            <TouchableOpacity onPress={ () => this.props.navigation.navigate('Register')}>
-              <Text style={styles.signUpBttn}> Sign up</Text>
-            </TouchableOpacity>
-
+              <Text>Don't have an account?</Text>
+              <TouchableOpacity onPress={ () => this.props.navigation.navigate('Register')}>
+                <Text style={styles.signUpBttn}> Sign up</Text>
+              </TouchableOpacity>
           </View>
 
+        </ImageBackground>
       </View>
     );
     }
@@ -36,7 +38,7 @@ class Login extends React.Component{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f57c00',
+    backgroundColor: 'transparent',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -49,6 +51,10 @@ const styles = StyleSheet.create({
   },
   signUpBttn:{
     fontWeight: 'bold',
+  },
+  image:{
+    width:'100%',
+    height:'100%',
   },
 });
 export default Login;

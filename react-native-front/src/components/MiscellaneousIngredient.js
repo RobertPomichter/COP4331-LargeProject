@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { View, Image, StyleSheet } from 'react-native';
-import GenericVegetablePicture from '../images/GenericVegetable.jpeg';
+import GenericMiscellaneousPicture from '../images/GenericMiscellaneous.png';
 
 class VegetableIngredient extends Component {
     render() {
         return (
             <View style={styles.ingredientContainer}>
-                <View style={styles.ingredientVegetableCircleContainer}>
-                    <Image style={styles.ingredientImage} source={GenericVegetablePicture}></Image>
+                <View style={styles.ingredientMiscellaneousCircleContainer}>
+                    <Image style={styles.ingredientImage} source={GenericMiscellaneousPicture}></Image>
                 </View>
             </View>
         );
@@ -19,12 +19,12 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
     
-    ingredientVegetableCircleContainer : {
+    ingredientMiscellaneousCircleContainer : {
         width: 50,
         height: 50,
         borderRadius: 25,  // rounding container into a circle
         margin: 2,
-        backgroundColor: '#06bd00',
+        backgroundColor: '#a86623',
 
         // these lines center the ingredient image horizontally and vertically
         flexDirection:'row', 

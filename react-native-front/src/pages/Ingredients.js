@@ -4,7 +4,12 @@ import { getAllIngredients } from '../functions/inventory.js';
 import FruitIngredient from '../components/FruitIngredient.js';
 import MeatIngredient from '../components/MeatIngredient.js';
 import VegetableIngredient from '../components/VegetableIngredient.js';
-import { StyleSheet, Text, View, Alert, TextInput, Button, ImageBackground, TouchableOpacity } from 'react-native';
+import DairyIngredient from '../components/DairyIngredient.js';
+import SpiceIngredient from '../components/SpiceIngredient.js';
+import MiscellaneousIngredient from '../components/MiscellaneousIngredient.js';
+import { StyleSheet, Text, View, ScrollView, Alert, TextInput, Button, ImageBackground, TouchableOpacity } from 'react-native';
+import Logo from '../components/Logo';
+import backgroundImage from '../images/BackgroundImage.png';
 
 class Ingredients extends React.Component{
   constructor(){
@@ -25,6 +30,12 @@ class Ingredients extends React.Component{
   
       return (
         <View>
+          <ImageBackground source={backgroundImage} style={styles.image}>
+          <View style={{padding:50}}></View>
+          <Logo/> 
+          <View style={{padding:30}}></View>
+
+          <ScrollView >
             <Card style={styles.inventoryCardSetup}>
             <Card.Title>Meat Category Card</Card.Title>
                 <Text>This is some sample text inside the card.</Text>
@@ -46,6 +57,29 @@ class Ingredients extends React.Component{
                         <FruitIngredient /><FruitIngredient /><FruitIngredient /><FruitIngredient /><FruitIngredient />
                     </View>
             </Card>
+            <Card style={styles.inventoryCardSetup}>
+            <Card.Title>Dairy Category Card</Card.Title>
+                <Text>This is some sample text inside the card.</Text>
+                    <View style={styles.ingredientRowContainer}>
+                        <DairyIngredient /><DairyIngredient /><DairyIngredient /><DairyIngredient /><DairyIngredient />
+                    </View>
+            </Card>
+            <Card style={styles.inventoryCardSetup}>
+            <Card.Title>Spice Category Card</Card.Title>
+                <Text>This is some sample text inside the card.</Text>
+                    <View style={styles.ingredientRowContainer}>
+                        <SpiceIngredient /><SpiceIngredient /><SpiceIngredient /><SpiceIngredient /><SpiceIngredient />
+                    </View>
+            </Card>
+            <Card style={styles.inventoryCardSetup}>
+            <Card.Title>Miscellaneous Category Card</Card.Title>
+                <Text>This is some sample text inside the card.</Text>
+                    <View style={styles.ingredientRowContainer}>
+                        <MiscellaneousIngredient /><MiscellaneousIngredient /><MiscellaneousIngredient /><MiscellaneousIngredient /><MiscellaneousIngredient />
+                    </View>
+            </Card>
+          </ScrollView>
+          </ImageBackground>
         </View>
     );
       }
@@ -69,6 +103,15 @@ class Ingredients extends React.Component{
         flexDirection: 'row',
         flexWrap: 'wrap',    // allows for ingrediet items to wrap if overflowing
         justifyContent: 'center',
+    },
+
+    scrollStyle : {
+      backgroundColor: 'white',
+      marginVertical: 20,
+    },
+    image:{
+      width:'100%',
+      height:'100%',
     },
   });
 

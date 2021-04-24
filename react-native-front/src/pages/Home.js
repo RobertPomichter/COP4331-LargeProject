@@ -5,6 +5,7 @@ import '@react-navigation/native';
 import '@react-navigation/stack';
 import Welcome from '../components/Welcome';
 import {signout} from '../functions/signout';
+import backgroundImage from '../images/BackgroundImage.png';
 
 class Home extends React.Component{
 
@@ -18,12 +19,13 @@ class Home extends React.Component{
     render(){
   
       return (
-      
-      <View style={styles.container}>
+      <View>
+        <ImageBackground source={backgroundImage} style={styles.image}>
+          <View style={styles.container}>
            <Welcome/>
 
-           <TouchableOpacity onPress={()=> this.props.navigation.navigate('Ingredients')}>
-               <Text>My Ingredients</Text>
+           <TouchableOpacity style={styles.button}onPress={()=> this.props.navigation.navigate('Ingredients')}>
+               <Text style={styles.buttonText}>My Ingredients</Text>
            </TouchableOpacity>
 
            {/*<TouchableOpacity onPress={()=> Alert.alert("Go to recipes")}>
@@ -33,6 +35,8 @@ class Home extends React.Component{
            <TouchableOpacity style={styles.button} onPress={()=> this.props.navigation.navigate('Login')}>
               <Text style={styles.buttonText}>Logout</Text>
             </TouchableOpacity>
+            </View>
+        </ImageBackground>
        </View>
       );
       }
@@ -42,24 +46,28 @@ class Home extends React.Component{
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: 'transparent',
       alignItems: 'center',
       justifyContent: 'center',
     },
     button:{
       borderRadius: 25,
       width: 300,
-      backgroundColor: 'grey',
+      backgroundColor: '#db8651',
       paddingVertical: 16,
       marginTop: 20,
     },
     buttonText:{
       textAlign: 'center',
-  },
-  test:{
-    flexDirection: 'row',
-  }
-
+      color:'#5f4339',
+    },
+    test:{
+      flexDirection: 'row',
+    },
+    image:{
+      width:'100%',
+      height:'100%',
+    },
   });
 
 
