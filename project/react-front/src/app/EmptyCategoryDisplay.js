@@ -9,7 +9,7 @@ class EmptyCategoryDisplay extends Component {
     render() {
         return (
             <div className='emptyFoodCategoryContainer'>
-                <img className='ingredientImage' src={EmptyFoodCategory}></img>
+                <img className='emptyCategoryImage' src={EmptyFoodCategory}></img>
             </div>
         );
     }
