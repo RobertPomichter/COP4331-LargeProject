@@ -27,6 +27,8 @@ mongoose.connection.on('error', err => console.log(`DB connection error: ${err.m
 const postRoutes = require('./routes/post');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
+// I ADDED THE NEXT LINE BACK FROM AN OLD COMMIT
+const ingredientRoutes = require('./routes/ingredient');
 
 // middleware
 app.use(morgan('dev'));
@@ -37,6 +39,8 @@ app.use(cors());
 app.use('/', postRoutes);
 app.use('/', authRoutes);
 app.use('/', userRoutes);
+// I ADDED THE NEXT LINE BACK FROM AN OLD COMMIT
+app.use('/', ingredientRoutes);
 
 // middleware to handle error for signInRequired
 app.use(function (err, req, res, next) {

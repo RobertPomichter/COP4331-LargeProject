@@ -17,12 +17,11 @@ export const getAllMeats = (token, userId) => {
             Accept: 'application/json',
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify({ category: 'meat' })
+        }
     }
 
     // fetch to the backend
-    return fetch(`${process.env.REACT_APP_API_URL}/ingredientCategory/${userId}`, requestContent)
+    return fetch(`${process.env.REACT_APP_API_URL}/ingredientCategory/${userId}?cat=meat`, requestContent)
     .then( response => {
         return response.json();
     })
