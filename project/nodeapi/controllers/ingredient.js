@@ -32,7 +32,8 @@ exports.addIngredient = async (req, res) => {
     // check if ingredient exists via similar robert code in auth.js (don't forget comma for name and user_email)
 
     // Check and see if the ingredient being added is already in the ingredient list
-    const ingredientExists = await Ingredient.findOne({email: req.body.email}, {name: req.body.name}); //{email: req.body.email}, {
+    // MAX FOUND A TYPO: was req.body.email and not req.body.user_email
+    const ingredientExists = await Ingredient.findOne({email: req.body.user_email}, {name: req.body.name}); //{email: req.body.email}, {
 	if(ingredientExists) 
         return res.status(403).json({ 
 		    error: "That food already exists as an ingredient"
