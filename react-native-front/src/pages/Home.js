@@ -22,7 +22,7 @@ class Home extends React.Component{
       <View style={styles.container}>
            <Welcome/>
 
-           <TouchableOpacity onPress={()=> Alert.alert("Go to ingredients")}>
+           <TouchableOpacity onPress={()=> this.props.navigation.navigate('Ingredients')}>
                <Text>My Ingredients</Text>
            </TouchableOpacity>
 
