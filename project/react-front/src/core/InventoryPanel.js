@@ -11,6 +11,7 @@ import IngredientSpices from '../app/IngredientSpices.js';
 import IngredientMiscellaneous from '../app/IngredientMiscellaneous';
 import AddCircleTwoToneIcon from '@material-ui/icons/AddCircleTwoTone';
 import IconButton from '@material-ui/core/IconButton';
+import EmptyCategoryDisplay from '../app/EmptyCategoryDisplay.js';
 
 
 
@@ -232,12 +233,9 @@ class InventoryPanel extends Component {
                     <span>{this.state.test}</span>
                 </div>
 
-                <Card className='searchCard'>
+                <div className='searchCard'>
                     <input className='inventorySearchBar' placeholder='Search Bar goes here :D'></input>
-                    <Button>
-
-                    </Button>
-                </Card>
+                </div>
 
                 {/* AddIngredient Dialog Form (a better form of Modal) */}
                 <Dialog open={this.state.showAddForm} onClose={this.handleClose} disableScrollLock='true'
