@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         height: 50,
         borderRadius: 25,  // rounding container into a circle
         margin: 2,
-        backgroundColor: '#ff1f1f',
+        backgroundColor: '##ff1f1f',
 
         // these lines center the ingredient image horizontally and vertically
         flexDirection:'row', 
