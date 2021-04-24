@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Card } from 'react-native-elements';
-import { getAllIngredients } from '../functions/inventory.js'; 
+import 'react-native-gesture-handler';
+import '@react-navigation/native';
+import '@react-navigation/stack';
+import { getAllMeats, getAllVegetables, getAllFruit, getAllDairy, getAllSpices, getAllMiscellaneous } from '../functions/inventory.js';
 import FruitIngredient from '../components/FruitIngredient.js';
 import MeatIngredient from '../components/MeatIngredient.js';
 import VegetableIngredient from '../components/VegetableIngredient.js';
@@ -12,18 +15,86 @@ import Logo from '../components/Logo';
 import backgroundImage from '../images/BackgroundImage.png';
 
 class Ingredients extends React.Component{
-  constructor(){
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-        ingredients: []
+        userId: "",
+        name: "",
+        email: "",
+        error: "",
+        meats: [],
+        vegetables: [],
+        fruit: [],
+        dairy: [],
+        spices: [],
+        miscellaneous: [],
+        test: 0,
+        showAddForm: false
     }
-  }
+  } 
 
-  clickGetAllIngredients = event => {
-    // prevent default page reload
-    event.preventDefault();
+  componentDidMount() {
+    // get the userId from the parameters
+    const { userId } = this.props.match.params.userId;
+    console.log(userId);
+    this.setState({ userId: userId });
 
-    getAllIngredients();
+    // get the token
+    const { token } = isAuthenticated().token;
+
+    // API call to get all Meats
+    getAllMeats(token, userId).then(data => {
+        if (data.error) {
+            console.log(data.error);
+        } else {
+            this.setState({ meats: data });
+        }
+    });
+
+    // API call to get all Vegetables
+    getAllVegetables(token, userId).then(data => {
+        if (data.error) {
+            console.log(data.error);
+        } else {
+            this.setState({ vegetables: data });
+        }
+    });
+
+    // API call to get all Fruit
+    getAllFruit(token, userId).then(data => {
+        if (data.error) {
+            console.log(data.error);
+        } else {
+            this.setState({ fruit: data });
+        }
+    });
+
+    // API call to get all Dairy
+    getAllDairy(token, userId).then(data => {
+        if (data.error) {
+            console.log(data.error);
+        } else {
+            this.setState({ dairy: data });
+        }
+    });
+
+    // API call to get all Spices
+    getAllSpices(token, userId).then(data => {
+        if (data.error) {
+            console.log(data.error);
+        } else {
+            this.setState({ spices: data });
+        }
+    });
+
+    // API call to get all Miscellaneous
+    getAllMiscellaneous(token, userId).then(data => {
+        if (data.error) {
+            console.log(data.error);
+        } else {
+            this.setState({ miscellaneous: data });
+        }
+    });
   }
   
     render(){
@@ -40,7 +111,10 @@ class Ingredients extends React.Component{
             <Card.Title>Meat Category Card</Card.Title>
                 <Text>This is some sample text inside the card.</Text>
                     <View style={styles.ingredientRowContainer}>
-                        <MeatIngredient /><MeatIngredient /><MeatIngredient /><MeatIngredient /><MeatIngredient />
+                        {this.state.meats.map((item, index) => (
+                            <IngredientMeat meatName={item.name} meatUnit={item.unit}
+                                            meatAmount={item.amount}/>
+                        ))}
                     </View>
             </Card>
             <Card style={styles.inventoryCardSetup}>
