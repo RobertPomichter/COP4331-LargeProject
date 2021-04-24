@@ -17,8 +17,8 @@ import { read } from "../user/apiUser";
 
 class InventoryPanel extends Component {
     // copied from Users.js - idea is to hold an array of ingredients
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
             userId: "",
             name: "",
@@ -29,7 +29,8 @@ class InventoryPanel extends Component {
             fruit: [],
             dairy: [],
             spices: [],
-            miscellaneous: []
+            miscellaneous: [],
+            test: 0
         }
     }
 
@@ -65,7 +66,12 @@ class InventoryPanel extends Component {
 
         // call to back-end fetch method
         //this.init(userId);
-    }    
+    }
+
+    // method to handle changes to the state
+    componentDidUpdate() {
+
+    }
 
     clickGetAllIngredients = event => {
         // prevent default page reload
@@ -111,7 +117,9 @@ class InventoryPanel extends Component {
     } */
 
     displayMeats = (meats) => {
-        {meats.map(())}
+        {meats.map((meat, i) => (
+            <IngredientMeat key={meat}/>
+        ))}
     }
 
     /* EXAMPLE FOR RENDERING STATE ARRAY FROM USERS 
@@ -159,6 +167,20 @@ class InventoryPanel extends Component {
         );
     } */
 
+    clickForceReRender = event => {
+        // prevent default page reload
+        event.preventDefault();
+
+        this.forceUpdate();
+    }
+
+    clickAddOne = (event) => {
+        // prevent default page reload
+        event.preventDefault();
+
+        this.setState({ test: this.state.test + 1 });
+    }
+
     render() {
         return (
             <div>
@@ -170,7 +192,17 @@ class InventoryPanel extends Component {
                     </Button> <br />
                     <Button variant="contained" onClick={this.clickGetMeats}>
                         Test: Get Meats
+                    </Button> <br />
+                    <Button variant="contained" onClick={this.clickForceReRender}>
+                        Test: Force Re-Render (DEBUG ONLY)
+                    </Button> <br />
+                    <Button variant="contained" onClick={this.clickAddOne}>
+                        Test: Add 1
                     </Button>
+
+                    <div>
+                        <span>{this.state.test}</span>
+                    </div>
 
                 <Card className='searchCard'>
                     <input className='inventorySearchBar' placeholder='Search Bar goes here :D'></input>
@@ -212,6 +244,17 @@ class InventoryPanel extends Component {
                         </IconButton>  
                     </div>
                     <div className='ingredientRowContainer'>
+                        {this.displayMeats(this.state.meats)}
+                        {
+                            this.state.meats.map((item, index) => (
+                                <p>{item.name}</p>
+                            ))
+                        }
+                        {
+                            this.state.meats.map((item, index) => (
+                                <IngredientMeat meatName={item.name} meatAmount={item.amount}/>
+                            ))
+                        }
                     </div>
                 </div>
 

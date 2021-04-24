@@ -15,9 +15,9 @@ class IngredientMeat extends Component {
                 <div className='ingredientMeatCircleContainer'>
                     <img className='ingredientImage' src={GenericMeatPicture}></img>
                 </div>
-                <span className='meatName'></span>
+                <span className='meatName'>{this.props.meatName}</span>
                 <br/>
-                <span className='meatAmount'></span>
+                <span className='meatAmount'>{this.props.meatAmount}</span>
                 <br />
                 <IconButton aria-label="delete">
                     <DeleteTwoToneIcon />
