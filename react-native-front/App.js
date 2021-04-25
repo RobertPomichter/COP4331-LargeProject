@@ -4,6 +4,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button, ImageBackground, TouchableOpacity } from 'react-native';
 
 import Routes from './src/Routes';
+import 'localstorage-polyfill'
 
 class App extends React.Component{
 

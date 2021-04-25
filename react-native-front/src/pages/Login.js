@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Alert, TextInput, Button, ImageBackground, Touc
 import 'react-native-gesture-handler';
 import '@react-navigation/native';
 import '@react-navigation/stack';
-
+import backgroundImage from '../images/BackgroundImage.png';
 
 import Logo from '../components/Logo';
 import Form1 from '../components/Form1';
@@ -15,6 +15,7 @@ class Login extends React.Component{
 
     return (
       <View style={styles.container}>
+        <ImageBackground source={backgroundImage} style={styles.image}>
           <Logo/> 
           
           <Form1 navigation={this.props.navigation}/>   
@@ -26,7 +27,7 @@ class Login extends React.Component{
             </TouchableOpacity>
 
           </View>
-
+          </ImageBackground>
       </View>
     );
     }
@@ -36,7 +37,7 @@ class Login extends React.Component{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f57c00',
+    backgroundColor: 'transparent',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -49,6 +50,10 @@ const styles = StyleSheet.create({
   },
   signUpBttn:{
     fontWeight: 'bold',
+  },
+  image:{
+    width:'100%',
+    height:'100%',
   },
 });
 export default Login;

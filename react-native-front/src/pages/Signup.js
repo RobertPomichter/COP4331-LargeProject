@@ -4,6 +4,7 @@ import 'react-native-gesture-handler';
 
 import Logo from '../components/Logo';
 import Form2 from '../components/Form2';
+import backgroundImage from '../images/BackgroundImage.png';
 
 class Signup extends React.Component{
 
@@ -11,6 +12,7 @@ class Signup extends React.Component{
 
     return (
       <View style={styles.container}>
+        <ImageBackground source={backgroundImage} style={styles.image}>
           <Logo/> 
           <Form2 navigation={this.props.navigation}/>   
 
@@ -20,6 +22,7 @@ class Signup extends React.Component{
              <Text style={styles.signUpBttn}> Login</Text>
             </TouchableOpacity>
           </View>
+        </ImageBackground>
       </View>
     );
     }
@@ -29,7 +32,7 @@ class Signup extends React.Component{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f57c00',
+    backgroundColor: 'transparent',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -41,6 +44,10 @@ const styles = StyleSheet.create({
   },
   signUpBttn:{
     fontWeight: 'bold',
-  }
+  },
+  image:{
+    width:'100%',
+    height:'100%',
+  },
 });
 export default Signup;
