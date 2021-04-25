@@ -1,7 +1,7 @@
 // function for forgot password
 export const forgotPassword = email => {
     // make a request to the backend
-    return fetch(`http://10.0.2.2:5000/forgot-password/`, {
+    return fetch(`http://161.35.13.212/api/forgot-password/`, {
         method: "PUT",
         headers: {
             Accept: "application/json",

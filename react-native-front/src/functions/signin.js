@@ -2,7 +2,7 @@
 
 export const signin = user => {
     // fetch/send the backend then return response
-    return fetch(`http://10.0.2.2:5000/signin`, {
+    return fetch(`http://161.35.13.212/api/signin`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',

@@ -65,10 +65,11 @@ submit(){
 
     return (
       <View style={styles.container}>
-        <TextInput style={styles.inputBox} 
-        underlineColorAndroid='black'
+        <TextInput  style={styles.inputBox}
         onChangeText = { (text) => {this.setState({email: text})}}
         placeholder="Email..."/>
+
+        <View style={styles.separation}></View>
 
         <TextInput style={styles.inputBox}
         underlineColorAndroid='black'
@@ -101,13 +102,20 @@ const styles = StyleSheet.create({
   },
   inputBox: {
     width: 300,
+    height:60,
+    paddingLeft: 20,
+    borderWidth: 1,
+    borderColor: 'white',
+    borderRadius: 30,
+    backgroundColor: 'white',
   },
   button:{
     borderRadius: 25,
     width: 300,
     backgroundColor: '#fff',
     paddingVertical: 16,
-    marginTop: 20,
+    marginTop: 50,
+    height:50,
   },
   buttonText:{
       textAlign: 'center',
@@ -121,7 +129,11 @@ const styles = StyleSheet.create({
   forgotPass:{
     padding: 20,
     fontWeight: 'bold',
-  }
+  },
+  separation:{
+    height: 50,
+    backgroundColor: 'black',
+  },
 });
 
 export default Form1;

@@ -63,11 +63,15 @@ class Form2 extends React.Component{
         onChangeText = { (text) => {this.setState({name: text})}}
         placeholder="Name..."/>
         
+        <View style={styles.separation}></View>
+
         <TextInput style={styles.inputBox} 
         underlineColorAndroid='black'
         onChangeText = { (text) => {this.setState({email: text})}}
         placeholder="Email..."/>
         
+        <View style={styles.separation}></View>
+
         <TextInput style={styles.inputBox}
         underlineColorAndroid='black'
         onChangeText = { (text) => {this.setState({password: text})}}
@@ -96,6 +100,12 @@ const styles = StyleSheet.create({
   },
   inputBox: {
     width: 300,
+    height:60,
+    paddingLeft: 20,
+    borderWidth: 1,
+    borderColor: 'white',
+    borderRadius: 30,
+    backgroundColor: 'white',
   },
   button:{
     borderRadius: 25,
@@ -106,11 +116,16 @@ const styles = StyleSheet.create({
   },
   buttonText:{
       textAlign: 'center',
+      fontWeight: 'bold',
   },
   errorMsg:{
     marginTop: 25,
     marginLeft: 50,
     marginRight: 50,
+  },
+  separation:{
+    height: 30,
+    backgroundColor: 'black',
   },
 });
 
