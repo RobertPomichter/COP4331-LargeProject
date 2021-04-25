@@ -51,7 +51,7 @@ const Menu = ({history}) => (
                     <li className="nav-item">
                         <Link className='nav-link' 
                             style={isActive(history, '/users')}
-                            to='/dashboard/inventoryTesting'
+                            to={`/dashboard/inventoryTesting/${isAuthenticated().user._id}`}
                         >
                                 Inventory Testing
                         </Link>

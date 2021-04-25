@@ -15,6 +15,23 @@ export const signup = user => {
         .catch( err => console.log(err));
 };
 
+// function for activate account
+export const verifyAccount = verifyEmailLink => {
+    // make request to the backend
+    return fetch(`${process.env.REACT_APP_API_URL}/verify-account/`, {
+        method: "PUT",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(verifyEmailLink)
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
+
 // signin function
 export const signin = user => {
     // fetch/send the backend then return response
