@@ -8,8 +8,8 @@ import EditProfile from '../user/EditProfile';
 import PrivateRoute from "../auth/PrivateRoute";
 import Home from '../user/Home.js';
 import InventoryPanel from './InventoryPanel.js';
-import Sidebar from '../app/Sidebar.js';
-import RecipeTesting from '../core/RecipeTesting.js';
+import Sidebar from '../app/Sidebar';
+import RecipeSearch from '../core/RecipeSearch';
 import IngredientTesting from '../core/IngredientTesting.js';
 
 
@@ -29,7 +29,7 @@ class Dashboard extends Component {
                     <PrivateRoute exact path='/dashboard/user/edit/:userId' component={EditProfile} />
                     <PrivateRoute exact path='/dashboard/ingredientTesting' component={IngredientTesting} />
                     <PrivateRoute exact path='/dashboard/inventoryTesting' component={InventoryPanel} />
-                    <PrivateRoute exact path='/dashboard/recipeTesting' component={RecipeTesting}/>
+                    <PrivateRoute exact path='/dashboard/recipeSearch' component={RecipeSearch}/>
                 </Switch>
                 </div>
             </div>
