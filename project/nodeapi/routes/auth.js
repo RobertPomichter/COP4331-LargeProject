@@ -1,5 +1,6 @@
 const express = require('express');
-const { signup, 
+const { signup,
+        verifyEmail, 
         signin, 
         signout, 
         signInRequired,
@@ -13,6 +14,9 @@ const router = express.Router();
 
 // sign up route
 router.post('/signup', userSignupValidation, signup);
+
+// verify user account route
+router.put("/verify-account", verifyEmail);
 
 // sign in route
 router.post('/signin', signin);

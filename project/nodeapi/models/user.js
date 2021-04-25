@@ -34,6 +34,14 @@ const userSchema = new mongoose.Schema({
     resetPasswordLink: {
         data: String,
         default: ""
+    },
+    verifyEmailLink: {
+        data: String,
+        default: ""
+    },
+    verified: {
+        type: Boolean,
+        default: false
     }
 });
 
@@ -54,6 +62,7 @@ userSchema.virtual("password")
 // methods
 userSchema.methods = {
     authenticate: function(plainText) {
+        // make sure the password is correct
         return this.encryptPassword(plainText) === this.hashed_password
     },
 
