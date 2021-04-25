@@ -45,7 +45,7 @@ submit(){
         }
         else {
             // authenticate
-            alert(JSON.stringify(data));
+            //alert(JSON.stringify(data));
             authenticate(data, () => { 
                 this.setState({redirectToHome: true});
             });
