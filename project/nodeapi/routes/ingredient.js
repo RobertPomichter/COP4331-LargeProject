@@ -10,6 +10,7 @@ const {
     getUserIngredientsByCategoryDontHave,
     getUserIngredientsQuery,
     updateIngredients,
+    deleteIngredient,
     ingredientById
 } = require('../controllers/ingredient');
 
@@ -44,5 +45,7 @@ router.get('/ingredientCategoryDont/:userId', getUserIngredientsByCategoryDontHa
 router.get('/ingredientQuery/:userId', getUserIngredientsQuery);
 // route to put an ingredient update
 router.put('/ingredientUpdate/:ingredientId', updateIngredients); 
+// route to delete an ingredient
+router.delete('/deleteIngredient/:userId', deleteIngredient);
 
 module.exports = router;
