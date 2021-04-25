@@ -90,17 +90,18 @@ class Form2 extends React.Component{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f57c00',
+    backgroundColor: 'transparent',
     alignItems: 'center',
     justifyContent: 'center',
   },
   inputBox: {
     width: 300,
+    height: 20,
   },
   button:{
     borderRadius: 25,
     width: 300,
-    backgroundColor: '#fff',
+    backgroundColor: '#db8651',
     paddingVertical: 16,
     marginTop: 20,
   },

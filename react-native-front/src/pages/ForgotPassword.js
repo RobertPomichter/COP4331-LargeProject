@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Alert, TextInput, Button, ImageBackground, Touc
 import 'react-native-gesture-handler';
 import '@react-navigation/native';
 import '@react-navigation/stack';
+import backgroundImage from '../images/BackgroundImage.png';
 
 import PasswordRecovery from '../components/PasswordRecovery';
 import {forgotPassword} from '../functions/forgotPassword';
@@ -49,29 +50,32 @@ class ForgotPassword extends React.Component{
     render(){
   
       return (
-      
-      
-      <View style={styles.container}>
+    
+        <View>
+          <ImageBackground source={backgroundImage} style={styles.image}>
+            <View style={styles.container}>
 
-        <Text style={styles.title}>Password Recovery</Text>
+            <Text style={styles.title}>Password Recovery</Text>
 
-        <TextInput style={styles.inputBox}
-        underlineColorAndroid='black'
-        onChangeText = { (text) => {this.setState({email: text})}}
-        placeholder="Email..."/>
+            <TextInput style={styles.inputBox}
+            underlineColorAndroid='black'
+            onChangeText = { (text) => {this.setState({email: text})}}
+            placeholder="Email..."/>
 
 
-          <TouchableOpacity style={styles.button} onPress={ () => {this.submit()}}>
-                <Text style={styles.bold}>Send Password Reset Link</Text>
-           </TouchableOpacity>
+              <TouchableOpacity style={styles.button} onPress={ () => {this.submit()}}>
+                    <Text style={styles.bold}>Send Password Reset Link</Text>
+              </TouchableOpacity>
 
-           <Text style={styles.errorMsg}>{this.state.error}</Text>
-           <Text style={styles.errorMsg}>{this.state.message}</Text>
+              <Text style={styles.errorMsg}>{this.state.error}</Text>
+              <Text style={styles.errorMsg}>{this.state.message}</Text>
 
-           <TouchableOpacity style={styles.backLoginBttn} onPress={ () => this.props.navigation.navigate('Login')}>
-             <Text style={styles.bold}>Back to Login</Text>
-           </TouchableOpacity>
-       </View>
+              <TouchableOpacity style={styles.backLoginBttn} onPress={ () => this.props.navigation.navigate('Login')}>
+                <Text style={styles.bold}>Back to Login</Text>
+              </TouchableOpacity>
+          </View>
+          </ImageBackground>
+        </View>
       );
       }
   
@@ -80,14 +84,14 @@ class ForgotPassword extends React.Component{
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#f57c00',
+      backgroundColor: 'transparent',
       alignItems: 'center',
       justifyContent: 'center',
     },
     button:{
       borderRadius: 25,
       width: 300,
-      backgroundColor: '#fff',
+      backgroundColor: '#db8651',
       paddingVertical: 16,
       marginTop: 20,
       alignItems: 'center',
@@ -106,7 +110,7 @@ class ForgotPassword extends React.Component{
     fontSize: 40,
     fontWeight: 'bold',
     marginBottom: 30,
-    color: '#fff',
+    color: '#e06010',
   },
   backLoginBttn:{
     marginTop: 30,
@@ -115,6 +119,10 @@ class ForgotPassword extends React.Component{
     marginTop: 25,
     marginLeft: 50,
     marginRight: 50,
+  },
+  image:{
+    width:'100%',
+    height:'100%',
   },
   });
 
