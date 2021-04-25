@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Card, Modal } from 'react-bootstrap';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, InputLabel, MenuItem, FormHelperText, FormControl, Select } from '@material-ui/core';
 import { getAllIngredients, getAllMeats, getAllVegetables, getAllFruit, getAllDairy, getAllSpices, getAllMiscellaneous } from '../apiCalls/apiInventory.js';
 import { isAuthenticated } from "../auth";
+import { makeStyles } from '@material-ui/core/styles';
 import IngredientFruit from '../app/IngredientFruit.js';
 import IngredientMeat from '../app/IngredientMeat.js';
 import IngredientVegetable from '../app/IngredientVegetable.js';
@@ -244,10 +245,22 @@ class InventoryPanel extends Component {
                     <DialogContent>
                     <DialogContentText>Please fill out the following fields</DialogContentText>
                     <TextField margin="dense" label="Ingredient Name" fullWidth/>
-                    <TextField margin="dense" label="Category" fullWidth/>
                     <TextField margin="dense" label="Unit of Measurement" fullWidth/>
                     <TextField margin="dense" label="Amount" fullWidth/>
                     <TextField margin="dense" label="Reminder to check adding a photo" fullWidth/>
+                    <FormControl required>
+                        <InputLabel id="demo-simple-select-required-label">Category</InputLabel>
+                            <Select labelId="demo-simple-select-required-label"
+                                    id="demo-simple-select-required">
+                            <MenuItem value={10}>Meat</MenuItem>
+                            <MenuItem value={20}>Vegetable</MenuItem>
+                            <MenuItem value={30}>Fruit</MenuItem>
+                            <MenuItem value={30}>Dairy</MenuItem>
+                            <MenuItem value={30}>Spices</MenuItem>
+                            <MenuItem value={30}>Miscellaneous</MenuItem>
+                        </Select>
+                        <FormHelperText>Required</FormHelperText>
+                    </FormControl>
                     </DialogContent>
                     <DialogActions>
                     <Button onClick={this.handleClose} color="primary">
