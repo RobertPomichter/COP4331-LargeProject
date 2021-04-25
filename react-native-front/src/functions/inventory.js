@@ -20,7 +20,7 @@ export const getAllMeats = (token, userId) => {
     }
 
     // fetch to the backend
-    return fetch(`${process.env.REACT_APP_API_URL}/ingredientCategory/${userId}?cat=meat`, requestContent)
+    return fetch(`http://161.35.13.212/ingredientCategory/${userId}?cat=meat`, requestContent)
     .then( response => {
         return response.json();
     })

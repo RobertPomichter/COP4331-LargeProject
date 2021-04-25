@@ -13,6 +13,7 @@ import MiscellaneousIngredient from '../components/MiscellaneousIngredient.js';
 import { StyleSheet, Text, View, ScrollView, Alert, TextInput, Button, ImageBackground, TouchableOpacity } from 'react-native';
 import Logo from '../components/Logo';
 import backgroundImage from '../images/BackgroundImage.png';
+import { isAuthenticated } from "../functions/authenticate.js";
 
 class Ingredients extends React.Component{
   constructor(props) {
@@ -35,12 +36,13 @@ class Ingredients extends React.Component{
 
   componentDidMount() {
     // get the userId from the parameters
-    const { userId } = this.props.match.params.userId;
+    const { userId } = this.props;
     console.log(userId);
     this.setState({ userId: userId });
+    console.log(this.state.userId);
 
     // get the token
-    const { token } = isAuthenticated().token;
+    const { token } = isAuthenticated();
 
     // API call to get all Meats
     getAllMeats(token, userId).then(data => {
