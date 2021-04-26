@@ -32,7 +32,6 @@ class InventoryPanel extends Component {
             dairy: [],
             spices: [],
             miscellaneous: [],
-            test: 0,
             showAddForm: false,
             addName: "",
             addUnit: "",
@@ -202,13 +201,6 @@ class InventoryPanel extends Component {
         });
     }
 
-    clickAddOne = (event) => {
-        // prevent default page reload
-        event.preventDefault();
-
-        this.setState({ test: this.state.test + 1 });
-    }
-
     handleClose = () => this.setState({ showAddForm: false });
     handleShow = () => this.setState({ showAddForm: true });
 
@@ -290,13 +282,6 @@ class InventoryPanel extends Component {
                 <Button variant="contained" onClick={this.clickGetMiscellaneous}>
                 Test: Get Miscellaneous
                 </Button> <br />
-                <Button variant="contained" onClick={this.clickAddOne}>
-                Test: Add 1
-                </Button>
-
-                <div>
-                    <span>{this.state.test}</span>
-                </div>
 
                 <div className='searchCard'>
                     <input className='inventorySearchBar' placeholder='Search Bar goes here :D'></input>
