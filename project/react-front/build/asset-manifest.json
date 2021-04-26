@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a9deccd2.chunk.css",
+    "main.js": "/static/js/main.98b182dc.chunk.js",
+    "main.js.map": "/static/js/main.98b182dc.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.f5be6c52.js",
+    "runtime-main.js.map": "/static/js/runtime-main.f5be6c52.js.map",
+    "static/js/2.d46c19d3.chunk.js": "/static/js/2.d46c19d3.chunk.js",
+    "static/js/2.d46c19d3.chunk.js.map": "/static/js/2.d46c19d3.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.a9deccd2.chunk.css.map": "/static/css/main.a9deccd2.chunk.css.map",
+    "static/js/2.d46c19d3.chunk.js.LICENSE.txt": "/static/js/2.d46c19d3.chunk.js.LICENSE.txt",
+    "static/media/App.scss": "/static/media/Background1440p.7b6a9ff5.png",
+    "static/media/GenericFruit.6625fc00.jpg": "/static/media/GenericFruit.6625fc00.jpg",
+    "static/media/GenericMeat.a50d908f.jpg": "/static/media/GenericMeat.a50d908f.jpg",
+    "static/media/GenericVegetable.f1424857.png": "/static/media/GenericVegetable.f1424857.png",
+    "static/media/LogoResized.47f9fb35.svg": "/static/media/LogoResized.47f9fb35.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f5be6c52.js",
+    "static/js/2.d46c19d3.chunk.js",
+    "static/css/main.a9deccd2.chunk.css",
+    "static/js/main.98b182dc.chunk.js"
+  ]
+}
