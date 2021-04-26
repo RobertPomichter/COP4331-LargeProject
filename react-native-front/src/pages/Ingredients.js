@@ -15,7 +15,6 @@ import MiscellaneousIngredient from '../components/MiscellaneousIngredient.js';
 import { StyleSheet, Text, View, ScrollView, ImageBackground, TouchableOpacity } from 'react-native';
 import Logo from '../components/Logo';
 import backgroundImage from '../images/BackgroundImage.png';
-import { isAuthenticated } from "../functions/authenticate.js";
 
 class Ingredients extends React.Component{
   constructor() {
