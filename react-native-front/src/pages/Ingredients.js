@@ -3,14 +3,16 @@ import { Card } from 'react-native-elements';
 import 'react-native-gesture-handler';
 import '@react-navigation/native';
 import '@react-navigation/stack';
-import { getAllMeats, getAllVegetables, getAllFruit, getAllDairy, getAllSpices, getAllMiscellaneous } from '../functions/inventory.js';
+import { getMeats, getVegetables, getFruit, getDairy, getSpices, getMiscellaneous,
+        getEmptyMeats, getEmptyVegetables, getEmptyFruit, getEmptyDairy, getEmptySpices, getEmptyMiscellaneous 
+        } from '../functions/inventory.js';
 import FruitIngredient from '../components/FruitIngredient.js';
 import MeatIngredient from '../components/MeatIngredient.js';
 import VegetableIngredient from '../components/VegetableIngredient.js';
 import DairyIngredient from '../components/DairyIngredient.js';
 import SpiceIngredient from '../components/SpiceIngredient.js';
 import MiscellaneousIngredient from '../components/MiscellaneousIngredient.js';
-import { StyleSheet, Text, View, ScrollView, Alert, TextInput, Button, ImageBackground, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, ImageBackground, TouchableOpacity } from 'react-native';
 import Logo from '../components/Logo';
 import backgroundImage from '../images/BackgroundImage.png';
 import { isAuthenticated } from "../functions/authenticate.js";
@@ -20,12 +22,18 @@ class Ingredients extends React.Component{
     super();
     this.state = {
         error: "",
-        meats: [],
-        vegetables: [],
-        fruit: [],
-        dairy: [],
-        spices: [],
-        miscellaneous: [],
+        fullMeats: [],
+        fullVegetables: [],
+        fullFruit: [],
+        fullDairy: [],
+        fullSpices: [],
+        fullMiscellaneous: [],
+        emptyMeats: [],
+        emptyVegetables: [],
+        emptyFruit: [],
+        emptyDairy: [],
+        emptySpices: [],
+        emptyMiscellaneous: [],
         test: 0,
         showAddForm: false
     }
@@ -41,60 +49,125 @@ class Ingredients extends React.Component{
     // get the token
     console.log(JSON.stringify(token));
 
-    // API call to get all Meats
-    getAllMeats(token, userId)
+    // API call to get filled Meats
+    getMeats(token, userId)
     .then(data => {
         if (data.error) {
             this.setState({error: data.error})
             console.log(data.error); 
           } else {
-            // alert(JSON.stringify(data));
-            this.setState({ meats: data });
+            this.setState({ fullMeats: data });
         }
     });
 
-    // API call to get all Vegetables
-    getAllVegetables(token, userId).then(data => {
+    // API call to get filled Vegetables
+    getVegetables(token, userId).then(data => {
         if (data.error) {
+            this.setState({error: data.error})
             console.log(data.error);
         } else {
-            this.setState({ vegetables: data });
+            this.setState({ fullVegetables: data });
         }
     });
 
-    // API call to get all Fruit
-    getAllFruit(token, userId).then(data => {
+    // API call to get filled Fruit
+    getFruit(token, userId).then(data => {
         if (data.error) {
+            this.setState({error: data.error})
             console.log(data.error);
         } else {
-            this.setState({ fruit: data });
+            this.setState({ fullFruit: data });
         }
     });
 
-    // API call to get all Dairy
-    getAllDairy(token, userId).then(data => {
+    // API call to get filled Dairy
+    getDairy(token, userId).then(data => {
         if (data.error) {
+            this.setState({error: data.error})
             console.log(data.error);
         } else {
-            this.setState({ dairy: data });
+            this.setState({ fullDairy: data });
         }
     });
 
-    // API call to get all Spices
-    getAllSpices(token, userId).then(data => {
+    // API call to get filled Spices
+    getSpices(token, userId).then(data => {
         if (data.error) {
+            this.setState({error: data.error})
             console.log(data.error);
         } else {
-            this.setState({ spices: data });
+            this.setState({ fullSpices: data });
         }
     });
 
-    // API call to get all Miscellaneous
-    getAllMiscellaneous(token, userId).then(data => {
+    // API call to get filled Miscellaneous
+    getMiscellaneous(token, userId).then(data => {
         if (data.error) {
+            this.setState({error: data.error})
             console.log(data.error);
         } else {
-            this.setState({ miscellaneous: data });
+            this.setState({ fullMiscellaneous: data });
+        }
+    });
+
+    // API call to get empty Meats
+    getEmptyMeats(token, userId)
+    .then(data => {
+        if (data.error) {
+            this.setState({error: data.error})
+            console.log(data.error); 
+          } else {
+            this.setState({ emptyMeats: data });
+        }
+    });
+
+    // API call to get empty Vegetables
+    getEmptyVegetables(token, userId).then(data => {
+        if (data.error) {
+            this.setState({error: data.error})
+            console.log(data.error);
+        } else {
+            this.setState({ emptyVegetables: data });
+        }
+    });
+
+    // API call to get empty Fruit
+    getEmptyFruit(token, userId).then(data => {
+        if (data.error) {
+            this.setState({error: data.error})
+            console.log(data.error);
+        } else {
+            this.setState({ emptyFruit: data });
+        }
+    });
+
+    // API call to get empty Dairy
+    getEmptyDairy(token, userId).then(data => {
+        if (data.error) {
+            this.setState({error: data.error})
+            console.log(data.error);
+        } else {
+            this.setState({ emptyDairy: data });
+        }
+    });
+
+    // API call to get empty Spices
+    getEmptySpices(token, userId).then(data => {
+        if (data.error) {
+            this.setState({error: data.error})
+            console.log(data.error);
+        } else {
+            this.setState({ emptySpices: data });
+        }
+    });
+
+    // API call to get empty Miscellaneous
+    getEmptyMiscellaneous(token, userId).then(data => {
+        if (data.error) {
+            this.setState({error: data.error})
+            console.log(data.error);
+        } else {
+            this.setState({ emptyMiscellaneous: data });
         }
     });
   }
@@ -115,7 +188,13 @@ class Ingredients extends React.Component{
             <Card style={styles.inventoryCardSetup}>
             <Card.Title>Meats</Card.Title>
                     <View style={styles.ingredientRowContainer}>
-                        {this.state.meats.map((item, index) => (
+                        {this.state.fullMeats.map((item, index) => (
+                            <MeatIngredient key={index} name={item.name} unit={item.unit}
+                                            amount={item.amount}/>
+                        ))}
+                    </View>
+                    <View style={styles.ingredientRowContainerEmpty}>
+                        {this.state.emptyMeats.map((item, index) => (
                             <MeatIngredient key={index} name={item.name} unit={item.unit}
                                             amount={item.amount}/>
                         ))}
@@ -124,7 +203,13 @@ class Ingredients extends React.Component{
             <Card style={styles.inventoryCardSetup}>
             <Card.Title>Vegetables</Card.Title>
                     <View style={styles.ingredientRowContainer}>
-                        {this.state.vegetables.map((item, index) => (
+                        {this.state.fullVegetables.map((item, index) => (
+                            <VegetableIngredient key={index} name={item.name} unit={item.unit}
+                                            amount={item.amount}/>
+                        ))}
+                    </View>
+                    <View style={styles.ingredientRowContainerEmpty}>
+                        {this.state.emptyVegetables.map((item, index) => (
                             <VegetableIngredient key={index} name={item.name} unit={item.unit}
                                             amount={item.amount}/>
                         ))}
@@ -133,7 +218,13 @@ class Ingredients extends React.Component{
             <Card style={styles.inventoryCardSetup}>
             <Card.Title>Fruits</Card.Title>
                     <View style={styles.ingredientRowContainer}>
-                        {this.state.fruit.map((item, index) => (
+                        {this.state.fullFruit.map((item, index) => (
+                            <FruitIngredient key={index} name={item.name} unit={item.unit}
+                                            amount={item.amount}/>
+                        ))}
+                    </View>
+                    <View style={styles.ingredientRowContainerEmpty}>
+                        {this.state.emptyFruit.map((item, index) => (
                             <FruitIngredient key={index} name={item.name} unit={item.unit}
                                             amount={item.amount}/>
                         ))}
@@ -142,7 +233,13 @@ class Ingredients extends React.Component{
             <Card style={styles.inventoryCardSetup}>
             <Card.Title>Dairy</Card.Title>
                     <View style={styles.ingredientRowContainer}>
-                        {this.state.dairy.map((item, index) => (
+                        {this.state.fullDairy.map((item, index) => (
+                            <DairyIngredient key={index} name={item.name} unit={item.unit}
+                                            amount={item.amount}/>
+                        ))}
+                    </View>
+                    <View style={styles.ingredientRowContainerEmpty}>
+                        {this.state.emptyDairy.map((item, index) => (
                             <DairyIngredient key={index} name={item.name} unit={item.unit}
                                             amount={item.amount}/>
                         ))}
@@ -151,7 +248,13 @@ class Ingredients extends React.Component{
             <Card style={styles.inventoryCardSetup}>
             <Card.Title>Spices</Card.Title>
                     <View style={styles.ingredientRowContainer}>
-                        {this.state.spices.map((item, index) => (
+                        {this.state.fullSpices.map((item, index) => (
+                            <SpiceIngredient key={index} name={item.name} unit={item.unit}
+                                            amount={item.amount}/>
+                        ))}
+                    </View>
+                    <View style={styles.ingredientRowContainerEmpty}>
+                        {this.state.emptySpices.map((item, index) => (
                             <SpiceIngredient key={index} name={item.name} unit={item.unit}
                                             amount={item.amount}/>
                         ))}
@@ -160,7 +263,13 @@ class Ingredients extends React.Component{
             <Card style={styles.inventoryCardSetup}>
             <Card.Title>Miscellaneous Ingredients</Card.Title>
                     <View style={styles.ingredientRowContainer}>
-                        {this.state.miscellaneous.map((item, index) => (
+                        {this.state.fullMiscellaneous.map((item, index) => (
+                            <MiscellaneousIngredient key={index} name={item.name} unit={item.unit}
+                                            amount={item.amount}/>
+                        ))}
+                    </View>
+                    <View style={styles.ingredientRowContainerEmpty}>
+                        {this.state.emptyMiscellaneous.map((item, index) => (
                             <MiscellaneousIngredient key={index} name={item.name} unit={item.unit}
                                             amount={item.amount}/>
                         ))}
@@ -170,7 +279,7 @@ class Ingredients extends React.Component{
           </ImageBackground>
         </View>
     );
-      }
+    }
   
   }
   
@@ -182,7 +291,6 @@ class Ingredients extends React.Component{
       margin: 'auto',
       marginTop: 40,
       marginBottom: 40,
-  
       borderRadius: 10,
     },
     
@@ -191,6 +299,13 @@ class Ingredients extends React.Component{
         flexDirection: 'row',
         flexWrap: 'wrap',    // allows for ingrediet items to wrap if overflowing
         justifyContent: 'center',
+    },
+    ingredientRowContainerEmpty : {
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',    // allows for ingrediet items to wrap if overflowing
+        justifyContent: 'center',
+        opacity: 0.3,
     },
 
     scrollStyle : {

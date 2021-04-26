@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Image, StyleSheet, Text } from 'react-native';
 import GenericDairyPicture from '../images/GenericDairy.jpeg';
 
-class VegetableIngredient extends Component {
+class DairyIngredient extends Component {
     render() {
         return (
             <View style={styles.ingredientContainer}>
@@ -58,4 +58,4 @@ const styles = StyleSheet.create({
     },
   });
 
-export default VegetableIngredient;
+export default DairyIngredient;
