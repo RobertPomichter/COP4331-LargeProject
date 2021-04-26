@@ -480,21 +480,6 @@ class InventoryPanel extends Component {
                         ))}
                     </div>
                 </div>
-
-                {/* Meat Example Card */}
-                <div className='categoryCard'>
-                    <div className='cardHeader'>
-                        <div className='cardTitle'>
-                            <span className='cardTitleText'>Meats Example Card</span>
-                        </div>
-                        <IconButton>
-                            <AddCircleTwoToneIcon className='addIngredientButton' fontSize='large' />
-                        </IconButton>
-                    </div>
-                    <div className='ingredientRowContainer'>
-                        <IngredientMeat /><IngredientMeat /><IngredientMeat /><IngredientMeat />
-                    </div>
-                </div>
             </div>
         );
     }

@@ -10,7 +10,6 @@ import Home from '../user/Home.js';
 import InventoryPanel from './InventoryPanel.js';
 import Sidebar from '../app/Sidebar';
 import RecipeSearch from '../core/RecipeSearch';
-import IngredientTesting from '../core/IngredientTesting.js';
 
 
 class Dashboard extends Component {
@@ -27,7 +26,6 @@ class Dashboard extends Component {
                     <PrivateRoute exact path='/dashboard/user/:userId' component={Profile} />
                     <PrivateRoute exact path='/dashboard/users' component={Users} />
                     <PrivateRoute exact path='/dashboard/user/edit/:userId' component={EditProfile} />
-                    <PrivateRoute exact path='/dashboard/ingredientTesting' component={IngredientTesting} />
                     <PrivateRoute exact path='/dashboard/inventoryTesting/:userId' component={InventoryPanel} />
                     <PrivateRoute exact path='/dashboard/recipeSearch' component={RecipeSearch}/>
                 </Switch>

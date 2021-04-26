@@ -43,17 +43,9 @@ const Menu = ({history}) => (
                     <li className="nav-item">
                         <Link className='nav-link' 
                             style={isActive(history, '/users')}
-                            to='/dashboard/ingredientTesting'
-                        >
-                                Ingredient Testing
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className='nav-link' 
-                            style={isActive(history, '/users')}
                             to={`/dashboard/inventoryTesting/${isAuthenticated().user._id}`}
                         >
-                                Inventory Testing
+                                Inventory
                         </Link>
                     </li>
                     <li className="nav-item">
