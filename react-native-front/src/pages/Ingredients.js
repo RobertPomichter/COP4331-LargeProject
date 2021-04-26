@@ -16,12 +16,9 @@ import backgroundImage from '../images/BackgroundImage.png';
 import { isAuthenticated } from "../functions/authenticate.js";
 
 class Ingredients extends React.Component{
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-        userId: "",
-        name: "",
-        email: "",
         error: "",
         meats: [],
         vegetables: [],
@@ -36,19 +33,22 @@ class Ingredients extends React.Component{
 
   componentDidMount() {
     // get the userId from the parameters
-    const { userId } = this.props;
-    console.log(userId);
-    this.setState({ userId: userId });
-    console.log(this.state.userId);
+    const userId = this.props.route.params.userId;
+    const token = this.props.route.params.token;
+
+    console.log(JSON.stringify(userId));
 
     // get the token
-    const { token } = isAuthenticated();
+    console.log(JSON.stringify(token));
 
     // API call to get all Meats
-    getAllMeats(token, userId).then(data => {
+    getAllMeats(token, userId)
+    .then(data => {
         if (data.error) {
-            console.log(data.error);
-        } else {
+            this.setState({error: data.error})
+            console.log(data.error); 
+          } else {
+            // alert(JSON.stringify(data));
             this.setState({ meats: data });
         }
     });
@@ -109,49 +109,61 @@ class Ingredients extends React.Component{
           <View style={{padding:30}}></View>
 
           <ScrollView >
+          <TouchableOpacity style={styles.button} onPress={()=> this.props.navigation.navigate('Login')}>
+              <Text style={styles.buttonText}>Logout</Text>
+            </TouchableOpacity>
             <Card style={styles.inventoryCardSetup}>
-            <Card.Title>Meat Category Card</Card.Title>
-                <Text>This is some sample text inside the card.</Text>
+            <Card.Title>Meats</Card.Title>
                     <View style={styles.ingredientRowContainer}>
                         {this.state.meats.map((item, index) => (
-                            <IngredientMeat meatName={item.name} meatUnit={item.unit}
-                                            meatAmount={item.amount}/>
+                            <MeatIngredient key={index} name={item.name} unit={item.unit}
+                                            amount={item.amount}/>
                         ))}
                     </View>
             </Card>
             <Card style={styles.inventoryCardSetup}>
-            <Card.Title>Vegetable Category Card</Card.Title>
-                <Text>This is some sample text inside the card.</Text>
+            <Card.Title>Vegetables</Card.Title>
                     <View style={styles.ingredientRowContainer}>
-                        <VegetableIngredient /><VegetableIngredient /><VegetableIngredient /><VegetableIngredient /><VegetableIngredient />
+                        {this.state.vegetables.map((item, index) => (
+                            <VegetableIngredient key={index} name={item.name} unit={item.unit}
+                                            amount={item.amount}/>
+                        ))}
                     </View>
             </Card>
             <Card style={styles.inventoryCardSetup}>
-            <Card.Title>Fruit Category Card</Card.Title>
-                <Text>This is some sample text inside the card.</Text>
+            <Card.Title>Fruits</Card.Title>
                     <View style={styles.ingredientRowContainer}>
-                        <FruitIngredient /><FruitIngredient /><FruitIngredient /><FruitIngredient /><FruitIngredient />
+                        {this.state.fruit.map((item, index) => (
+                            <FruitIngredient key={index} name={item.name} unit={item.unit}
+                                            amount={item.amount}/>
+                        ))}
                     </View>
             </Card>
             <Card style={styles.inventoryCardSetup}>
-            <Card.Title>Dairy Category Card</Card.Title>
-                <Text>This is some sample text inside the card.</Text>
+            <Card.Title>Dairy</Card.Title>
                     <View style={styles.ingredientRowContainer}>
-                        <DairyIngredient /><DairyIngredient /><DairyIngredient /><DairyIngredient /><DairyIngredient />
+                        {this.state.dairy.map((item, index) => (
+                            <DairyIngredient key={index} name={item.name} unit={item.unit}
+                                            amount={item.amount}/>
+                        ))}
                     </View>
             </Card>
             <Card style={styles.inventoryCardSetup}>
-            <Card.Title>Spice Category Card</Card.Title>
-                <Text>This is some sample text inside the card.</Text>
+            <Card.Title>Spices</Card.Title>
                     <View style={styles.ingredientRowContainer}>
-                        <SpiceIngredient /><SpiceIngredient /><SpiceIngredient /><SpiceIngredient /><SpiceIngredient />
+                        {this.state.spices.map((item, index) => (
+                            <SpiceIngredient key={index} name={item.name} unit={item.unit}
+                                            amount={item.amount}/>
+                        ))}
                     </View>
             </Card>
             <Card style={styles.inventoryCardSetup}>
-            <Card.Title>Miscellaneous Category Card</Card.Title>
-                <Text>This is some sample text inside the card.</Text>
+            <Card.Title>Miscellaneous Ingredients</Card.Title>
                     <View style={styles.ingredientRowContainer}>
-                        <MiscellaneousIngredient /><MiscellaneousIngredient /><MiscellaneousIngredient /><MiscellaneousIngredient /><MiscellaneousIngredient />
+                        {this.state.miscellaneous.map((item, index) => (
+                            <MiscellaneousIngredient key={index} name={item.name} unit={item.unit}
+                                            amount={item.amount}/>
+                        ))}
                     </View>
             </Card>
           </ScrollView>
@@ -188,6 +200,18 @@ class Ingredients extends React.Component{
     image:{
       width:'100%',
       height:'100%',
+    },
+    button:{
+      borderRadius: 25,
+      width: 300,
+      backgroundColor: '#db8651',
+      paddingVertical: 16,
+      marginTop: 20,
+      alignSelf: 'center',
+    },
+    buttonText:{
+      textAlign: 'center',
+      color:'#5f4339',
     },
   });
 

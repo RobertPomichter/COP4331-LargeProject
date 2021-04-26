@@ -5,9 +5,9 @@ import {authenticate} from '../functions/authenticate';
 
 class Form1 extends React.Component{
 
-constructor(){
+constructor(props){
 
-  super();
+  super(props);
   this.state = {
 
     email: "",
@@ -45,11 +45,8 @@ submit(){
         }
         else {
             // authenticate
-            alert(JSON.stringify(data));
-            authenticate(data, () => { 
-                this.setState({redirectToHome: true});
-            });
-            this.props.navigation.navigate('Home');   
+            console.log(JSON.stringify(data));
+            this.props.navigation.navigate('Ingredients', {userId: data.user._id, token: data.token});   
         }
     });
 
