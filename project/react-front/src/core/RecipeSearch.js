@@ -4,6 +4,9 @@ import Axios from "axios";
 import Recipe from "./Recipe";
 import { v4 } from "uuid";
 import 'bootstrap/dist/css/bootstrap.min.css';
+// From Max: adding component import statements so you can use "Alert" and
+// component (site crashes without the import statement for me)
+import Alert from './Alert.js';
 
 
 function RecipeSearch () {
