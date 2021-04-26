@@ -5,7 +5,7 @@ import GenericMeatPicture from '../images/GenericMeat.jpg';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone';
 import EditTwoToneIcon from '@material-ui/icons/EditTwoTone';
-import { deleteIngredient } from '../apiCalls/apiInventory.js';
+import { deleteIngredient, updateIngredient } from '../apiCalls/apiInventory.js';
 import { isAuthenticated } from "../auth";
 
 
@@ -14,9 +14,13 @@ class IngredientMeat extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            ingredientId: "",
             name: "",
             unit: "",
             amount: "",
+            newName: "",
+            newUnit: "",
+            newAmount: "",
             showAddForm: false,
         }
     }
@@ -43,9 +47,47 @@ class IngredientMeat extends Component {
         });
     }
 
+    // function to update this ingredient
+    clickUpdateSelf = event => {
+        // gather information to send to API
+        const ingredientId = this.state.ingredientId;
+        const name = this.state.newName;
+        const unit = this.state.newUnit;
+        const amount = this.state.newAmount;
+
+        const updateIngredientPackage = {
+            name,
+            unit,
+            amount
+        }
+
+        var updateIngredientForm = new FormData();
+
+        console.log(updateIngredientForm);
+
+        updateIngredientForm.append('name', name);
+        updateIngredientForm.append('unit', unit);
+        updateIngredientForm.append('amount', amount);
+
+        // get the token
+        const token = isAuthenticated().token;
+
+        // call updateIngredient API endpoint
+        updateIngredient( token, updateIngredientForm, ingredientId ).then(data => {
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                console.log("Ingredient is now updated :)");
+            }
+        });
+
+        this.handleClose();
+    }
+
     // method to set internal state from passed in props
     componentDidMount() {
-        this.setState({ name: this.props.meatName,
+        this.setState({ ingredientId: this.props.ingredientId,
+                        name: this.props.meatName,
                         unit: this.props.meatUnit,
                         amount: this.props.meatAmount});
     }
@@ -55,7 +97,7 @@ class IngredientMeat extends Component {
         this.setState({[stateVariableToChange] : event.target.value});
     }
 
-    handleClose = () => this.setState({ showAddForm: false });
+    handleClose = () => this.setState({ showAddForm: false, newName: "", newUnit: "", newAmount: ""});
     handleShow = () => this.setState({ showAddForm: true });
 
     render() {
@@ -68,21 +110,21 @@ class IngredientMeat extends Component {
                         <DialogContent>
                         <DialogContentText>Please fill out the following fields</DialogContentText>
                         <TextField margin="dense" label="Ingredient Name" fullWidth
-                                onChange={this.handleChange("name")}
-                                value={this.state.name}/>
+                                onChange={this.handleChange("newName")}
+                                value={this.state.newName}/>
                         <TextField margin="dense" label="Unit of Measurement" fullWidth
-                                onChange={this.handleChange("unit")}
-                                value={this.state.unit}/>
+                                onChange={this.handleChange("newUnit")}
+                                value={this.state.newUnit}/>
                         <TextField margin="dense" label="Amount" fullWidth
-                                onChange={this.handleChange("amount")}
-                                value={this.state.amount}/>
+                                onChange={this.handleChange("newAmount")}
+                                value={this.state.newAmount}/>
                         <TextField margin="dense" label="Reminder to check adding a photo" fullWidth/>
                         </DialogContent>
                         <DialogActions>
                         <Button onClick={this.handleClose} color="primary">
                             Cancel
                         </Button>
-                        <Button onClick={this.handleAddSubmit} color="primary">
+                        <Button onClick={this.clickUpdateSelf} color="primary">
                             Submit
                         </Button>
                         </DialogActions>

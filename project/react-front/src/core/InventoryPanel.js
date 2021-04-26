@@ -343,7 +343,8 @@ class InventoryPanel extends Component {
                         {/* This section performs the Ingredient Component creation and information
                         mapping */}
                         {this.state.meats.map((item, index) => (
-                            <IngredientMeat meatName={item.name} meatUnit={item.unit}
+                            <IngredientMeat ingredientId={item._id}
+                                            meatName={item.name} meatUnit={item.unit}
                                             meatAmount={item.amount}
                                             user_email={this.state.user_email}
                                             userId={this.state.userId}/>
