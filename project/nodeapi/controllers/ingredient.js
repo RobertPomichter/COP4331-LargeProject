@@ -33,7 +33,7 @@ exports.addIngredient = async (req, res) => {
 
     // Check and see if the ingredient being added is already in the ingredient list
     // MAX FOUND A TYPO: was req.body.email and not req.body.user_email
-    const ingredientExists = await Ingredient.findOne({email: req.body.user_email}, {name: req.body.name}); //{email: req.body.email}, {
+    const ingredientExists = await Ingredient.findOne({user_email: req.body.user_email, name: req.body.name}); //{email: req.body.email}, {
 	if(ingredientExists) 
         return res.status(403).json({ 
 		    error: "That food already exists as an ingredient"
@@ -114,6 +114,20 @@ exports.getUserIngredientsQuery = (req, res) => {
         console.log("Ingredients fetched successfully.");
         return res.json(result);
     });
+}
+
+exports.deleteIngredient = async (req, res) => {
+    console.log("Beginning of deleteIngredients");
+    const email = req.profile.email;
+    const name = req.body.name;
+    console.log("Got email and name");
+
+    const del = await Ingredient.deleteOne({user_email: email, name: name});
+    console.log("delete executed");
+    if(del.deletedCount == 1) {
+        return res.json("Ingredient deleted successfully");
+    }
+    else return res.json("Ingredient deletion failed");
 }
 
 exports.updateIngredients = (req, res, next) => {

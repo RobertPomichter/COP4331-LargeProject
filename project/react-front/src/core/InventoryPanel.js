@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Modal } from 'react-bootstrap';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, InputLabel, MenuItem, FormHelperText, FormControl, Select } from '@material-ui/core';
-import { getAllIngredients, getAllMeats, getAllVegetables, getAllFruit, getAllDairy, getAllSpices, getAllMiscellaneous } from '../apiCalls/apiInventory.js';
+import { getAllIngredients, getAllMeats, getAllVegetables, getAllFruit, getAllDairy, getAllSpices, getAllMiscellaneous, addIngredient } from '../apiCalls/apiInventory.js';
 import { isAuthenticated } from "../auth";
 import { makeStyles } from '@material-ui/core/styles';
 import IngredientFruit from '../app/IngredientFruit.js';
@@ -13,6 +13,7 @@ import IngredientMiscellaneous from '../app/IngredientMiscellaneous';
 import AddCircleTwoToneIcon from '@material-ui/icons/AddCircleTwoTone';
 import IconButton from '@material-ui/core/IconButton';
 import EmptyCategoryDisplay from '../app/EmptyCategoryDisplay.js';
+import { read } from "../user/apiUser.js";
 
 
 
@@ -23,7 +24,7 @@ class InventoryPanel extends Component {
         this.state = {
             userId: "",
             name: "",
-            email: "",
+            user_email: "",
             error: "",
             meats: [],
             vegetables: [],
@@ -31,8 +32,12 @@ class InventoryPanel extends Component {
             dairy: [],
             spices: [],
             miscellaneous: [],
-            test: 0,
-            showAddForm: false
+            showAddForm: false,
+            addName: "",
+            addUnit: "",
+            addAmount: "",
+            addCategory: "",
+            message: ""
         }
     }
 
@@ -42,6 +47,18 @@ class InventoryPanel extends Component {
         const userId = this.props.match.params.userId;
         console.log(userId);
         this.setState({ userId: userId });
+
+        const token = isAuthenticated().token;
+        
+        // get user email from backend through a read function
+        read(userId, token)
+            .then( data => {
+                if(data.error){
+                    this.setState({redirectToProfile: true});
+                } else {
+                    this.setState({ user_email: data.email });
+                }
+            });
     }
 
     clickGetAllIngredients = event => {
@@ -184,15 +201,54 @@ class InventoryPanel extends Component {
         });
     }
 
-    clickAddOne = (event) => {
-        // prevent default page reload
-        event.preventDefault();
-
-        this.setState({ test: this.state.test + 1 });
-    }
-
     handleClose = () => this.setState({ showAddForm: false });
     handleShow = () => this.setState({ showAddForm: true });
+
+    // function to update addIngredient relevant state variables
+    handleChange = (stateVariableToChange) => event => {
+        this.setState({[stateVariableToChange] : event.target.value});
+    }
+
+    // function to handle the submission of the addIngredient form
+    handleAddSubmit = event => {
+        this.handleClose();
+
+        // gather information to send to API
+        const name = this.state.addName;
+        const category = this.state.addCategory;
+        const unit = this.state.addUnit;
+        const amount = this.state.addAmount;
+        const photo = this.state.addPhoto;    // stretch goal?
+        const user_email = this.state.user_email;
+
+        const addIngredientPackage = {
+            name,
+            category,
+            unit,
+            amount,
+            user_email
+        }
+        // get the token
+        const token = isAuthenticated().token;
+
+        // call addIngredient API endpoint
+        addIngredient( token, addIngredientPackage).then(data => {
+            if (data.error) {
+                console.log(data.error);
+                this.setState({ message: "Oops! Had an error while adding ingredient :(" });
+            } else {
+                this.setState({ message: "Ingredient is now added :)" });
+            }
+        });
+
+        // clear state variables after ingredient has been attempted to be added
+        this.setState({
+            addName: "",
+            addUnit: "",
+            addAmount: "",
+            addCategory: ""
+        })
+    }
 
     render() {
         return (
@@ -226,13 +282,6 @@ class InventoryPanel extends Component {
                 <Button variant="contained" onClick={this.clickGetMiscellaneous}>
                 Test: Get Miscellaneous
                 </Button> <br />
-                <Button variant="contained" onClick={this.clickAddOne}>
-                Test: Add 1
-                </Button>
-
-                <div>
-                    <span>{this.state.test}</span>
-                </div>
 
                 <div className='searchCard'>
                     <input className='inventorySearchBar' placeholder='Search Bar goes here :D'></input>
@@ -244,21 +293,28 @@ class InventoryPanel extends Component {
                     <DialogTitle id="form-dialog-title">Add Ingredient</DialogTitle>
                     <DialogContent>
                     <DialogContentText>Please fill out the following fields</DialogContentText>
-                    <TextField margin="dense" label="Ingredient Name" fullWidth/>
-                    <TextField margin="dense" label="Unit of Measurement" fullWidth/>
-                    <TextField margin="dense" label="Amount" fullWidth/>
+                    <TextField margin="dense" label="Ingredient Name" fullWidth
+                               onChange={this.handleChange("addName")}
+                               value={this.state.addName}/>
+                    <TextField margin="dense" label="Unit of Measurement" fullWidth
+                               onChange={this.handleChange("addUnit")}
+                               value={this.state.addUnit}/>
+                    <TextField margin="dense" label="Amount" fullWidth
+                               onChange={this.handleChange("addAmount")}
+                               value={this.state.addAmount}/>
                     <TextField margin="dense" label="Reminder to check adding a photo" fullWidth/>
                     <FormControl required>
                         <InputLabel id="demo-simple-select-required-label">Category</InputLabel>
                             <Select labelId="demo-simple-select-required-label"
-                                    id="demo-simple-select-required">
-                            <MenuItem value={10}>Meat</MenuItem>
-                            <MenuItem value={20}>Vegetable</MenuItem>
-                            <MenuItem value={30}>Fruit</MenuItem>
-                            <MenuItem value={30}>Dairy</MenuItem>
-                            <MenuItem value={30}>Spices</MenuItem>
-                            <MenuItem value={30}>Miscellaneous</MenuItem>
-                        </Select>
+                                    id="demo-simple-select-required"
+                                    onChange={this.handleChange("addCategory")}>
+                            <MenuItem value="meat">Meat</MenuItem>
+                            <MenuItem value="vegetable">Vegetable</MenuItem>
+                            <MenuItem value="fruit">Fruit</MenuItem>
+                            <MenuItem value="dairy">Dairy</MenuItem>
+                            <MenuItem value="spices">Spices</MenuItem>
+                            <MenuItem value="miscellaneous">Miscellaneous</MenuItem>
+                            </Select>
                         <FormHelperText>Required</FormHelperText>
                     </FormControl>
                     </DialogContent>
@@ -266,38 +322,11 @@ class InventoryPanel extends Component {
                     <Button onClick={this.handleClose} color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={this.handleClose} color="primary">
+                    <Button onClick={this.handleAddSubmit} color="primary">
                         Submit
                     </Button>
                     </DialogActions>
                 </Dialog>
-
-                {/* name: {
-                    type: String,
-                    required: true,
-                    trim: true
-                },
-                category: {
-                    type: String,
-                    default: "misc",
-                    trim: true
-                },
-                unit: {
-                    type: String,
-                    trim: true
-                },
-                amount: {
-                    type: Number,
-                    default: 0
-                },
-                photo: {
-                    data: Buffer,
-                    contentType: String
-                },
-                user_email: {
-                    type: String,
-                    trim: true
-                } */}
 
                 {/* Meat Card */}
                 <div className='categoryCard'>
@@ -315,7 +344,9 @@ class InventoryPanel extends Component {
                         mapping */}
                         {this.state.meats.map((item, index) => (
                             <IngredientMeat meatName={item.name} meatUnit={item.unit}
-                                            meatAmount={item.amount}/>
+                                            meatAmount={item.amount}
+                                            user_email={this.state.user_email}
+                                            userId={this.state.userId}/>
                         ))}
                     </div>
                 </div>
@@ -336,7 +367,9 @@ class InventoryPanel extends Component {
                         mapping */}
                         {this.state.vegetables.map((item, index) => (
                             <IngredientVegetable vegetableName={item.name} vegetableUnit={item.unit}
-                                                 vegetableAmount={item.amount}/>
+                                                 vegetableAmount={item.amount}
+                                                 user_email={this.state.user_email}
+                                                 userId={this.state.userId}/>
                         ))}
                     </div>
                 </div>
@@ -357,7 +390,9 @@ class InventoryPanel extends Component {
                         mapping */}
                         {this.state.fruit.map((item, index) => (
                             <IngredientFruit fruitName={item.name} fruitUnit={item.unit}
-                                             fruitAmount={item.amount}/>
+                                             fruitAmount={item.amount}
+                                             user_email={this.state.user_email}
+                                             userId={this.state.userId}/>
                         ))}
                     </div>
                 </div>
@@ -378,7 +413,9 @@ class InventoryPanel extends Component {
                         mapping */}
                         {this.state.dairy.map((item, index) => (
                             <IngredientDairy dairyName={item.name} dairyUnit={item.unit}
-                                             dairyAmount={item.amount}/>
+                                             dairyAmount={item.amount}
+                                             user_email={this.state.user_email}
+                                             userId={this.state.userId}/>
                         ))}
                     </div>
                 </div>
@@ -399,7 +436,9 @@ class InventoryPanel extends Component {
                         mapping */}
                         {this.state.spices.map((item, index) => (
                             <IngredientSpices spicesName={item.name} spicesUnit={item.unit}
-                                              spicesAmount={item.amount}/>
+                                              spicesAmount={item.amount}
+                                              user_email={this.state.user_email}
+                                              userId={this.state.userId}/>
                         ))}
                     </div>
                 </div>
@@ -420,23 +459,10 @@ class InventoryPanel extends Component {
                         mapping */}
                         {this.state.miscellaneous.map((item, index) => (
                             <IngredientMiscellaneous miscellaneousName={item.name} miscellaneousUnit={item.unit}
-                                                     miscellaneousAmount={item.amount}/>
+                                                     miscellaneousAmount={item.amount}
+                                                     user_email={this.state.user_email}
+                                                     userId={this.state.userId}/>
                         ))}
-                    </div>
-                </div>
-
-                {/* Meat Example Card */}
-                <div className='categoryCard'>
-                    <div className='cardHeader'>
-                        <div className='cardTitle'>
-                            <span className='cardTitleText'>Meats Example Card</span>
-                        </div>
-                        <IconButton>
-                            <AddCircleTwoToneIcon className='addIngredientButton' fontSize='large' />
-                        </IconButton>
-                    </div>
-                    <div className='ingredientRowContainer'>
-                        <IngredientMeat /><IngredientMeat /><IngredientMeat /><IngredientMeat />
                     </div>
                 </div>
             </div>
