@@ -138,7 +138,27 @@ export const getAllMiscellaneous = (token, userId) => {
     .catch(err => console.log(err));
 };
 
-export const addIngredient = () => {
+// REFERENCE NOTE FROM ROUTING: route to add an ingredient
+// router.post('/ingredient', addIngredient);
+export const addIngredient = ( token, addIngredientPackage) => {
     // console log prints in the browser's page inspection terminal
     console.log("Henlo, I'm going to start trying to addIngredient...");
+
+    // probably don't need the authorization line, just including to follow previous examples
+    const requestContent = {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(addIngredientPackage),
+    }
+
+    // fetch to the backend
+    return fetch(`${process.env.REACT_APP_API_URL}/ingredient`, requestContent)
+    .then( response => {
+        return response.json();
+    })
+    .catch(err => console.log(err));
 }
