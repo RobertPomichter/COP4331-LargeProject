@@ -140,7 +140,7 @@ export const getAllMiscellaneous = (token, userId) => {
 
 // REFERENCE NOTE FROM ROUTING: route to add an ingredient
 // router.post('/ingredient', addIngredient);
-export const addIngredient = ( token, addIngredientPackage) => {
+export const addIngredient = ( token, addIngredientPackage ) => {
     // console log prints in the browser's page inspection terminal
     console.log("Henlo, I'm going to start trying to addIngredient...");
 
@@ -161,4 +161,43 @@ export const addIngredient = ( token, addIngredientPackage) => {
         return response.json();
     })
     .catch(err => console.log(err));
+}
+
+// REFERENCE NOTE FROM ROUTING: route to delete an ingredient
+// router.delete('/deleteIngredient/:userId', deleteIngredient);
+export const deleteIngredient = ( token, deleteIngredientPackage, userId ) => {
+    // console log prints in the browser's page inspection terminal
+    console.log("Henlo, I'm going to start trying to deleteIngredient...");
+
+    // probably don't need the authorization line, just including to follow previous examples
+    const requestContent = {
+        method: 'DELETE',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify( deleteIngredientPackage ),
+    }
+
+    // fetch to the backend
+    return fetch(`${process.env.REACT_APP_API_URL}/deleteIngredient/${userId}`, requestContent)
+    .then( response => {
+        return response.json();
+    })
+    .catch(err => console.log(err));
+
+    /* exports.deleteIngredient = async (req, res) => {
+        console.log("Beginning of deleteIngredients");
+        const email = req.profile.email;
+        const name = req.body.name;
+        console.log("Got email and name");
+    
+        const del = await Ingredient.deleteOne({user_email: email, name: name});
+        console.log("delete executed");
+        if(del.deletedCount == 1) {
+            return res.json("Ingredient deleted successfully");
+        }
+        else return res.json("Ingredient deletion failed");
+    } */
 }

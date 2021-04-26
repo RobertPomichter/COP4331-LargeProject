@@ -49,10 +49,9 @@ class InventoryPanel extends Component {
         console.log(userId);
         this.setState({ userId: userId });
 
-        // get user email from backend through a read function
         const token = isAuthenticated().token;
         
-        // call to get the user from the backend (in apiUser)
+        // get user email from backend through a read function
         read(userId, token)
             .then( data => {
                 if(data.error){
@@ -249,6 +248,14 @@ class InventoryPanel extends Component {
                 this.setState({ message: "Ingredient is now added :)" });
             }
         });
+
+        // clear state variables after ingredient has been attempted to be added
+        this.setState({
+            addName: "",
+            addUnit: "",
+            addAmount: "",
+            addCategory: ""
+        })
     }
 
     /* INGREDIENT MODEL FOR REFERENCE 
@@ -407,7 +414,9 @@ class InventoryPanel extends Component {
                         mapping */}
                         {this.state.meats.map((item, index) => (
                             <IngredientMeat meatName={item.name} meatUnit={item.unit}
-                                            meatAmount={item.amount}/>
+                                            meatAmount={item.amount}
+                                            user_email={this.state.user_email}
+                                            userId={this.state.userId}/>
                         ))}
                     </div>
                 </div>
@@ -428,7 +437,9 @@ class InventoryPanel extends Component {
                         mapping */}
                         {this.state.vegetables.map((item, index) => (
                             <IngredientVegetable vegetableName={item.name} vegetableUnit={item.unit}
-                                                 vegetableAmount={item.amount}/>
+                                                 vegetableAmount={item.amount}
+                                                 user_email={this.state.user_email}
+                                                 userId={this.state.userId}/>
                         ))}
                     </div>
                 </div>
@@ -449,7 +460,9 @@ class InventoryPanel extends Component {
                         mapping */}
                         {this.state.fruit.map((item, index) => (
                             <IngredientFruit fruitName={item.name} fruitUnit={item.unit}
-                                             fruitAmount={item.amount}/>
+                                             fruitAmount={item.amount}
+                                             user_email={this.state.user_email}
+                                             userId={this.state.userId}/>
                         ))}
                     </div>
                 </div>
@@ -470,7 +483,9 @@ class InventoryPanel extends Component {
                         mapping */}
                         {this.state.dairy.map((item, index) => (
                             <IngredientDairy dairyName={item.name} dairyUnit={item.unit}
-                                             dairyAmount={item.amount}/>
+                                             dairyAmount={item.amount}
+                                             user_email={this.state.user_email}
+                                             userId={this.state.userId}/>
                         ))}
                     </div>
                 </div>
@@ -491,7 +506,9 @@ class InventoryPanel extends Component {
                         mapping */}
                         {this.state.spices.map((item, index) => (
                             <IngredientSpices spicesName={item.name} spicesUnit={item.unit}
-                                              spicesAmount={item.amount}/>
+                                              spicesAmount={item.amount}
+                                              user_email={this.state.user_email}
+                                              userId={this.state.userId}/>
                         ))}
                     </div>
                 </div>
@@ -512,7 +529,9 @@ class InventoryPanel extends Component {
                         mapping */}
                         {this.state.miscellaneous.map((item, index) => (
                             <IngredientMiscellaneous miscellaneousName={item.name} miscellaneousUnit={item.unit}
-                                                     miscellaneousAmount={item.amount}/>
+                                                     miscellaneousAmount={item.amount}
+                                                     user_email={this.state.user_email}
+                                                     userId={this.state.userId}/>
                         ))}
                     </div>
                 </div>
