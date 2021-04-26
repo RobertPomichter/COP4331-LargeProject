@@ -21,6 +21,7 @@ import Axios from 'axios';
 
 // lazy load images with intersection observer
 export const lazyLoading = (imgSelect, items) => {
+
     const imgObserver = useCallback(node => {
         const intObs = new IntersectionObserver(entries => {
             entries.forEach(en => {
@@ -39,7 +40,9 @@ export const lazyLoading = (imgSelect, items) => {
         })
         intObs.observe(node);
     }, []);
+
     const imagesRef = useRef(null);
+    
     useEffect(() => {
         imagesRef.current = document.querySelectorAll(imgSelect);
         if (imagesRef.current) {

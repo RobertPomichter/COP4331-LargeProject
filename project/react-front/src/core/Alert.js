@@ -12,7 +12,7 @@ class Alert extends Component {
     render() {
         const {alert} = this.state;
         return (
-            <div classname="alert">
+            <div className="alert">
                 <h3>{alert}</h3>
             </div>
         );
