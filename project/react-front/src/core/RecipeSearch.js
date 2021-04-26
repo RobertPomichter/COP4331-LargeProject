@@ -2,6 +2,7 @@ import React, { Component , useState } from 'react';
 import "../_RecipeSearch.scss";
 import Axios from "axios";
 import Recipe from "./Recipe";
+import Alert from "./Alert";
 import { v4 } from "uuid";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -45,18 +46,23 @@ function RecipeSearch () {
     };
 
     return (  
-        <div classname="recipeSearch">
-            <div classname="jumbotron">
-                <h2>Search Recipes Here</h2>
+        <div className="recipeSearch text-center">
+            <div className="jumbotron">
+                <h2 className="display-3">Search Recipes Here</h2>
             </div>
-            <div>
-                <form classname="searchBar" onSumbit={displayRecipes}> 
+            <div className="d-flex align-items-center">
+                <form className="searchBar" onSubmit={displayRecipes}> 
                     {alert !== "" && <Alert alert={alert} />}
-                    <input type="text" name="q" placeholder="Search Recipes" autocomplete="off" onChange={onChange} value={q}/>
-                    <input type="submit" value="Search" />
+                    <input type="text" 
+                    className="form-control form-control-lg" 
+                    name="q" 
+                    placeholder="Search Recipes" 
+                    autoComplete="off" 
+                    onChange={onChange} value={q}/>
+                    <button className="btn btn-dark" type="button" value="Search" />
                 </form>
             </div>
-            <div classname="recipes">
+            <div className="recipes">
                 {recipes != [] && recipes.map(recipe => <Recipe key={v4()} recipe={recipe} />)}
             </div>
         </div>
