@@ -38,7 +38,7 @@ exports.addIngredient = async (req, res) => {
         return res.status(403).json({ 
 		    error: "That food already exists as an ingredient"
 	    });
-
+    
     // create the new ingredient
     const ingredient = await new Ingredient(req.body);
     //save the new ingredient

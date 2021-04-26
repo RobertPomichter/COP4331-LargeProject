@@ -1,0 +1,82 @@
+
+// Styling sheet for the Inventory Panel
+
+@mixin inventoryCardSetup {
+    width: 70%;
+    max-width: 1200px;
+    height: fit-content;
+    text-align: center;
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+
+    border-radius: 20px;
+
+    background-color: white;
+
+    // shadow & hover shadow animation
+    transition: 0.3s;
+    box-shadow: 0 8px 40px -12px rgba(0,0,0,0.3);
+    &:hover {
+        box-shadow: 0 16px 70px -12.125px rgba(0,0,0,0.3);
+    }
+}
+
+.searchCard {
+    @include inventoryCardSetup();
+    
+}
+
+.inventorySearchBar {
+    width: 70%; // based on width of searchCard parent element
+}
+
+.inventoryResultsCard {
+    @include inventoryCardSetup();
+}
+
+.categoryCard {
+    @include inventoryCardSetup();
+}
+
+.cardHeader {
+    display: flex;
+    //height: 70px;
+    //text-align: left;
+    justify-content: space-between;
+}
+
+.cardTitle {
+    height: inherit;
+    //display: flex;
+    //justify-content: left;
+    //float: left;
+    font-size: 35px;
+    margin-left: 20px;
+}
+
+.addIngredientButton {
+    color: black;
+    //background-color: black;
+}
+
+.ingredientRowContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;    // allows for inner elements (individual ingredients)
+                        // to wrap if overflowing
+    justify-content: center;
+
+    // IDEA: Maybe have side scrolling if there is an overflow?
+}
+
+.emptyFoodCategoryContainer {
+    //height: 200px;
+    border-radius: 0px;
+}
+
+.emptyCategoryImage {
+    border-radius: 10px;
+    width: 298px;
+    height: 169px;
+}
