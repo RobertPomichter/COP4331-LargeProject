@@ -186,18 +186,4 @@ export const deleteIngredient = ( token, deleteIngredientPackage, userId ) => {
         return response.json();
     })
     .catch(err => console.log(err));
-
-    /* exports.deleteIngredient = async (req, res) => {
-        console.log("Beginning of deleteIngredients");
-        const email = req.profile.email;
-        const name = req.body.name;
-        console.log("Got email and name");
-    
-        const del = await Ingredient.deleteOne({user_email: email, name: name});
-        console.log("delete executed");
-        if(del.deletedCount == 1) {
-            return res.json("Ingredient deleted successfully");
-        }
-        else return res.json("Ingredient deletion failed");
-    } */
 }

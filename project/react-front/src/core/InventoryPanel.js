@@ -258,34 +258,6 @@ class InventoryPanel extends Component {
         })
     }
 
-    /* INGREDIENT MODEL FOR REFERENCE 
-    name: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    category: {
-        type: String,
-        default: "misc",
-        trim: true
-    },
-    unit: {
-        type: String,
-        trim: true
-    },
-    amount: {
-        type: Number,
-        default: 0
-    },
-    photo: {
-        data: Buffer,
-        contentType: String
-    },
-    user_email: {
-        type: String,
-        trim: true
-    } */
-
     render() {
         return (
             <div>
@@ -370,33 +342,6 @@ class InventoryPanel extends Component {
                     </Button>
                     </DialogActions>
                 </Dialog>
-
-                {/* name: {
-                    type: String,
-                    required: true,
-                    trim: true
-                },
-                category: {
-                    type: String,
-                    default: "misc",
-                    trim: true
-                },
-                unit: {
-                    type: String,
-                    trim: true
-                },
-                amount: {
-                    type: Number,
-                    default: 0
-                },
-                photo: {
-                    data: Buffer,
-                    contentType: String
-                },
-                user_email: {
-                    type: String,
-                    trim: true
-                } */}
 
                 {/* Meat Card */}
                 <div className='categoryCard'>

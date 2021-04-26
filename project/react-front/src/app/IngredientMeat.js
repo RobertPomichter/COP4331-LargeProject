@@ -33,44 +33,6 @@ class IngredientMeat extends Component {
                 console.log("Ingredient is now deleted :)");
             }
         });
-
-        /* this.handleClose();
-
-        // gather information to send to API
-        const name = this.state.addName;
-        const category = this.state.addCategory;
-        const unit = this.state.addUnit;
-        const amount = this.state.addAmount;
-        const photo = this.state.addPhoto;    // stretch goal?
-        const user_email = this.state.user_email;
-
-        const addIngredientPackage = {
-            name,
-            category,
-            unit,
-            amount,
-            user_email
-        }
-        // get the token
-        const token = isAuthenticated().token;
-
-        // call addIngredient API endpoint
-        addIngredient( token, addIngredientPackage).then(data => {
-            if (data.error) {
-                console.log(data.error);
-                this.setState({ message: "Oops! Had an error while adding ingredient :(" });
-            } else {
-                this.setState({ message: "Ingredient is now added :)" });
-            }
-        });
-
-        // clear state variables after ingredient has been attempted to be added
-        this.setState({
-            addName: "",
-            addUnit: "",
-            addAmount: "",
-            addCategory: ""
-        }) */
     }
 
     render() {
