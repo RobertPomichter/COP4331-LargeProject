@@ -5,7 +5,8 @@
 
 .landingPageContainer {
     background-image: url('./images/Background1440p.png');
-
+    overflow-y: hidden;
+    overflow-x: hidden;
     // These lines control the scaling & positioning of the homeContainer, and the
     // background image by extension
     height: 100vh;   // original height value
@@ -37,7 +38,7 @@
 .LPTitle {
     font-size: 70px;
     text-align: center;
-    color: #727272;
+    color: #3f3f3f;
 }
 
 .carousel {

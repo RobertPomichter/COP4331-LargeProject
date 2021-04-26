@@ -36,8 +36,8 @@ class Home extends Component {
         // const {images, loaded} = Collage;
         // Render images in the header
         return (
-            <div class='container'>
-                <div class="header">
+            <div className='container'>
+                <div className="header">
                 {/* <InfiniteScroll 
                     dataLength={images}
                     next={ () => Collage.fetchImages(5) }
@@ -56,8 +56,8 @@ class Home extends Component {
                 </div>
                 
                 </div>
-                <div class="body"></div>
-                <div class="footer"></div>
+                <div className="body"></div>
+                <div className="footer"></div>
             </div>
         );
     }

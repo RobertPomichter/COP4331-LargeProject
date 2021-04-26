@@ -6,7 +6,7 @@ import Profile from '../user/Profile.js';
 import Users from '../user/Users';
 import EditProfile from '../user/EditProfile';
 import PrivateRoute from "../auth/PrivateRoute";
-import Home from '../user/Home.js';
+import Home from './Home.js';
 import InventoryPanel from './InventoryPanel.js';
 import Sidebar from '../app/Sidebar';
 import RecipeSearch from '../core/RecipeSearch';
