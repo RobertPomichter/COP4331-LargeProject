@@ -152,7 +152,7 @@ export const addIngredient = ( token, addIngredientPackage) => {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify(addIngredientPackage),
+        body: JSON.stringify( addIngredientPackage ),
     }
 
     // fetch to the backend

@@ -24,7 +24,7 @@ class InventoryPanel extends Component {
         this.state = {
             userId: "",
             name: "",
-            email: "",
+            user_email: "",
             error: "",
             meats: [],
             vegetables: [],
@@ -58,7 +58,7 @@ class InventoryPanel extends Component {
                 if(data.error){
                     this.setState({redirectToProfile: true});
                 } else {
-                    this.setState({ email: data.email });
+                    this.setState({ user_email: data.email });
                 }
             });
     }
@@ -215,7 +215,7 @@ class InventoryPanel extends Component {
 
     // function to update addIngredient relevant state variables
     handleChange = (stateVariableToChange) => event => {
-        this.setState({[stateVariableToChange] : [event.target.value]});
+        this.setState({[stateVariableToChange] : event.target.value});
     }
 
     // function to handle the submission of the addIngredient form
@@ -235,7 +235,6 @@ class InventoryPanel extends Component {
             category,
             unit,
             amount,
-            photo,
             user_email
         }
         // get the token
