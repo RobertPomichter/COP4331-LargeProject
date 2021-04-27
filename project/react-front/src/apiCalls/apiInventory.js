@@ -222,11 +222,15 @@ export const populateInventory = ( token, user_email ) => {
     addIngredient( token, addIngredientPackage );
     addIngredientPackage = { name:  "Salmon", category: "meat", unit: "lbs", amount: "2", user_email: email }
     addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Tilapia", category: "meat", unit: "lbs", amount: "2", user_email: email }
+    addIngredient( token, addIngredientPackage );
     addIngredientPackage = { name:  "Broccoli", category: "vegetable", unit: "heads", amount: "2", user_email: email }
     addIngredient( token, addIngredientPackage );
     addIngredientPackage = { name:  "Spinach", category: "vegetable", unit: "oz", amount: "8", user_email: email }
     addIngredient( token, addIngredientPackage );
-    addIngredientPackage = { name:  "Potatoes", category: "vegetable", unit: "lbs", amount: "5", user_email: email }
+    addIngredientPackage = { name:  "Gold Potatoes", category: "vegetable", unit: "lbs", amount: "5", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Baby Carrots", category: "vegetable", unit: "oz", amount: "16", user_email: email }
     addIngredient( token, addIngredientPackage );
     addIngredientPackage = { name:  "Mango", category: "fruit", unit: "", amount: "4", user_email: email }
     addIngredient( token, addIngredientPackage );
@@ -234,17 +238,25 @@ export const populateInventory = ( token, user_email ) => {
     addIngredient( token, addIngredientPackage );
     addIngredientPackage = { name:  "Apples", category: "fruit", unit: "", amount: "6", user_email: email }
     addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Mango", category: "fruit", unit: "", amount: "4", user_email: email }
+    addIngredient( token, addIngredientPackage );
     addIngredientPackage = { name:  "Cheddar Cheese", category: "dairy", unit: "oz", amount: "12", user_email: email }
     addIngredient( token, addIngredientPackage );
     addIngredientPackage = { name:  "Grated Parmesan", category: "dairy", unit: "oz", amount: "8", user_email: email }
     addIngredient( token, addIngredientPackage );
     addIngredientPackage = { name:  "Whole Milk", category: "dairy", unit: "gallon", amount: "1", user_email: email }
     addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Almond Milk", category: "dairy", unit: "quart", amount: "1", user_email: email }
+    addIngredient( token, addIngredientPackage );
     addIngredientPackage = { name:  "Salt", category: "spices", unit: "oz", amount: "12", user_email: email }
     addIngredient( token, addIngredientPackage );
     addIngredientPackage = { name:  "Paprika", category: "spices", unit: "oz", amount: "6", user_email: email }
     addIngredient( token, addIngredientPackage );
-    addIngredientPackage = { name:  "Chicken Wings", category: "spices", unit: "", amount: "6", user_email: email }
+    addIngredientPackage = { name:  "Onion Powder", category: "spices", unit: "oz", amount: "6", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Garlic Powder", category: "spices", unit: "oz", amount: "6", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Ground Black Pepper", category: "spices", unit: "", amount: "6", user_email: email }
     addIngredient( token, addIngredientPackage );
     addIngredientPackage = { name:  "Flour", category: "miscellaneous", unit: "lbs", amount: "5", user_email: email }
     addIngredient( token, addIngredientPackage );

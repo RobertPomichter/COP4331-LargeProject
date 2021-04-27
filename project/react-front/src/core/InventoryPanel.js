@@ -350,6 +350,9 @@ class InventoryPanel extends Component {
 
         // call populateInventory function in apiInventory
         populateInventory(token, user_email);
+
+        // automatically get all ingredients
+        this.clickGetAllIngredients(event);
     } 
 
     render() {
