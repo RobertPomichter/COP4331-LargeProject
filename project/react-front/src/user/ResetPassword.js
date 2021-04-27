@@ -59,7 +59,7 @@ class ResetPassword extends Component {
 
                     <form className='landingPageForm'>
                         <div className="form-group mt-5">
-                            <input type="password" className="form-control"
+                            <input type="password" className="inputField"
                                 placeholder="Your new password"
                                 value={this.state.newPassword}
                                 name="newPassword"

@@ -47,7 +47,7 @@ class Users extends Component {
                         <p className="card-text">{user.email}</p>
                         <Link className="btn btn-raised btn-primary btn-sm" 
                                     style={{backgroundColor: '#ff9900'}}
-                                    to={`/user/${user._id}`}
+                                    to={`/dashboard/user/${user._id}`}
                         >
                             {user.name}'s Profile
                         </Link>

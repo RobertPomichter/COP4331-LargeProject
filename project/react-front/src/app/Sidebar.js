@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import {BrowserRouter} from 'react-router-dom';
+import { Link, withRouter, BrowserRouter } from 'react-router-dom';
 import { Collapse } from 'react-bootstrap';
 import DefaultUserAvatar from "../images/user_avatar.png";
+import * as faIcons from "react-icons/fa";
+import * as aiIcons from "react-icons/ai";
+import { SidebarItems } from './SidebarItems';
 
 class Sidebar extends Component {
 
@@ -12,7 +14,8 @@ class Sidebar extends Component {
             user: "",
             status: "online",
             menuState: true,
-            redirectToSignin: false
+            redirectToSignin: false,
+            sidebar: false
         };
     }
 
@@ -39,61 +42,40 @@ class Sidebar extends Component {
         });
     }
 
-    onRouteChanged() {
-        document.querySelector('#sidebar').classList.remove('active');
-        Object.keys(this.state).forEach(i => {
-          this.setState({[i]: false});
-        });
-
-        const dropdown = [
-
-        ];
-
-        dropdown.forEach((obj => {
-            if (this.pathActive(obj.path)) {
-              this.setState({[obj.state] : true})
-            }
-          }));
-    }
-
-    toggleMenuState(menuState) {
-        if (this.state[menuState]) {
-        this.setState({[menuState] : false});
-        }
-        else if(Object.keys(this.state).length === 0) {
-            this.setState({[menuState] : true});
-        }
-        else {
-            Object.keys(this.state).forEach(i => {
-                this.setState({[i] : false});
-            });
-            this.setState({[menuState] : true});
-        }
-        
-    }
-
     render() {
-        const { user } = this.state;
+
+        const { user, status, sidebar } = this.state;
+        const showSidebar = () => this.setState({sidebar: !sidebar});
 
         return (
-            <nav className="sidebar sidebar-offcanvas" id="sidebar">
-                <ul className="nav">
-                    <li className="nav-item nav-profile">
-                        <a href="!#" className="nav-link" onClick={evt =>evt.preventDefault()}>
-                        <div className="nav-profile-image">
-                            <img src = {`${ process.env.REACT_APP_API_URL}/user/photo/${user._id}`} 
-                                onError={i => i.target.src = `${DefaultUserAvatar}`}
-                                alt={user.name} />
-                            <span className="login-status " status></span>
-                        </div>
-                        <div className="nav-profile-text">
-                            <span className="font-weight-bold mb-2">{user.name}</span>
-                            <span className="text-secondary text-small">{user.email}</span>
-                        </div>
-                        </a>
+            <>
+            <div className="navbar navbar-offcanvas" id="sidebar">
+                <Link to="#" classNAme="hamburger-menu">
+                    <faIcons.FaBars />
+                </Link>
+            </div>
+            <nav className={this.state.sidebar ? 'nav-menu active' : 'nav-menu'}>
+                <ul className='nav-menu-items'>
+                    <li className='navbar-toggle'>
+                        <Link to="#" className='menu-bars'>
+                            <aiIcons.AiOutlineClose />
+                        </Link>
+                    </li>
+                    <li>
+                         {/* {SidebarItems.map((item, index) => {
+                            return (
+                                <li key={index} className={item.classname}>
+                                    <Link to={item.path}>
+                                        {item.icon}
+                                        <span>{item.name}</span>
+                                    </Link>
+                                </li>
+                            )
+                        })} */}
                     </li>
                 </ul>
             </nav>
+            </>
         );
     }
 }

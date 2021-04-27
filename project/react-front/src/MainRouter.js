@@ -1,9 +1,9 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
-import LandingPage from './core/LandingPage.js';
+import LandingPage from './components/LandingPage.js';
 import Signin from './user/Signin';
 import Signup from './user/Signup';
-import Menu from './core/Menu';
+import Menu from './components/Menu';
 import Profile from "./user/Profile";
 import Users from "./user/Users";
 import EditProfile from "./user/EditProfile";
@@ -11,7 +11,7 @@ import PrivateRoute from "./auth/PrivateRoute"
 import ForgotPassword from "./user/ForgotPassword";
 import ResetPassword from "./user/ResetPassword";
 import VerifyAccount from "./user/VerifyAccount";
-import Dashboard from "./core/Dashboard";
+import Dashboard from "./components/Dashboard";
 
 const MainRouter = () => (
     <div>
