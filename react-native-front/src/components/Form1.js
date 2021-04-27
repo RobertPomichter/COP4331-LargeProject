@@ -50,11 +50,12 @@ submit(){
                 this.setState({redirectToHome: true});
             });
 
-            this.setState({email: ""});
-            this.setState({password: ""}); 
 
             this.props.navigation.navigate('Ingredients');  
 
+            this.setState({email: ""});
+            this.setState({password: ""}); 
+            this.setState({error: ""});
         }
     });
 
@@ -81,6 +82,7 @@ submit(){
         <TextInput clearButtonMode="always" style={styles.inputBox}
         underlineColorAndroid='black'
         onChangeText = { (text) => {this.setState({password: text})}}
+        value={this.state.password}
         placeholder="Password..."
         secureTextEntry={true}/>
       
