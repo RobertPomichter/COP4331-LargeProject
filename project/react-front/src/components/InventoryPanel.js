@@ -16,7 +16,7 @@ import IngredientFruitNone from '../app/IngredientFruitNone.js';
 import IngredientMeatNone from '../app/IngredientMeatNone.js';
 import IngredientVegetableNone from '../app/IngredientVegetableNone.js';
 import IngredientDairyNone from '../app/IngredientDairyNone.js';
-import IngredientSpicesNone from '../app/IngredientSpiceNones.js';
+import IngredientSpicesNone from '../app/IngredientSpicesNone.js';
 import IngredientMiscellaneousNone from '../app/IngredientMiscellaneousNone.js';
 import AddCircleTwoToneIcon from '@material-ui/icons/AddCircleTwoTone';
 import IconButton from '@material-ui/core/IconButton';
