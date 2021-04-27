@@ -10,22 +10,20 @@ export const SidebarItems = [
         icon: <giIcons.GiMeat />,
         classname: 'nav-text'
     },
-
     {
         name: 'Vegetables',
         path: '#',
         icon: <giIcons.GiBroccoli />,
         classname: 'nav-text'
     },
-
     {
-        name: 'Fruit',
+        name: 'Spices',
         path: '#',
         icon: <giIcons.GiSaltShaker />,
         classname: 'nav-text'
     },
     {
-        name: 'Spices',
+        name: 'Fruit',
         path: '#',
         icon: <giIcons.FaAppleAlt />,
         classname: 'nav-text'
