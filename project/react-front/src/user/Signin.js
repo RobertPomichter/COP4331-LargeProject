@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import Loading from '../Loading'; 
 import { signin, authenticate } from "../auth";
-import { Button, TextField } from'@material-ui/core';
+import { Button, TextField, MuiTextField } from'@material-ui/core';
 
 
 class Signin extends Component{
@@ -81,14 +81,15 @@ class Signin extends Component{
                     </div> */}
 
                     <div className='form-group'>
-                        <TextField className='inputField' id="standard-basic"
-                                   onChange={this.handleChange("email")}
-                                   placeholder='Email' value={email}/>
+                        <input className='inputField'
+                               onChange={this.handleChange("email")}
+                               placeholder='Email' value={email}/>
                     </div>
                     <div className='form-group'>
-                    <TextField className='inputField' id="standard-basic"
-                                   onChange={this.handleChange("password")}
-                                   placeholder='Password' value={password}/>
+                        <input className='inputField'
+                               type='password'
+                               onChange={this.handleChange("password")}
+                               placeholder='Password' value={password}/>
                     </div>
 
                     <span onClick={this.props.goToForgotPassword} className='forgotPasswordText'>

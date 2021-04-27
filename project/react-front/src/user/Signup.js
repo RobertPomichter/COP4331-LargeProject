@@ -60,29 +60,31 @@ class Signup extends Component{
     // signup form method
     signupForm = (name, email, password) => {
         return (<form className='landingPageForm'>
+                    {/* <div className='form-group'>
+                        <input className='inputField'
+                               onChange={this.handleChange("password")}
+                               placeholder='Password' value={password}/>
+                    </div> */}
                     <div className='form-group'>
-                        <input 
+                        <input className='inputField'
                             onChange={this.handleChange("name")} 
                             type='text' 
-                            className='form-control'
                             value={name}
                             placeholder='Name' 
                         />
                     </div>
                     <div className='form-group'>
-                        <input 
+                        <input className='inputField'
                             onChange={this.handleChange("email")} 
                             type='email' 
-                            className='form-control'
                             value={email}
                             placeholder='Email'
                         />
                     </div>
                     <div className='form-group'>
-                        <input 
+                        <input className='inputField'
                             onChange={this.handleChange("password")} 
-                            type='password' 
-                            className='form-control' 
+                            type='password'  
                             value={password}
                             placeholder='Password'  
                         />
