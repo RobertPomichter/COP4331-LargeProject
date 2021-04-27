@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Card, Modal } from 'react-bootstrap';
+import { Card, Modal, Container, Col, Row } from 'react-bootstrap';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, InputLabel, MenuItem, FormHelperText, FormControl, Select } from '@material-ui/core';
-import { getAllIngredients, getAllMeats, getAllVegetables, getAllFruit, getAllDairy, getAllSpices, getAllMiscellaneous, addIngredient } from '../apiCalls/apiInventory.js';
+import { getAllIngredients, getAllMeats, getAllVegetables, getAllFruit, getAllDairy, getAllSpices, getAllMiscellaneous, addIngredient, populateInventory } from '../apiCalls/apiInventory.js';
 import { isAuthenticated } from "../auth";
 import { makeStyles } from '@material-ui/core/styles';
 import IngredientFruit from '../app/IngredientFruit.js';
@@ -106,6 +108,15 @@ class InventoryPanel extends Component {
         });
     }
 
+    clickClearMeats = event => {
+        // prevent default page reload
+        event.preventDefault();
+
+        this.setState ({
+            meats: []
+        });
+    }
+
     clickGetVegetables = event => {
         // prevent default page reload
         event.preventDefault();
@@ -122,6 +133,15 @@ class InventoryPanel extends Component {
             } else {
                 this.setState({ vegetables: data });
             }
+        });
+    }
+
+    clickClearVegetables = event => {
+        // prevent default page reload
+        event.preventDefault();
+
+        this.setState ({
+            vegetables: []
         });
     }
 
@@ -144,6 +164,15 @@ class InventoryPanel extends Component {
         });
     }
 
+    clickClearFruit = event => {
+        // prevent default page reload
+        event.preventDefault();
+
+        this.setState ({
+            fruit: []
+        });
+    }
+
     clickGetDairy = event => {
         // prevent default page reload
         event.preventDefault();
@@ -160,6 +189,15 @@ class InventoryPanel extends Component {
             } else {
                 this.setState({ dairy: data });
             }
+        });
+    }
+
+    clickClearDairy = event => {
+        // prevent default page reload
+        event.preventDefault();
+
+        this.setState ({
+            dairy: []
         });
     }
 
@@ -182,6 +220,15 @@ class InventoryPanel extends Component {
         });
     }
 
+    clickClearSpices = event => {
+        // prevent default page reload
+        event.preventDefault();
+
+        this.setState ({
+            spices: []
+        });
+    }
+
     clickGetMiscellaneous = event => {
         // prevent default page reload
         event.preventDefault();
@@ -198,6 +245,15 @@ class InventoryPanel extends Component {
             } else {
                 this.setState({ miscellaneous: data });
             }
+        });
+    }
+
+    clickClearMiscellaneous = event => {
+        // prevent default page reload
+        event.preventDefault();
+
+        this.setState ({
+            miscellaneous: []
         });
     }
 
@@ -238,6 +294,8 @@ class InventoryPanel extends Component {
                 this.setState({ message: "Oops! Had an error while adding ingredient :(" });
             } else {
                 this.setState({ message: "Ingredient is now added :)" });
+                // getAllIngredients by the category of ingredient added
+                this.refreshAddCategory(category, event);
             }
         });
 
@@ -250,43 +308,81 @@ class InventoryPanel extends Component {
         })
     }
 
+    refreshAddCategory = (category, event) => {
+        // check to see what category of ingredient was added, then refresh the proper category
+        if(category == 'meat') {
+            console.log("Found that recently added ingredient was a meat")
+            this.clickGetMeats(event);
+        } else if(category == 'vegetable') {
+            console.log("Found that recently added ingredient was a vegetable")
+            this.clickGetVegetables(event);
+        } else if(category == 'fruit') {
+            console.log("Found that recently added ingredient was a fruit")
+            this.clickGetFruit(event);
+        } else if(category == 'dairy') {
+            console.log("Found that recently added ingredient was a dairy")
+            this.clickGetDairy(event);
+        } else if(category == 'spices') {
+            console.log("Found that recently added ingredient was a spices")
+            this.clickGetSpices(event);
+        } else if(category == 'miscellaneous') {
+            console.log("Found that recently added ingredient was a miscellaneous")
+            this.clickGetMiscellaneous(event);
+        }
+    }
+
+    // function passed to each meat ingredient to remove itself from the state array once deleted
+    handleDeleteMeat = (_id) => {
+        const meats = this.state.meats.filter(item => item._id !== _id);
+        this.setState({ meats: meats });
+    }
+
+    // function passed to each vegetable ingredient to remove itself from the state array once deleted
+    handleDeleteVegetable = (_id) => {
+        const vegetables = this.state.vegetables.filter(item => item._id !== _id);
+        this.setState({ vegetables: vegetables });
+    }
+
+    // function passed to each fruit ingredient to remove itself from the state array once deleted
+    handleDeleteFruit = (_id) => {
+        const fruit = this.state.fruit.filter(item => item._id !== _id);
+        this.setState({ fruit: fruit });
+    }
+
+    // function passed to each dairy ingredient to remove itself from the state array once deleted
+    handleDeleteDairy = (_id) => {
+        const dairy = this.state.dairy.filter(item => item._id !== _id);
+        this.setState({ dairy: dairy });
+    }
+
+    // function passed to each spices ingredient to remove itself from the state array once deleted
+    handleDeleteSpices = (_id) => {
+        const spices = this.state.spices.filter(item => item._id !== _id);
+        this.setState({ spices: spices });
+    }
+
+    // function passed to each miscellaneous ingredient to remove itself from the state array once deleted
+    handleDeleteMiscellaneous = (_id) => {
+        const miscellaneous = this.state.miscellaneous.filter(item => item._id !== _id);
+        this.setState({ miscellaneous: miscellaneous });
+    }
+
+    // function to populate user's inventory with a bunch of premade ingredients
+    populateInventoryHandler = event => {
+        // get the token & user_email
+        const token = isAuthenticated().token;
+        const user_email = this.state.user_email;
+
+        // call populateInventory function in apiInventory
+        populateInventory(token, user_email);
+
+        // automatically get all ingredients
+        this.clickGetAllIngredients(event);
+    } 
+
     render() {
         return (
             <div>
-                <div className='jumbotron'>
-                    <h1>Inventory Testing Area</h1>
-                </div>
-
-                {/* Testing Buttons :) */}
-                <Button variant="contained" onClick={this.clickGetAllIngredients}>
-                Test: Get All Ingredients
-                </Button> <br />
-                <Button variant="contained" onClick={this.clickClearAllIngredients}>
-                Test: Clear All Ingredients
-                </Button> <br />
-                <Button variant="contained" onClick={this.clickGetMeats}>
-                Test: Get Meats
-                </Button> <br />
-                <Button variant="contained" onClick={this.clickGetVegetables}>
-                Test: Get Vegetables
-                </Button> <br />
-                <Button variant="contained" onClick={this.clickGetFruit}>
-                Test: Get Fruit
-                </Button> <br />
-                <Button variant="contained" onClick={this.clickGetDairy}>
-                Test: Get Dairy
-                </Button> <br />
-                <Button variant="contained" onClick={this.clickGetSpices}>
-                Test: Get Spices
-                </Button> <br />
-                <Button variant="contained" onClick={this.clickGetMiscellaneous}>
-                Test: Get Miscellaneous
-                </Button> <br />
-
-                <div className='searchCard'>
-                    <input className='inventorySearchBar' placeholder='Search Bar goes here :D'></input>
-                </div>
-
                 {/* AddIngredient Dialog Form (a better form of Modal) */}
                 <Dialog open={this.state.showAddForm} onClose={this.handleClose} disableScrollLock='true'
                         aria-labelledby="form-dialog-title">
@@ -328,144 +424,231 @@ class InventoryPanel extends Component {
                     </DialogActions>
                 </Dialog>
 
-                {/* Meat Card */}
-                <div className='categoryCard'>
-                    <div className='cardHeader'>
-                        <div className='cardTitle'>
-                            <span className='cardTitleText'>Meats</span>
-                        </div>
-                        <IconButton onClick={this.handleShow}>
-                            <AddCircleTwoToneIcon className='addIngredientButton'
-                                                  fontSize='large'/>
-                        </IconButton>
-                    </div>
-                    <div className='ingredientRowContainer'>
-                        {/* This section performs the Ingredient Component creation and information
-                        mapping */}
-                        {this.state.meats.map((item, index) => (
-                            <IngredientMeat meatName={item.name} meatUnit={item.unit}
-                                            meatAmount={item.amount}
-                                            user_email={this.state.user_email}
-                                            userId={this.state.userId}/>
-                        ))}
-                    </div>
-                </div>
+                {/* Testing Buttons :) */}
+                <Button variant="contained" onClick={this.clickGetAllIngredients}>
+                    Test: Get All Ingredients
+                    </Button>
+                    <Button variant="contained" onClick={this.clickClearAllIngredients}>
+                    Test: Clear All Ingredients
+                    </Button>
+                    <Button variant="contained" onClick={this.populateInventoryHandler}>
+                    Test: Populate Inventory
+                    </Button>
 
-                {/* Vegetables Card */}
-                <div className='categoryCard'>
-                    <div className='cardHeader'>
-                        <div className='cardTitle'>
-                            <span className='cardTitleText'>Vegetables</span>
-                        </div>
-                        <IconButton onClick={this.handleShow}>
-                            <AddCircleTwoToneIcon className='addIngredientButton'
-                                                  fontSize='large' />
-                        </IconButton>
-                    </div>
-                    <div className='ingredientRowContainer'>
-                        {/* This section performs the Ingredient Component creation and information
-                        mapping */}
-                        {this.state.vegetables.map((item, index) => (
-                            <IngredientVegetable vegetableName={item.name} vegetableUnit={item.unit}
-                                                 vegetableAmount={item.amount}
-                                                 user_email={this.state.user_email}
-                                                 userId={this.state.userId}/>
-                        ))}
-                    </div>
-                </div>
+                {/* Was playing with a Bootstrap grid setup to possibly get search working
+                    <Container>
+                    <Row>
+                        <Col xs={1}>
+                            <div className="searchUICard">
+                                <input className="searchIngredientField">
+                                </input>
+                            </div>
+                        </Col> */}
 
-                {/* Fruit Card */}
-                <div className='categoryCard'>
-                    <div className='cardHeader'>
-                        <div className='cardTitle'>
-                            <span className='cardTitleText'>Fruit</span>
-                        </div>
-                        <IconButton onClick={this.handleShow}>
-                            <AddCircleTwoToneIcon className='addIngredientButton'
-                                                  fontSize='large'/>
-                        </IconButton>
-                    </div>
-                    <div className='ingredientRowContainer'>
-                        {/* This section performs the Ingredient Component creation and information
-                        mapping */}
-                        {this.state.fruit.map((item, index) => (
-                            <IngredientFruit fruitName={item.name} fruitUnit={item.unit}
-                                             fruitAmount={item.amount}
-                                             user_email={this.state.user_email}
-                                             userId={this.state.userId}/>
-                        ))}
-                    </div>
-                </div>
+                        {/* <Col xs={5}> */}
+                            <div className="inventoryUIContainer">
+                                {/* Meat Card */}
+                                <div className='categoryCard'>
+                                    <div className='cardHeader'>
+                                        <div className='cardTitle'>
+                                            <span className='cardTitleText'>Meats</span>
+                                        </div>
+                                        <div className='cardHeaderSpacer'></div>
+                                        <IconButton onClick={this.clickClearMeats}>
+                                            <ExpandLessIcon />
+                                        </IconButton>
+                                        <IconButton onClick={this.clickGetMeats}>
+                                            <ExpandMoreIcon />
+                                        </IconButton>
+                                        <IconButton onClick={this.handleShow}>
+                                            <AddCircleTwoToneIcon className='addIngredientButton'
+                                                                fontSize='large'/>
+                                        </IconButton>
+                                    </div>
+                                    <div className='ingredientRowContainer'>
+                                        {/* This section performs the Ingredient Component creation and information
+                                        mapping */}
+                                        {this.state.meats.map((item) => (
+                                            <IngredientMeat key={item._id}
+                                                            ingredientId={item._id}
+                                                            meatName={item.name} meatUnit={item.unit}
+                                                            meatAmount={item.amount}
+                                                            user_email={this.state.user_email}
+                                                            userId={this.state.userId}
+                                                            onDelete={this.handleDeleteMeat}/>
+                                        ))}
+                                    </div>
+                                </div>
 
-                {/* Dairy Card */}
-                <div className='categoryCard'>
-                    <div className='cardHeader'>
-                        <div className='cardTitle'>
-                            <span className='cardTitleText'>Dairy</span>
-                        </div>
-                        <IconButton onClick={this.handleShow}>
-                            <AddCircleTwoToneIcon className='addIngredientButton'
-                                                  fontSize='large'/>
-                        </IconButton>
-                    </div>
-                    <div className='ingredientRowContainer'>
-                        {/* This section performs the Ingredient Component creation and information
-                        mapping */}
-                        {this.state.dairy.map((item, index) => (
-                            <IngredientDairy dairyName={item.name} dairyUnit={item.unit}
-                                             dairyAmount={item.amount}
-                                             user_email={this.state.user_email}
-                                             userId={this.state.userId}/>
-                        ))}
-                    </div>
-                </div>
+                                {/* Vegetables Card */}
+                                <div className='categoryCard'>
+                                    <div className='cardHeader'>
+                                        <div className='cardTitle'>
+                                            <span className='cardTitleText'>Vegetables</span>
+                                        </div>
+                                        <div className='cardHeaderSpacer'></div>
+                                        <IconButton onClick={this.clickClearVegetables}>
+                                            <ExpandLessIcon />
+                                        </IconButton>
+                                        <IconButton onClick={this.clickGetVegetables}>
+                                            <ExpandMoreIcon />
+                                        </IconButton>
+                                        <IconButton onClick={this.handleShow}>
+                                            <AddCircleTwoToneIcon className='addIngredientButton'
+                                                                fontSize='large' />
+                                        </IconButton>
+                                    </div>
+                                    <div className='ingredientRowContainer'>
+                                        {/* This section performs the Ingredient Component creation and information
+                                        mapping */}
+                                        {this.state.vegetables.map((item) => (
+                                            <IngredientVegetable key={item._id} 
+                                                                ingredientId={item._id}
+                                                                vegetableName={item.name} vegetableUnit={item.unit}
+                                                                vegetableAmount={item.amount}
+                                                                user_email={this.state.user_email}
+                                                                userId={this.state.userId}
+                                                                onDelete={this.handleDeleteVegetable}/>
+                                        ))}
+                                    </div>
+                                </div>
 
-                {/* Spices Card */}
-                <div className='categoryCard'>
-                    <div className='cardHeader'>
-                        <div className='cardTitle'>
-                            <span className='cardTitleText'>Spices</span>
-                        </div>
-                        <IconButton onClick={this.handleShow}>
-                            <AddCircleTwoToneIcon className='addIngredientButton'
-                                                  fontSize='large'/>
-                        </IconButton>
-                    </div>
-                    <div className='ingredientRowContainer'>
-                        {/* This section performs the Ingredient Component creation and information
-                        mapping */}
-                        {this.state.spices.map((item, index) => (
-                            <IngredientSpices spicesName={item.name} spicesUnit={item.unit}
-                                              spicesAmount={item.amount}
-                                              user_email={this.state.user_email}
-                                              userId={this.state.userId}/>
-                        ))}
-                    </div>
-                </div>
+                            {/* Fruit Card */}
+                            <div className='categoryCard'>
+                                <div className='cardHeader'>
+                                    <div className='cardTitle'>
+                                        <span className='cardTitleText'>Fruit</span>
+                                    </div>
+                                    <div className='cardHeaderSpacer'></div>
+                                    <IconButton onClick={this.clickClearFruit}>
+                                        <ExpandLessIcon />
+                                    </IconButton>
+                                    <IconButton onClick={this.clickGetFruit}>
+                                        <ExpandMoreIcon />
+                                    </IconButton>
+                                    <IconButton onClick={this.handleShow}>
+                                        <AddCircleTwoToneIcon className='addIngredientButton'
+                                                            fontSize='large'/>
+                                    </IconButton>
+                                </div>
+                                <div className='ingredientRowContainer'>
+                                    {/* This section performs the Ingredient Component creation and information
+                                    mapping */}
+                                    {this.state.fruit.map((item) => (
+                                        <IngredientFruit key={item._id} 
+                                                        ingredientId={item._id}
+                                                        fruitName={item.name} fruitUnit={item.unit}
+                                                        fruitAmount={item.amount}
+                                                        user_email={this.state.user_email}
+                                                        userId={this.state.userId}
+                                                        onDelete={this.handleDeleteFruit}/>
+                                    ))}
+                                </div>
+                            </div>
 
-                {/* Miscellaneous Card */}
-                <div className='categoryCard'>
-                    <div className='cardHeader'>
-                        <div className='cardTitle'>
-                            <span className='cardTitleText'>Miscellaneous</span>
+                            {/* Dairy Card */}
+                            <div className='categoryCard'>
+                                <div className='cardHeader'>
+                                    <div className='cardTitle'>
+                                        <span className='cardTitleText'>Dairy</span>
+                                    </div>
+                                    <div className='cardHeaderSpacer'></div>
+                                    <IconButton onClick={this.clickClearDairy}>
+                                        <ExpandLessIcon />
+                                    </IconButton>
+                                    <IconButton onClick={this.clickGetDairy}>
+                                        <ExpandMoreIcon />
+                                    </IconButton>
+                                    <IconButton onClick={this.handleShow}>
+                                        <AddCircleTwoToneIcon className='addIngredientButton'
+                                                            fontSize='large'/>
+                                    </IconButton>
+                                </div>
+                                <div className='ingredientRowContainer'>
+                                    {/* This section performs the Ingredient Component creation and information
+                                    mapping */}
+                                    {this.state.dairy.map((item) => (
+                                        <IngredientDairy key={item._id} 
+                                                        ingredientId={item._id}
+                                                        dairyName={item.name} dairyUnit={item.unit}
+                                                        dairyAmount={item.amount}
+                                                        user_email={this.state.user_email}
+                                                        userId={this.state.userId}
+                                                        onDelete={this.handleDeleteDairy}/>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Spices Card */}
+                            <div className='categoryCard'>
+                                <div className='cardHeader'>
+                                    <div className='cardTitle'>
+                                        <span className='cardTitleText'>Spices</span>
+                                    </div>
+                                    <div className='cardHeaderSpacer'></div>
+                                    <IconButton onClick={this.clickClearSpices}>
+                                        <ExpandLessIcon />
+                                    </IconButton>
+                                    <IconButton onClick={this.clickGetSpices}>
+                                        <ExpandMoreIcon />
+                                    </IconButton>
+                                    <IconButton onClick={this.handleShow}>
+                                        <AddCircleTwoToneIcon className='addIngredientButton'
+                                                            fontSize='large'/>
+                                    </IconButton>
+                                </div>
+                                <div className='ingredientRowContainer'>
+                                    {/* This section performs the Ingredient Component creation and information
+                                    mapping */}
+                                    {this.state.spices.map((item) => (
+                                        <IngredientSpices key={item._id} 
+                                                        ingredientId={item._id}
+                                                        spicesName={item.name} spicesUnit={item.unit}
+                                                        spicesAmount={item.amount}
+                                                        user_email={this.state.user_email}
+                                                        userId={this.state.userId}
+                                                        onDelete={this.handleDeleteSpices}/>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Miscellaneous Card */}
+                            <div className='categoryCard'>
+                                <div className='cardHeader'>
+                                    <div className='cardTitle'>
+                                        <span className='cardTitleText'>Miscellaneous</span>
+                                    </div>
+                                    <div className='cardHeaderSpacer'></div>
+                                    <IconButton onClick={this.clickClearMiscellaneous}>
+                                        <ExpandLessIcon />
+                                    </IconButton>
+                                    <IconButton onClick={this.clickGetMiscellaneous}>
+                                        <ExpandMoreIcon />
+                                    </IconButton>
+                                    <IconButton onClick={this.handleShow}>
+                                        <AddCircleTwoToneIcon className='addIngredientButton'
+                                                            fontSize='large'/>
+                                    </IconButton>
+                                </div>
+                                <div className='ingredientRowContainer'>
+                                    {/* This section performs the Ingredient Component creation and information
+                                    mapping */}
+                                    {this.state.miscellaneous.map((item) => (
+                                        <IngredientMiscellaneous key={item._id} 
+                                                                ingredientId={item._id}
+                                                                miscellaneousName={item.name} miscellaneousUnit={item.unit}
+                                                                miscellaneousAmount={item.amount}
+                                                                user_email={this.state.user_email}
+                                                                userId={this.state.userId}
+                                                                onDelete={this.handleDeleteMiscellaneous}/>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
-                        <IconButton onClick={this.handleShow}>
-                            <AddCircleTwoToneIcon className='addIngredientButton'
-                                                  fontSize='large'/>
-                        </IconButton>
-                    </div>
-                    <div className='ingredientRowContainer'>
-                        {/* This section performs the Ingredient Component creation and information
-                        mapping */}
-                        {this.state.miscellaneous.map((item, index) => (
-                            <IngredientMiscellaneous miscellaneousName={item.name} miscellaneousUnit={item.unit}
-                                                     miscellaneousAmount={item.amount}
-                                                     user_email={this.state.user_email}
-                                                     userId={this.state.userId}/>
-                        ))}
-                    </div>
-                </div>
-            </div>
+                    {/* </Col>
+                </Row>    
+            </Container> */}
+        </div>
         );
     }
 }

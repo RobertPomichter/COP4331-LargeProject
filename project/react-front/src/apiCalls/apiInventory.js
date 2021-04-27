@@ -187,3 +187,99 @@ export const deleteIngredient = ( token, deleteIngredientPackage, userId ) => {
     })
     .catch(err => console.log(err));
 }
+
+// REFERENCE NOTE FROM ROUTING: route to put an ingredient update
+// router.put('/ingredientUpdate/:ingredientId', updateIngredients); 
+export const updateIngredient = ( token, updateIngredientForm, ingredientId ) => {
+    // console log prints in the brower's page inspection terminal
+    console.log("Henlo, I'm going to start trying to updateIngredient...");
+
+    // get ingredientId from updateIngredientPackage
+
+    // probably don't need the authorization line, just including to follow previous examples
+    const requestContent = {
+        method: 'PUT',
+        headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: updateIngredientForm
+    }
+
+    // fetch to the backend
+    return fetch(`${process.env.REACT_APP_API_URL}/ingredientUpdate/${ingredientId}`, requestContent)
+    .then( response => {
+        return response.json();
+    })
+    .catch(err => console.log(err));
+}
+
+// Populate Inventory with a Bunch of Ingredients
+export const populateInventory = ( token, user_email ) => {
+    const email = user_email;
+
+    var addIngredientPackage = { name:  "Chicken Wings", category: "meat", unit: "", amount: "6", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Salmon", category: "meat", unit: "lbs", amount: "2", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Tilapia", category: "meat", unit: "lbs", amount: "2", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Broccoli", category: "vegetable", unit: "heads", amount: "2", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Spinach", category: "vegetable", unit: "oz", amount: "8", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Gold Potatoes", category: "vegetable", unit: "lbs", amount: "5", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Baby Carrots", category: "vegetable", unit: "oz", amount: "16", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Mango", category: "fruit", unit: "", amount: "4", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Bananas", category: "fruit", unit: "", amount: "3", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Apples", category: "fruit", unit: "", amount: "6", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Mango", category: "fruit", unit: "", amount: "4", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Cheddar Cheese", category: "dairy", unit: "oz", amount: "12", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Grated Parmesan", category: "dairy", unit: "oz", amount: "8", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Whole Milk", category: "dairy", unit: "gallon", amount: "1", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Almond Milk", category: "dairy", unit: "quart", amount: "1", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Salt", category: "spices", unit: "oz", amount: "12", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Paprika", category: "spices", unit: "oz", amount: "6", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Onion Powder", category: "spices", unit: "oz", amount: "6", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Garlic Powder", category: "spices", unit: "oz", amount: "6", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Ground Black Pepper", category: "spices", unit: "", amount: "6", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Flour", category: "miscellaneous", unit: "lbs", amount: "5", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Eggs", category: "miscellaneous", unit: "carton", amount: "2", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Pinto Beans", category: "miscellaneous", unit: "oz", amount: "16", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Vegetable Oil", category: "miscellaneous", unit: "fl oz", amount: "16", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Nori", category: "miscellaneous", unit: "sheets", amount: "12", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Miso Paste", category: "miscellaneous", unit: "oz", amount: "8", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "White Wine", category: "miscellaneous", unit: "fl oz", amount: "18", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Cashews", category: "miscellaneous", unit: "oz", amount: "8", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Almonds", category: "miscellaneous", unit: "oz", amount: "8", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Rice", category: "miscellaneous", unit: "lbs", amount: "5", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Spaghetti Noodles", category: "miscellaneous", unit: "oz", amount: "12", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Sandwich Bread", category: "miscellaneous", unit: "loaves", amount: "2", user_email: email }
+    addIngredient( token, addIngredientPackage );
+}
