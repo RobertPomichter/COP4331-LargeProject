@@ -49,6 +49,11 @@ class Form2 extends React.Component{
           error: "",
         });
         this.props.navigation.navigate('Login');
+
+        this.setState({name: ""});
+        this.setState({email: ""});
+        this.setState({password: ""}); 
+        this.setState({error: ""});
       }
     });
 
@@ -58,19 +63,26 @@ class Form2 extends React.Component{
 
     return (
       <View style={styles.container}>
-        <TextInput style={styles.inputBox}
+        <TextInput clearButtonMode="always" style={styles.inputBox}
         underlineColorAndroid='black'
         onChangeText = { (text) => {this.setState({name: text})}}
+        value={this.state.name}
         placeholder="Name..."/>
         
-        <TextInput style={styles.inputBox} 
+        <View style={styles.separation}></View>
+
+        <TextInput clearButtonMode="always" style={styles.inputBox} 
         underlineColorAndroid='black'
         onChangeText = { (text) => {this.setState({email: text})}}
+        value={this.state.email}
         placeholder="Email..."/>
         
-        <TextInput style={styles.inputBox}
+        <View style={styles.separation}></View>
+
+        <TextInput clearButtonMode="always" style={styles.inputBox}
         underlineColorAndroid='black'
         onChangeText = { (text) => {this.setState({password: text})}}
+        value={this.state.password}
         placeholder="Password..."
         secureTextEntry={true}/>
       
@@ -96,22 +108,32 @@ const styles = StyleSheet.create({
   },
   inputBox: {
     width: 300,
-    height: 20,
+    height:60,
+    paddingLeft: 20,
+    borderWidth: 1,
+    borderColor: 'white',
+    borderRadius: 30,
+    backgroundColor: 'white',
   },
   button:{
     borderRadius: 25,
     width: 300,
-    backgroundColor: '#db8651',
+    backgroundColor: '#fff',
     paddingVertical: 16,
     marginTop: 20,
   },
   buttonText:{
       textAlign: 'center',
+      fontWeight: 'bold',
   },
   errorMsg:{
     marginTop: 25,
     marginLeft: 50,
     marginRight: 50,
+  },
+  separation:{
+    height: 30,
+    backgroundColor: 'black',
   },
 });
 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Card } from 'react-native-elements';
 import 'react-native-gesture-handler';
 import '@react-navigation/native';
