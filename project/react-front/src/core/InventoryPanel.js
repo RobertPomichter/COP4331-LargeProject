@@ -294,6 +294,8 @@ class InventoryPanel extends Component {
                 this.setState({ message: "Oops! Had an error while adding ingredient :(" });
             } else {
                 this.setState({ message: "Ingredient is now added :)" });
+                // getAllIngredients by the category of ingredient added
+                this.refreshAddCategory(category, event);
             }
         });
 
@@ -304,6 +306,29 @@ class InventoryPanel extends Component {
             addAmount: "",
             addCategory: ""
         })
+    }
+
+    refreshAddCategory = (category, event) => {
+        // check to see what category of ingredient was added, then refresh the proper category
+        if(category == 'meat') {
+            console.log("Found that recently added ingredient was a meat")
+            this.clickGetMeats(event);
+        } else if(category == 'vegetable') {
+            console.log("Found that recently added ingredient was a vegetable")
+            this.clickGetVegetables(event);
+        } else if(category == 'fruit') {
+            console.log("Found that recently added ingredient was a fruit")
+            this.clickGetFruit(event);
+        } else if(category == 'dairy') {
+            console.log("Found that recently added ingredient was a dairy")
+            this.clickGetDairy(event);
+        } else if(category == 'spices') {
+            console.log("Found that recently added ingredient was a spices")
+            this.clickGetSpices(event);
+        } else if(category == 'miscellaneous') {
+            console.log("Found that recently added ingredient was a miscellaneous")
+            this.clickGetMiscellaneous(event);
+        }
     }
 
     // function passed to each meat ingredient to remove itself from the state array once deleted
