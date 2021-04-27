@@ -3,7 +3,7 @@ import { Card, Modal, Container, Col, Row } from 'react-bootstrap';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, InputLabel, MenuItem, FormHelperText, FormControl, Select } from '@material-ui/core';
-import { getAllIngredients, getAllMeats, getAllVegetables, getAllFruit, getAllDairy, getAllSpices, getAllMiscellaneous, addIngredient, populateInventory } from '../apiCalls/apiInventory.js';
+import { getAllIngredients, getAllMeats, getAllVegetables, getAllFruit, getAllDairy, getAllSpices, getAllMiscellaneous, addIngredient, populateInventory, getEmptyMeats, getEmptyFruit, getEmptyVegetables, getEmptyDairy, getEmptySpices, getEmptyMiscellaneous } from '../apiCalls/apiInventory.js';
 import { isAuthenticated } from "../auth";
 import { makeStyles } from '@material-ui/core/styles';
 import IngredientFruit from '../app/IngredientFruit.js';
@@ -22,8 +22,6 @@ import AddCircleTwoToneIcon from '@material-ui/icons/AddCircleTwoTone';
 import IconButton from '@material-ui/core/IconButton';
 import EmptyCategoryDisplay from '../app/EmptyCategoryDisplay.js';
 import { read } from "../user/apiUser.js";
-
-
 
 class InventoryPanel extends Component {
     // copied from Users.js - idea is to hold an array of ingredients
@@ -52,7 +50,8 @@ class InventoryPanel extends Component {
             addAmount: "",
             addCategory: "",
             message: "",
-            dropdownCategory: ""
+            dropdownCategory: "",
+            submissionAllowed: ""
         }
     }
 
@@ -337,6 +336,7 @@ class InventoryPanel extends Component {
     handleClose = () => this.setState({ showAddForm: false });
     handleShow = category => {
         this.setState({ dropdownCategory: category })
+        this.setState({ addCategory: category })
         this.setState({ showAddForm: true });
     }
 
@@ -487,7 +487,7 @@ class InventoryPanel extends Component {
                     <DialogTitle id="form-dialog-title">Add Ingredient</DialogTitle>
                     <DialogContent>
                     <DialogContentText>Please fill out the following fields</DialogContentText>
-                    <TextField className="addIngredientInputField"
+                    <TextField className="addIngredientInputField" required
                                margin="dense" label="Ingredient Name" fullWidth
                                onChange={this.handleChange("addName")}
                                value={this.state.addName}/>
@@ -495,7 +495,7 @@ class InventoryPanel extends Component {
                                margin="dense" label="Unit of Measurement" fullWidth
                                onChange={this.handleChange("addUnit")}
                                value={this.state.addUnit}/>
-                    <TextField className="addIngredientInputField"
+                    <TextField className="addIngredientInputField" required
                                margin="dense" label="Amount" fullWidth
                                onChange={this.handleChange("addAmount")}
                                value={this.state.addAmount}/>
@@ -503,26 +503,26 @@ class InventoryPanel extends Component {
                                margin="dense" label="Reminder to check adding a photo" fullWidth/> */}
                     <FormControl required>
                         <InputLabel id="demo-simple-select-required-label">Category</InputLabel>
-                            <Select className="CategoryDropdown"
-                                    defaultValue={this.state.dropdownCategory}
-                                    labelId="demo-simple-select-required-label"
-                                    id="demo-simple-select-required"
-                                    onChange={this.handleChange("addCategory")}>
+                        <Select className="CategoryDropdown"
+                                defaultValue={this.state.dropdownCategory}
+                                labelId="demo-simple-select-required-label"
+                                id="demo-simple-select-required"
+                                onChange={this.handleChange("addCategory")}>
                             <MenuItem value="meat">Meat</MenuItem>
                             <MenuItem value="vegetable">Vegetable</MenuItem>
                             <MenuItem value="fruit">Fruit</MenuItem>
                             <MenuItem value="dairy">Dairy</MenuItem>
                             <MenuItem value="spices">Spices</MenuItem>
                             <MenuItem value="miscellaneous">Miscellaneous</MenuItem>
-                            </Select>
-                        <FormHelperText>Required</FormHelperText>
+                        </Select>
                     </FormControl>
                     </DialogContent>
                     <DialogActions>
                     <Button onClick={this.handleClose} color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={this.handleAddSubmit} color="primary">
+                    <Button onClick={this.handleAddSubmit} color="primary"
+                            disabled={!!(!(this.state.addName) && !(this.state.addAmount))}>
                         Submit
                     </Button>
                     </DialogActions>
@@ -530,14 +530,14 @@ class InventoryPanel extends Component {
 
                 {/* Testing Buttons :) */}
                 <Button variant="contained" onClick={this.clickGetAllIngredients}>
-                    Test: Get All Ingredients
-                    </Button>
-                    <Button variant="contained" onClick={this.clickClearAllIngredients}>
-                    Test: Clear All Ingredients
-                    </Button>
-                    <Button variant="contained" onClick={this.populateInventoryHandler}>
-                    Test: Populate Inventory
-                    </Button>
+                    Get All Ingredients
+                </Button>
+                <Button variant="contained" onClick={this.clickClearAllIngredients}>
+                    Clear All Ingredients
+                </Button>
+                <Button variant="contained" onClick={this.populateInventoryHandler}>
+                    Populate Inventory
+                </Button>
 
                 {/* Was playing with a Bootstrap grid setup to possibly get search working
                     <Container>

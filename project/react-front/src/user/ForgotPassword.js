@@ -51,7 +51,7 @@ class ForgotPassword extends Component {
                     <div className="form-group mt-5">
                         <input
                             type="email"
-                            className="inputField"
+                            className="form-control"
                             placeholder="Your email address"
                             value={this.state.email}
                             name="email"
