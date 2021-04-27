@@ -74,6 +74,48 @@
     //background: linear-gradient(-40deg, rgb(35, 66, 124), rgb(54, 125, 255) 70%);
 }
 
+.ingredientNoMeatCircleContainer {
+    @include circleContainerSetup();
+
+    background: linear-gradient(-40deg, rgb(68, 0, 0), rgb(175, 0, 0) 70%);
+    opacity: 0.3;
+}
+
+.ingredientNoVegetableCircleContainer {
+    @include circleContainerSetup();
+
+    background: linear-gradient(-40deg, rgb(2, 59, 0), rgb(6, 189, 0) 70%);
+    opacity: 0.3;
+}
+
+.ingredientNoFruitCircleContainer {
+    @include circleContainerSetup();
+
+    background: linear-gradient(-40deg, rgb(173, 147, 0), rgb(255,215,0) 70%);
+    opacity: 0.3;
+}
+
+.ingredientNoDairyCircleContainer {
+    @include circleContainerSetup();
+
+    background: linear-gradient(-40deg, rgb(149, 150, 103), rgb(254, 255, 172) 70%);
+    opacity: 0.3;
+}
+
+.ingredientNoSpicesCircleContainer {
+    @include circleContainerSetup();
+
+    background: linear-gradient(-40deg, rgb(133, 58, 15), rgb(255, 112, 30) 70%);
+    opacity: 0.3;
+}
+
+.ingredientNoMiscellaneousCircleContainer {
+    @include circleContainerSetup();
+
+    background: linear-gradient(-40deg, rgb(97, 55, 14), rgb(168, 102, 35) 70%);
+    opacity: 0.3;
+}
+
 .ingredientImage {
     display: true;  // just used to easily disable the image for color testing
     width: 80%; // percentage of parent CircleContainer the image will occupy
