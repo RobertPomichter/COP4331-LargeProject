@@ -543,6 +543,7 @@ class InventoryPanel extends Component {
                 </Dialog>
 
                 {/* Testing Buttons :) */}
+                <div className="centered">
                 <Button variant="contained" onClick={this.clickGetAllIngredients}>
                     Get All Ingredients
                 </Button>
@@ -552,7 +553,7 @@ class InventoryPanel extends Component {
                 <Button variant="contained" onClick={this.populateInventoryHandler}>
                     Populate Inventory
                 </Button>
-
+                </div>
                 {/* Was playing with a Bootstrap grid setup to possibly get search working
                     <Container>
                     <Row>

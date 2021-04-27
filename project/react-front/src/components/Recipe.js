@@ -2,17 +2,17 @@ import React, { Component, useState } from 'react';
 import { v4 } from "uuid";
 import { Button } from'@material-ui/core';
 
-const Recipe = ({ recipe }) => {
+const Recipe = ({ recipes }) => {
 
     const [show, setShow] = useState(false);
-    const { label, image, url, ingredients } = recipe.recipe;
+    const { label, image, url, ingredients } = recipes.recipe;
 
     const RecipeDetails = () => {
-        return ingredients.map(ingredient => {
+        return ingredients.map(i => {
             return (
                 <ul key={v4()} className="ingredient-list">
-                    <li className="ingredient-text">{ingredient.text}</li>
-                    <li className="ingredient-weight">Weight - {ingredient.weight}</li>
+                    <li className="ingredient-text">{i.text}</li>
+                    <li className="ingredient-weight">Weight - {i.weight}</li>
                 </ul>
             );
         });

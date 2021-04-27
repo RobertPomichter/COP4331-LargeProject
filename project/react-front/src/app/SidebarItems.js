@@ -25,7 +25,7 @@ export const SidebarItems = [
     {
         name: 'Fruit',
         path: '#',
-        icon: <giIcons.FaAppleAlt />,
+        icon: <faIcons.FaAppleAlt />,
         classname: 'nav-text'
     },
     

@@ -4,7 +4,6 @@
 
 .landingPageContainer {
     background-image: url('./images/Background1440p.png');
-
     //overflow-y: hidden;
     //overflow-x: hidden;
     // These lines control the scaling & positioning of the homeContainer, and the
@@ -14,13 +13,13 @@
     background-attachment: fixed;   // fixes the background image when scrolling
 }
 
-
 .landingPageUIContainer {
     padding-top: 10%;   // used to vertical positioning of the Home UI (280px = old)
     padding-bottom: 30%;
     width: 1000px;
     //height: 70%;    // inherit height from homeContainer
     height: 100vh;
+
     margin: auto;   // auto-centers the UI container horizontally
 }
 
@@ -43,11 +42,6 @@
     //font-size: 100%;
     text-align: center;
     color: #3f3f3f;
-}
-
-// this is a problematic container that affects page sizing
-.container {
-    //height: 10%
 }
 
 .carousel {
