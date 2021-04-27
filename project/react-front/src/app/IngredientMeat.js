@@ -23,11 +23,11 @@ class IngredientMeat extends Component {
             showAddForm: false,
         }
     }
-    
+
     // function to handle deleting this ingredient
     clickDeleteSelf = event => {
         // gather information to send to API
-        const name = this.props.meatName;
+        const name = this.state.name;
         const userId = this.props.userId;
 
         const deleteIngredientPackage = {
@@ -110,7 +110,8 @@ class IngredientMeat extends Component {
                         <DialogContentText>Please fill out the following fields</DialogContentText>
                         <TextField margin="dense" label="Ingredient Name" fullWidth
                                 onChange={this.handleChange("newName")}
-                                value={this.state.newName}/>
+                                value={this.state.newName}>
+                                </TextField>
                         <TextField margin="dense" label="Unit of Measurement" fullWidth
                                 onChange={this.handleChange("newUnit")}
                                 value={this.state.newUnit}/>

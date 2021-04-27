@@ -256,4 +256,18 @@ export const populateInventory = ( token, user_email ) => {
     addIngredient( token, addIngredientPackage );
     addIngredientPackage = { name:  "Nori", category: "miscellaneous", unit: "sheets", amount: "12", user_email: email }
     addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Miso Paste", category: "miscellaneous", unit: "oz", amount: "8", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "White Wine", category: "miscellaneous", unit: "fl oz", amount: "18", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Cashews", category: "miscellaneous", unit: "oz", amount: "8", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Almonds", category: "miscellaneous", unit: "oz", amount: "8", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Rice", category: "miscellaneous", unit: "lbs", amount: "5", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Spaghetti Noodles", category: "miscellaneous", unit: "oz", amount: "12", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Sandwich Bread", category: "miscellaneous", unit: "loaves", amount: "2", user_email: email }
+    addIngredient( token, addIngredientPackage );
 }

@@ -27,7 +27,7 @@ class IngredientDairy extends Component {
     // function to handle deleting this ingredient
     clickDeleteSelf = event => {
         // gather information to send to API
-        const name = this.props.dairyName;
+        const name = this.state.name;
         const userId = this.props.userId;
 
         const deleteIngredientPackage = {
