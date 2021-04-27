@@ -23,8 +23,6 @@ import IconButton from '@material-ui/core/IconButton';
 import EmptyCategoryDisplay from '../app/EmptyCategoryDisplay.js';
 import { read } from "../user/apiUser.js";
 
-
-
 class InventoryPanel extends Component {
     // copied from Users.js - idea is to hold an array of ingredients
     constructor(props) {

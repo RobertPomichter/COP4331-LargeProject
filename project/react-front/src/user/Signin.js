@@ -4,7 +4,6 @@ import Loading from '../Loading';
 import { signin, authenticate } from "../auth";
 import { Button, TextField, MuiTextField } from'@material-ui/core';
 
-
 class Signin extends Component{
     // state constructor
     constructor(){
