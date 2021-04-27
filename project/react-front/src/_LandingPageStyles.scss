@@ -4,6 +4,9 @@
 
 .landingPageContainer {
     background-image: url('./images/Background1440p.png');
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    background-size: cover;
     //overflow-y: hidden;
     //overflow-x: hidden;
     // These lines control the scaling & positioning of the homeContainer, and the

@@ -4,6 +4,7 @@ import { Collapse } from 'react-bootstrap';
 import DefaultUserAvatar from "../images/user_avatar.png";
 import * as faIcons from "react-icons/fa";
 import * as aiIcons from "react-icons/ai";
+import { SidebarItems } from './SidebarItems';
 
 class Sidebar extends Component {
 
@@ -17,8 +18,6 @@ class Sidebar extends Component {
             sidebar: false
         };
     }
-
-    showSidebar = () => this.setState({sidebar: !sidebar});
 
     pathActive(path) {
         return this.props.location.pathname.startsWith(path);
@@ -44,7 +43,9 @@ class Sidebar extends Component {
     }
 
     render() {
-        const { user } = this.state;
+
+        const { user, status, sidebar } = this.state;
+        const showSidebar = () => this.setState({sidebar: !sidebar});
 
         return (
             <>
