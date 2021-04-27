@@ -95,6 +95,8 @@ class IngredientMeat extends Component {
     // function to update addIngredient relevant state variables
     handleChange = (stateVariableToChange) => event => {
         this.setState({[stateVariableToChange] : event.target.value});
+        var updateIngredientFormTesting = new FormData();
+        updateIngredientFormTesting.append([stateVariableToChange], event.target.value)
     }
 
     handleClose = () => this.setState({ showAddForm: false, newName: "", newUnit: "", newAmount: ""});

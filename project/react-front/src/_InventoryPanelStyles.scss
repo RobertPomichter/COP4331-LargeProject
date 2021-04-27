@@ -1,6 +1,11 @@
 
 // Styling sheet for the Inventory Panel
 
+.inventoryUIContainer {
+    //max-width: 1200px;
+    margin: auto;
+}
+
 @mixin inventoryCardSetup {
     width: 70%;
     max-width: 1200px;
@@ -44,6 +49,10 @@
     //height: 70px;
     //text-align: left;
     justify-content: space-between;
+}
+
+.cardHeaderSpacer {
+    width: 100%;
 }
 
 .cardTitle {
