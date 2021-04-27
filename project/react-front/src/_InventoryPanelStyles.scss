@@ -2,13 +2,14 @@
 // Styling sheet for the Inventory Panel
 
 .inventoryUIContainer {
-    //max-width: 1200px;
+    //width: 80%;
+    max-width: 70%;
     margin: auto;
 }
 
 @mixin inventoryCardSetup {
     width: 70%;
-    max-width: 1200px;
+    //max-width: 70%;
     height: fit-content;
     text-align: center;
     margin: auto;
@@ -27,9 +28,11 @@
     }
 }
 
-.searchCard {
-    @include inventoryCardSetup();
-    
+.searchUICard {
+    width: 600px;
+    height: 600px;
+    background-color: white;
+    border-radius: 20px;
 }
 
 .inventorySearchBar {
@@ -46,8 +49,8 @@
 
 .cardHeader {
     display: flex;
-    //height: 70px;
-    //text-align: left;
+    height: 70px;
+    text-align: left;
     justify-content: space-between;
 }
 

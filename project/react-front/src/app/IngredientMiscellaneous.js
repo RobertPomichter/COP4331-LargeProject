@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, InputLabel, MenuItem, FormHelperText, FormControl, Select } from '@material-ui/core';
 import Image from 'react-bootstrap/Image';
-import GenericFruitPicture from '../images/GenericFruit.jpg';
+import GenericMiscellaneousPicture from '../images/GenericMiscellaneous.jpg';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone';
 import EditTwoToneIcon from '@material-ui/icons/EditTwoTone';
@@ -131,7 +131,7 @@ class IngredientMiscellaneous extends Component {
                         </DialogActions>
                     </Dialog>
                     <div className='ingredientMiscellaneousCircleContainer'>
-                        <img className='ingredientImage' src={GenericFruitPicture}></img>
+                        <img className='ingredientImage' src={GenericMiscellaneousPicture}></img>
                     </div>
                     <span className='miscellaneousName'>{this.state.name}</span>
                     <br/>
