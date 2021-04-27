@@ -55,12 +55,6 @@ class IngredientMeat extends Component {
         const unit = this.state.newUnit;
         const amount = this.state.newAmount;
 
-        const updateIngredientPackage = {
-            name,
-            unit,
-            amount
-        }
-
         var updateIngredientForm = new FormData();
 
         console.log(updateIngredientForm);
@@ -78,6 +72,9 @@ class IngredientMeat extends Component {
                 console.log(data.error);
             } else {
                 console.log("Ingredient is now updated :)");
+                this.setState({ name : name,
+                                unit : unit,
+                                amount : amount})
             }
         });
 
