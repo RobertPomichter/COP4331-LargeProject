@@ -312,6 +312,36 @@ class InventoryPanel extends Component {
         this.setState({ meats: meats });
     }
 
+    // function passed to each vegetable ingredient to remove itself from the state array once deleted
+    handleDeleteVegetable = (_id) => {
+        const vegetables = this.state.vegetables.filter(item => item._id !== _id);
+        this.setState({ vegetables: vegetables });
+    }
+
+    // function passed to each fruit ingredient to remove itself from the state array once deleted
+    handleDeleteFruit = (_id) => {
+        const fruit = this.state.fruit.filter(item => item._id !== _id);
+        this.setState({ fruit: fruit });
+    }
+
+    // function passed to each dairy ingredient to remove itself from the state array once deleted
+    handleDeleteDairy = (_id) => {
+        const dairy = this.state.dairy.filter(item => item._id !== _id);
+        this.setState({ dairy: dairy });
+    }
+
+    // function passed to each spices ingredient to remove itself from the state array once deleted
+    handleDeleteSpices = (_id) => {
+        const spices = this.state.spices.filter(item => item._id !== _id);
+        this.setState({ spices: spices });
+    }
+
+    // function passed to each miscellaneous ingredient to remove itself from the state array once deleted
+    handleDeleteMiscellaneous = (_id) => {
+        const miscellaneous = this.state.miscellaneous.filter(item => item._id !== _id);
+        this.setState({ miscellaneous: miscellaneous });
+    }
+
     // function to populate user's inventory with a bunch of premade ingredients
     populateInventoryHandler = event => {
         // get the token & user_email
@@ -437,7 +467,8 @@ class InventoryPanel extends Component {
                                                     vegetableName={item.name} vegetableUnit={item.unit}
                                                     vegetableAmount={item.amount}
                                                     user_email={this.state.user_email}
-                                                    userId={this.state.userId}/>
+                                                    userId={this.state.userId}
+                                                    onDelete={this.handleDeleteVegetable}/>
                             ))}
                         </div>
                     </div>
@@ -463,12 +494,14 @@ class InventoryPanel extends Component {
                         <div className='ingredientRowContainer'>
                             {/* This section performs the Ingredient Component creation and information
                             mapping */}
-                            {this.state.fruit.map((item, index) => (
-                                <IngredientFruit ingredientId={item._id}
+                            {this.state.fruit.map((item) => (
+                                <IngredientFruit key={item._id} 
+                                                ingredientId={item._id}
                                                 fruitName={item.name} fruitUnit={item.unit}
                                                 fruitAmount={item.amount}
                                                 user_email={this.state.user_email}
-                                                userId={this.state.userId}/>
+                                                userId={this.state.userId}
+                                                onDelete={this.handleDeleteFruit}/>
                             ))}
                         </div>
                     </div>
@@ -494,12 +527,14 @@ class InventoryPanel extends Component {
                         <div className='ingredientRowContainer'>
                             {/* This section performs the Ingredient Component creation and information
                             mapping */}
-                            {this.state.dairy.map((item, index) => (
-                                <IngredientDairy ingredientId={item._id}
+                            {this.state.dairy.map((item) => (
+                                <IngredientDairy key={item._id} 
+                                                ingredientId={item._id}
                                                 dairyName={item.name} dairyUnit={item.unit}
                                                 dairyAmount={item.amount}
                                                 user_email={this.state.user_email}
-                                                userId={this.state.userId}/>
+                                                userId={this.state.userId}
+                                                onDelete={this.handleDeleteDairy}/>
                             ))}
                         </div>
                     </div>
@@ -525,12 +560,14 @@ class InventoryPanel extends Component {
                         <div className='ingredientRowContainer'>
                             {/* This section performs the Ingredient Component creation and information
                             mapping */}
-                            {this.state.spices.map((item, index) => (
-                                <IngredientSpices ingredientId={item._id}
+                            {this.state.spices.map((item) => (
+                                <IngredientSpices key={item._id} 
+                                                ingredientId={item._id}
                                                 spicesName={item.name} spicesUnit={item.unit}
                                                 spicesAmount={item.amount}
                                                 user_email={this.state.user_email}
-                                                userId={this.state.userId}/>
+                                                userId={this.state.userId}
+                                                onDelete={this.handleDeleteSpices}/>
                             ))}
                         </div>
                     </div>
@@ -556,12 +593,14 @@ class InventoryPanel extends Component {
                         <div className='ingredientRowContainer'>
                             {/* This section performs the Ingredient Component creation and information
                             mapping */}
-                            {this.state.miscellaneous.map((item, index) => (
-                                <IngredientMiscellaneous ingredientId={item._id}
+                            {this.state.miscellaneous.map((item) => (
+                                <IngredientMiscellaneous key={item._id} 
+                                                        ingredientId={item._id}
                                                         miscellaneousName={item.name} miscellaneousUnit={item.unit}
                                                         miscellaneousAmount={item.amount}
                                                         user_email={this.state.user_email}
-                                                        userId={this.state.userId}/>
+                                                        userId={this.state.userId}
+                                                        onDelete={this.handleDeleteMiscellaneous}/>
                             ))}
                         </div>
                     </div>

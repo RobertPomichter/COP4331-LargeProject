@@ -44,6 +44,9 @@ class IngredientSpices extends Component {
                 console.log("Ingredient is now deleted :)");
             }
         });
+
+        // call prop inherited function from inventoryPanel to delete self from state array
+        this.props.onDelete(this.state.ingredientId);
     }
 
     // function to update this ingredient
