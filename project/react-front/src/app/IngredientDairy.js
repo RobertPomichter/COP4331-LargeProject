@@ -120,7 +120,7 @@ class IngredientDairy extends Component {
                         <TextField margin="dense" label="Amount" fullWidth
                                 onChange={this.handleChange("newAmount")}
                                 value={this.state.newAmount}/>
-                        <TextField margin="dense" label="Reminder to check adding a photo" fullWidth/>
+                        
                         </DialogContent>
                         <DialogActions>
                         <Button onClick={this.handleClose} color="primary">
