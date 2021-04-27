@@ -12,6 +12,12 @@ import IngredientVegetable from '../app/IngredientVegetable.js';
 import IngredientDairy from '../app/IngredientDairy.js';
 import IngredientSpices from '../app/IngredientSpices.js';
 import IngredientMiscellaneous from '../app/IngredientMiscellaneous';
+import IngredientFruitNone from '../app/IngredientFruitNone.js';
+import IngredientMeatNone from '../app/IngredientMeatNone.js';
+import IngredientVegetableNone from '../app/IngredientVegetableNone.js';
+import IngredientDairyNone from '../app/IngredientDairyNone.js';
+import IngredientSpicesNone from '../app/IngredientSpiceNones.js';
+import IngredientMiscellaneousNone from '../app/IngredientMiscellaneousNone.js';
 import AddCircleTwoToneIcon from '@material-ui/icons/AddCircleTwoTone';
 import IconButton from '@material-ui/core/IconButton';
 import EmptyCategoryDisplay from '../app/EmptyCategoryDisplay.js';
@@ -34,6 +40,12 @@ class InventoryPanel extends Component {
             dairy: [],
             spices: [],
             miscellaneous: [],
+            noMeats: [],
+            noVegetables: [],
+            noFruit: [],
+            noDairy: [],
+            noSpices: [],
+            noMiscellaneous: [],
             showAddForm: false,
             addName: "",
             addUnit: "",
@@ -87,6 +99,12 @@ class InventoryPanel extends Component {
             dairy: [],
             spices: [],
             miscellaneous: [],
+            noMeats: [],
+            noVegetables: [],
+            noFruit: [],
+            noDairy: [],
+            noSpices: [],
+            noMiscellaneous: [],
         });
     }
 
@@ -99,12 +117,21 @@ class InventoryPanel extends Component {
         // get the userId from the parameters
         const userId = this.props.match.params.userId;
 
-        // API call to get all Meats
+        // API call to get full Meats
         getAllMeats(token, userId).then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {
                 this.setState({ meats: data });
+            }
+        });
+
+        // API call to get empty Meats
+        getEmptyMeats(token, userId).then(data => {
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                this.setState({ noMeats: data });
             }
         });
     }
@@ -114,7 +141,8 @@ class InventoryPanel extends Component {
         event.preventDefault();
 
         this.setState ({
-            meats: []
+            meats: [],
+            noMeats:[]
         });
     }
 
@@ -127,12 +155,20 @@ class InventoryPanel extends Component {
         // get the userId from the parameters
         const userId = this.props.match.params.userId;
 
-        // API call to get all Vegetables
+        // API call to get full Vegetables
         getAllVegetables(token, userId).then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {
                 this.setState({ vegetables: data });
+            }
+        });
+        // API call to get empty Vegetables
+        getEmptyVegetables(token, userId).then(data => {
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                this.setState({ noVegetables: data });
             }
         });
     }
@@ -142,7 +178,8 @@ class InventoryPanel extends Component {
         event.preventDefault();
 
         this.setState ({
-            vegetables: []
+            vegetables: [],
+            noVegetables: []
         });
     }
 
@@ -155,12 +192,21 @@ class InventoryPanel extends Component {
         // get the userId from the parameters
         const userId = this.props.match.params.userId;
 
-        // API call to get all Fruit
+        // API call to get full Fruit
         getAllFruit(token, userId).then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {
                 this.setState({ fruit: data });
+            }
+        });
+
+        // API call to get empty Fruit
+        getEmptyFruit(token, userId).then(data => {
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                this.setState({ noFruit: data });
             }
         });
     }
@@ -170,7 +216,8 @@ class InventoryPanel extends Component {
         event.preventDefault();
 
         this.setState ({
-            fruit: []
+            fruit: [],
+            noFruit: []
         });
     }
 
@@ -183,12 +230,21 @@ class InventoryPanel extends Component {
         // get the userId from the parameters
         const userId = this.props.match.params.userId;
 
-        // API call to get all Dairy
+        // API call to get full Dairy
         getAllDairy(token, userId).then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {
                 this.setState({ dairy: data });
+            }
+        });
+
+        // API call to get empty Dairy
+        getEmptyDairy(token, userId).then(data => {
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                this.setState({ noDairy: data });
             }
         });
     }
@@ -198,7 +254,8 @@ class InventoryPanel extends Component {
         event.preventDefault();
 
         this.setState ({
-            dairy: []
+            dairy: [],
+            noDairy: []
         });
     }
 
@@ -211,12 +268,21 @@ class InventoryPanel extends Component {
         // get the userId from the parameters
         const userId = this.props.match.params.userId;
 
-        // API call to get all Spices
+        // API call to get full Spices
         getAllSpices(token, userId).then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {
                 this.setState({ spices: data });
+            }
+        });
+
+        // API call to get empty Spices
+        getEmptySpices(token, userId).then(data => {
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                this.setState({ noSpices: data });
             }
         });
     }
@@ -226,7 +292,8 @@ class InventoryPanel extends Component {
         event.preventDefault();
 
         this.setState ({
-            spices: []
+            spices: [],
+            noSpices: []
         });
     }
 
@@ -247,6 +314,14 @@ class InventoryPanel extends Component {
                 this.setState({ miscellaneous: data });
             }
         });
+
+        getEmptyMiscellaneous(token, userId).then(data => {
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                this.setState({ noMiscellaneous: data });
+            }
+        });
     }
 
     clickClearMiscellaneous = event => {
@@ -254,7 +329,8 @@ class InventoryPanel extends Component {
         event.preventDefault();
 
         this.setState ({
-            miscellaneous: []
+            miscellaneous: [],
+            noMiscellaneous: []
         });
     }
 
@@ -339,36 +415,54 @@ class InventoryPanel extends Component {
     handleDeleteMeat = (_id) => {
         const meats = this.state.meats.filter(item => item._id !== _id);
         this.setState({ meats: meats });
+
+        const noMeats = this.state.noMeats.filter(item => item._id !== _id);
+        this.setState({ noMeats: noMeats });
     }
 
     // function passed to each vegetable ingredient to remove itself from the state array once deleted
     handleDeleteVegetable = (_id) => {
         const vegetables = this.state.vegetables.filter(item => item._id !== _id);
         this.setState({ vegetables: vegetables });
+
+        const noVegetables = this.state.noVegetables.filter(item => item._id !== _id);
+        this.setState({ noVegetables: noVegetables });
     }
 
     // function passed to each fruit ingredient to remove itself from the state array once deleted
     handleDeleteFruit = (_id) => {
         const fruit = this.state.fruit.filter(item => item._id !== _id);
         this.setState({ fruit: fruit });
+
+        const noFruit = this.state.noFruit.filter(item => item._id !== _id);
+        this.setState({ noFruit: noFruit });
     }
 
     // function passed to each dairy ingredient to remove itself from the state array once deleted
     handleDeleteDairy = (_id) => {
         const dairy = this.state.dairy.filter(item => item._id !== _id);
         this.setState({ dairy: dairy });
+
+        const noDairy = this.state.noDairy.filter(item => item._id !== _id);
+        this.setState({ noDairy: noDairy });
     }
 
     // function passed to each spices ingredient to remove itself from the state array once deleted
     handleDeleteSpices = (_id) => {
         const spices = this.state.spices.filter(item => item._id !== _id);
         this.setState({ spices: spices });
+
+        const noSpices = this.state.noSpices.filter(item => item._id !== _id);
+        this.setState({ noSpices: noSpices });
     }
 
     // function passed to each miscellaneous ingredient to remove itself from the state array once deleted
     handleDeleteMiscellaneous = (_id) => {
         const miscellaneous = this.state.miscellaneous.filter(item => item._id !== _id);
         this.setState({ miscellaneous: miscellaneous });
+
+        const noMiscellaneous = this.state.noMiscellaneous.filter(item => item._id !== _id);
+        this.setState({ noMiscellaneous: noMiscellaneous });
     }
 
     // function to populate user's inventory with a bunch of premade ingredients
@@ -487,6 +581,15 @@ class InventoryPanel extends Component {
                                                             userId={this.state.userId}
                                                             onDelete={this.handleDeleteMeat}/>
                                         ))}
+                                        {this.state.noMeats.map((item) => (
+                                            <IngredientMeatNone key={item._id}
+                                                            ingredientId={item._id}
+                                                            meatName={item.name} meatUnit={item.unit}
+                                                            meatAmount={item.amount}
+                                                            user_email={this.state.user_email}
+                                                            userId={this.state.userId}
+                                                            onDelete={this.handleDeleteMeat}/>
+                                        ))}
                                     </div>
                                 </div>
 
@@ -513,6 +616,15 @@ class InventoryPanel extends Component {
                                         mapping */}
                                         {this.state.vegetables.map((item) => (
                                             <IngredientVegetable key={item._id} 
+                                                                ingredientId={item._id}
+                                                                vegetableName={item.name} vegetableUnit={item.unit}
+                                                                vegetableAmount={item.amount}
+                                                                user_email={this.state.user_email}
+                                                                userId={this.state.userId}
+                                                                onDelete={this.handleDeleteVegetable}/>
+                                        ))}
+                                        {this.state.noVegetables.map((item) => (
+                                            <IngredientVegetableNone key={item._id} 
                                                                 ingredientId={item._id}
                                                                 vegetableName={item.name} vegetableUnit={item.unit}
                                                                 vegetableAmount={item.amount}
@@ -553,6 +665,15 @@ class InventoryPanel extends Component {
                                                         userId={this.state.userId}
                                                         onDelete={this.handleDeleteFruit}/>
                                     ))}
+                                    {this.state.noFruit.map((item) => (
+                                        <IngredientFruitNone key={item._id} 
+                                                        ingredientId={item._id}
+                                                        fruitName={item.name} fruitUnit={item.unit}
+                                                        fruitAmount={item.amount}
+                                                        user_email={this.state.user_email}
+                                                        userId={this.state.userId}
+                                                        onDelete={this.handleDeleteFruit}/>
+                                    ))}
                                 </div>
                             </div>
 
@@ -579,6 +700,15 @@ class InventoryPanel extends Component {
                                     mapping */}
                                     {this.state.dairy.map((item) => (
                                         <IngredientDairy key={item._id} 
+                                                        ingredientId={item._id}
+                                                        dairyName={item.name} dairyUnit={item.unit}
+                                                        dairyAmount={item.amount}
+                                                        user_email={this.state.user_email}
+                                                        userId={this.state.userId}
+                                                        onDelete={this.handleDeleteDairy}/>
+                                    ))}
+                                    {this.state.noDairy.map((item) => (
+                                        <IngredientDairyNone key={item._id} 
                                                         ingredientId={item._id}
                                                         dairyName={item.name} dairyUnit={item.unit}
                                                         dairyAmount={item.amount}
@@ -619,6 +749,15 @@ class InventoryPanel extends Component {
                                                         userId={this.state.userId}
                                                         onDelete={this.handleDeleteSpices}/>
                                     ))}
+                                    {this.state.noSpices.map((item) => (
+                                        <IngredientSpicesNone key={item._id} 
+                                                        ingredientId={item._id}
+                                                        spicesName={item.name} spicesUnit={item.unit}
+                                                        spicesAmount={item.amount}
+                                                        user_email={this.state.user_email}
+                                                        userId={this.state.userId}
+                                                        onDelete={this.handleDeleteSpices}/>
+                                    ))}
                                 </div>
                             </div>
 
@@ -645,6 +784,15 @@ class InventoryPanel extends Component {
                                     mapping */}
                                     {this.state.miscellaneous.map((item) => (
                                         <IngredientMiscellaneous key={item._id} 
+                                                                ingredientId={item._id}
+                                                                miscellaneousName={item.name} miscellaneousUnit={item.unit}
+                                                                miscellaneousAmount={item.amount}
+                                                                user_email={this.state.user_email}
+                                                                userId={this.state.userId}
+                                                                onDelete={this.handleDeleteMiscellaneous}/>
+                                    ))}
+                                    {this.state.noMiscellaneous.map((item) => (
+                                        <IngredientMiscellaneousNone key={item._id} 
                                                                 ingredientId={item._id}
                                                                 miscellaneousName={item.name} miscellaneousUnit={item.unit}
                                                                 miscellaneousAmount={item.amount}

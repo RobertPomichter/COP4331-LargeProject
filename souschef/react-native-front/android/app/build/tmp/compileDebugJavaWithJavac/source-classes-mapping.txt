@@ -1,0 +1,14 @@
+com/souschef/BuildConfig.java
+ com.souschef.BuildConfig
+com/souschef/ReactNativeFlipper.java
+ com.souschef.ReactNativeFlipper
+ com.souschef.ReactNativeFlipper$1
+ com.souschef.ReactNativeFlipper$2
+ com.souschef.ReactNativeFlipper$2$1
+com/souschef/MainActivity.java
+ com.souschef.MainActivity
+com/souschef/MainApplication.java
+ com.souschef.MainApplication
+ com.souschef.MainApplication$1
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList
