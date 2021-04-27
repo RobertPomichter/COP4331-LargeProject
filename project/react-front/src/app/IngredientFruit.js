@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, InputLabel, MenuItem, FormHelperText, FormControl, Select } from '@material-ui/core';
 import Image from 'react-bootstrap/Image';
-import GenericFruitPicture from '../images/GenericFruit.jpg';
+//import GenericFruitPicture from '../images/GenericFruit.jpg';
+import GenericFruitPicture from '../images/GenericFruit2.jpg';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone';
 import EditTwoToneIcon from '@material-ui/icons/EditTwoTone';

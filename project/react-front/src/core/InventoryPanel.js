@@ -39,7 +39,8 @@ class InventoryPanel extends Component {
             addUnit: "",
             addAmount: "",
             addCategory: "",
-            message: ""
+            message: "",
+            dropdownCategory: ""
         }
     }
 
@@ -258,7 +259,10 @@ class InventoryPanel extends Component {
     }
 
     handleClose = () => this.setState({ showAddForm: false });
-    handleShow = () => this.setState({ showAddForm: true });
+    handleShow = category => {
+        this.setState({ dropdownCategory: category })
+        this.setState({ showAddForm: true });
+    }
 
     // function to update addIngredient relevant state variables
     handleChange = (stateVariableToChange) => event => {
@@ -389,19 +393,25 @@ class InventoryPanel extends Component {
                     <DialogTitle id="form-dialog-title">Add Ingredient</DialogTitle>
                     <DialogContent>
                     <DialogContentText>Please fill out the following fields</DialogContentText>
-                    <TextField margin="dense" label="Ingredient Name" fullWidth
+                    <TextField className="addIngredientInputField"
+                               margin="dense" label="Ingredient Name" fullWidth
                                onChange={this.handleChange("addName")}
                                value={this.state.addName}/>
-                    <TextField margin="dense" label="Unit of Measurement" fullWidth
+                    <TextField className="addIngredientInputField"
+                               margin="dense" label="Unit of Measurement" fullWidth
                                onChange={this.handleChange("addUnit")}
                                value={this.state.addUnit}/>
-                    <TextField margin="dense" label="Amount" fullWidth
+                    <TextField className="addIngredientInputField"
+                               margin="dense" label="Amount" fullWidth
                                onChange={this.handleChange("addAmount")}
                                value={this.state.addAmount}/>
-                    <TextField margin="dense" label="Reminder to check adding a photo" fullWidth/>
+                    {/* <TextField className="addIngredientInputField"
+                               margin="dense" label="Reminder to check adding a photo" fullWidth/> */}
                     <FormControl required>
                         <InputLabel id="demo-simple-select-required-label">Category</InputLabel>
-                            <Select labelId="demo-simple-select-required-label"
+                            <Select className="CategoryDropdown"
+                                    defaultValue={this.state.dropdownCategory}
+                                    labelId="demo-simple-select-required-label"
                                     id="demo-simple-select-required"
                                     onChange={this.handleChange("addCategory")}>
                             <MenuItem value="meat">Meat</MenuItem>
@@ -460,7 +470,7 @@ class InventoryPanel extends Component {
                                         <IconButton onClick={this.clickGetMeats}>
                                             <ExpandMoreIcon />
                                         </IconButton>
-                                        <IconButton onClick={this.handleShow}>
+                                        <IconButton onClick={ () => this.handleShow('meat')}>
                                             <AddCircleTwoToneIcon className='addIngredientButton'
                                                                 fontSize='large'/>
                                         </IconButton>
@@ -493,7 +503,7 @@ class InventoryPanel extends Component {
                                         <IconButton onClick={this.clickGetVegetables}>
                                             <ExpandMoreIcon />
                                         </IconButton>
-                                        <IconButton onClick={this.handleShow}>
+                                        <IconButton onClick={ () => this.handleShow('vegetable')}>
                                             <AddCircleTwoToneIcon className='addIngredientButton'
                                                                 fontSize='large' />
                                         </IconButton>
@@ -526,7 +536,7 @@ class InventoryPanel extends Component {
                                     <IconButton onClick={this.clickGetFruit}>
                                         <ExpandMoreIcon />
                                     </IconButton>
-                                    <IconButton onClick={this.handleShow}>
+                                    <IconButton onClick={ () => this.handleShow('fruit')}>
                                         <AddCircleTwoToneIcon className='addIngredientButton'
                                                             fontSize='large'/>
                                     </IconButton>
@@ -559,7 +569,7 @@ class InventoryPanel extends Component {
                                     <IconButton onClick={this.clickGetDairy}>
                                         <ExpandMoreIcon />
                                     </IconButton>
-                                    <IconButton onClick={this.handleShow}>
+                                    <IconButton onClick={ () => this.handleShow('dairy')}>
                                         <AddCircleTwoToneIcon className='addIngredientButton'
                                                             fontSize='large'/>
                                     </IconButton>
@@ -592,7 +602,7 @@ class InventoryPanel extends Component {
                                     <IconButton onClick={this.clickGetSpices}>
                                         <ExpandMoreIcon />
                                     </IconButton>
-                                    <IconButton onClick={this.handleShow}>
+                                    <IconButton onClick={ () => this.handleShow('spices')}>
                                         <AddCircleTwoToneIcon className='addIngredientButton'
                                                             fontSize='large'/>
                                     </IconButton>
@@ -625,7 +635,7 @@ class InventoryPanel extends Component {
                                     <IconButton onClick={this.clickGetMiscellaneous}>
                                         <ExpandMoreIcon />
                                     </IconButton>
-                                    <IconButton onClick={this.handleShow}>
+                                    <IconButton onClick={ () => this.handleShow('miscellaneous')}>
                                         <AddCircleTwoToneIcon className='addIngredientButton'
                                                             fontSize='large'/>
                                     </IconButton>

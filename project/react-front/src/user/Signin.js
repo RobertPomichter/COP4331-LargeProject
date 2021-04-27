@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import Loading from '../Loading'; 
 import { signin, authenticate } from "../auth";
-import { Button } from'@material-ui/core';
+import { Button, TextField } from'@material-ui/core';
+
 
 class Signin extends Component{
     // state constructor
@@ -60,7 +61,7 @@ class Signin extends Component{
     // signin form method
     signinForm =(email, password) => {
         return (<form className='landingPageForm'>
-                    <div className='form-group'>
+                    {/* <div className='form-group'>
                         <input 
                             onChange={this.handleChange("email")} 
                             type='email' 
@@ -77,7 +78,19 @@ class Signin extends Component{
                             value={password}
                             placeholder='Password'    
                         />
+                    </div> */}
+
+                    <div className='form-group'>
+                        <TextField className='inputField' id="standard-basic"
+                                   onChange={this.handleChange("email")}
+                                   placeholder='Email' value={email}/>
                     </div>
+                    <div className='form-group'>
+                    <TextField className='inputField' id="standard-basic"
+                                   onChange={this.handleChange("password")}
+                                   placeholder='Password' value={password}/>
+                    </div>
+
                     <span onClick={this.props.goToForgotPassword} className='forgotPasswordText'>
                         Forgot Password?
                     </span>
