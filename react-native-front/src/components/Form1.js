@@ -45,11 +45,16 @@ submit(){
         }
         else {
             // authenticate
-            //alert(JSON.stringify(data));
+            alert(JSON.stringify(data.user._id));
             authenticate(data, () => { 
                 this.setState({redirectToHome: true});
             });
-            this.props.navigation.navigate('Home');   
+
+            this.setState({email: ""});
+            this.setState({password: ""}); 
+
+            this.props.navigation.navigate('Ingredients');  
+
         }
     });
 
@@ -65,13 +70,15 @@ submit(){
 
     return (
       <View style={styles.container}>
-        <TextInput  style={styles.inputBox}
+        <TextInput  clearButtonMode="always" style={styles.inputBox}
+        ref ={input => {this.TextInput = input}}
         onChangeText = { (text) => {this.setState({email: text})}}
+        value={this.state.email}
         placeholder="Email..."/>
 
         <View style={styles.separation}></View>
 
-        <TextInput style={styles.inputBox}
+        <TextInput clearButtonMode="always" style={styles.inputBox}
         underlineColorAndroid='black'
         onChangeText = { (text) => {this.setState({password: text})}}
         placeholder="Password..."

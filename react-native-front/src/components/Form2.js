@@ -58,21 +58,21 @@ class Form2 extends React.Component{
 
     return (
       <View style={styles.container}>
-        <TextInput style={styles.inputBox}
+        <TextInput clearButtonMode="always" style={styles.inputBox}
         underlineColorAndroid='black'
         onChangeText = { (text) => {this.setState({name: text})}}
         placeholder="Name..."/>
         
         <View style={styles.separation}></View>
 
-        <TextInput style={styles.inputBox} 
+        <TextInput clearButtonMode="always" style={styles.inputBox} 
         underlineColorAndroid='black'
         onChangeText = { (text) => {this.setState({email: text})}}
         placeholder="Email..."/>
         
         <View style={styles.separation}></View>
 
-        <TextInput style={styles.inputBox}
+        <TextInput clearButtonMode="always" style={styles.inputBox}
         underlineColorAndroid='black'
         onChangeText = { (text) => {this.setState({password: text})}}
         placeholder="Password..."

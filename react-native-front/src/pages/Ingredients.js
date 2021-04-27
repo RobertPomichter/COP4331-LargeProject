@@ -19,7 +19,7 @@ class Ingredients extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-        userId: "",
+        userId: "2",
         name: "",
         email: "",
         error: "",
