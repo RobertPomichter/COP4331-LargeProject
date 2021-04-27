@@ -306,6 +306,12 @@ class InventoryPanel extends Component {
         })
     }
 
+    // function passed to each meat ingredient to remove itself from the state array once deleted
+    handleDeleteMeat = (_id) => {
+        const meats = this.state.meats.filter(item => item._id !== _id);
+        this.setState({ meats: meats });
+    }
+
     // function to populate user's inventory with a bunch of premade ingredients
     populateInventoryHandler = event => {
         // get the token & user_email
@@ -392,12 +398,14 @@ class InventoryPanel extends Component {
                         <div className='ingredientRowContainer'>
                             {/* This section performs the Ingredient Component creation and information
                             mapping */}
-                            {this.state.meats.map((item, index) => (
-                                <IngredientMeat ingredientId={item._id}
+                            {this.state.meats.map((item) => (
+                                <IngredientMeat key={item._id}
+                                                ingredientId={item._id}
                                                 meatName={item.name} meatUnit={item.unit}
                                                 meatAmount={item.amount}
                                                 user_email={this.state.user_email}
-                                                userId={this.state.userId}/>
+                                                userId={this.state.userId}
+                                                onDelete={this.handleDeleteMeat}/>
                             ))}
                         </div>
                     </div>
@@ -423,8 +431,9 @@ class InventoryPanel extends Component {
                         <div className='ingredientRowContainer'>
                             {/* This section performs the Ingredient Component creation and information
                             mapping */}
-                            {this.state.vegetables.map((item, index) => (
-                                <IngredientVegetable ingredientId={item._id}
+                            {this.state.vegetables.map((item) => (
+                                <IngredientVegetable key={item._id} 
+                                                    ingredientId={item._id}
                                                     vegetableName={item.name} vegetableUnit={item.unit}
                                                     vegetableAmount={item.amount}
                                                     user_email={this.state.user_email}
