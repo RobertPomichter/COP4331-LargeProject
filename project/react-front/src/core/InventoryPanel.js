@@ -23,6 +23,8 @@ import IconButton from '@material-ui/core/IconButton';
 import EmptyCategoryDisplay from '../app/EmptyCategoryDisplay.js';
 import { read } from "../user/apiUser.js";
 
+
+
 class InventoryPanel extends Component {
     // copied from Users.js - idea is to hold an array of ingredients
     constructor(props) {
@@ -51,7 +53,7 @@ class InventoryPanel extends Component {
             addCategory: "",
             message: "",
             dropdownCategory: "",
-            submissionAllowed: false
+            submissionAllowed: ""
         }
     }
 
@@ -333,12 +335,7 @@ class InventoryPanel extends Component {
         });
     }
 
-    handleClose = () => this.setState({ showAddForm: false,
-                                        submissionAllowed: false,
-                                        addName: "",
-                                        addAmount: "",
-                                        addCategory: "",
-                                        addUnit: "" });
+    handleClose = () => this.setState({ showAddForm: false });
     handleShow = category => {
         this.setState({ dropdownCategory: category })
         this.setState({ addCategory: category })
@@ -348,15 +345,6 @@ class InventoryPanel extends Component {
     // function to update addIngredient relevant state variables
     handleChange = (stateVariableToChange) => event => {
         this.setState({[stateVariableToChange] : event.target.value});
-
-        // check if all required forms are filled out (category is always filled out)
-        if(this.state.addName != "") {
-            if(this.state.AddAmount != "") {
-                this.setState({ submissionAllowed: true });
-            }
-        } else {
-            this.setState({ submissionAllowed: false })
-        }
     }
 
     // function to handle the submission of the addIngredient form
@@ -536,7 +524,7 @@ class InventoryPanel extends Component {
                         Cancel
                     </Button>
                     <Button onClick={this.handleAddSubmit} color="primary"
-                            disabled={!this.state.submissionAllowed}>
+                            disabled={`( if (this.state.addName) { this.state.addAmount} )`}>
                         Submit
                     </Button>
                     </DialogActions>

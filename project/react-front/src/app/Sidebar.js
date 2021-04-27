@@ -54,7 +54,7 @@ class Sidebar extends Component {
                     <faIcons.FaBars />
                 </Link>
             </div>
-            <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+            <nav className={this.state.sidebar ? 'nav-menu active' : 'nav-menu'}>
                 <ul className='nav-menu-items'>
                     <li className='navbar-toggle'>
                         <Link to="#" className='menu-bars'>
@@ -62,7 +62,7 @@ class Sidebar extends Component {
                         </Link>
                     </li>
                     <li>
-                        {SidebarItems.map((item, index) => {
+                         {/* {SidebarItems.map((item, index) => {
                             return (
                                 <li key={index} className={item.classname}>
                                     <Link to={item.path}>
@@ -71,7 +71,7 @@ class Sidebar extends Component {
                                     </Link>
                                 </li>
                             )
-                        })}
+                        })} */}
                     </li>
                 </ul>
             </nav>
