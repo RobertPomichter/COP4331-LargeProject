@@ -10,7 +10,6 @@ import { isAuthenticated } from "../auth";
 
 
 class IngredientMeat extends Component {
-    // copied from Users.js - idea is to hold an array of ingredients
     constructor(props) {
         super(props);
         this.state = {
@@ -24,6 +23,7 @@ class IngredientMeat extends Component {
             showAddForm: false,
         }
     }
+    
     // function to handle deleting this ingredient
     clickDeleteSelf = event => {
         // gather information to send to API

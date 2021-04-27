@@ -3,7 +3,7 @@ import { Card, Modal } from 'react-bootstrap';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, InputLabel, MenuItem, FormHelperText, FormControl, Select } from '@material-ui/core';
-import { getAllIngredients, getAllMeats, getAllVegetables, getAllFruit, getAllDairy, getAllSpices, getAllMiscellaneous, addIngredient } from '../apiCalls/apiInventory.js';
+import { getAllIngredients, getAllMeats, getAllVegetables, getAllFruit, getAllDairy, getAllSpices, getAllMiscellaneous, addIngredient, populateInventory } from '../apiCalls/apiInventory.js';
 import { isAuthenticated } from "../auth";
 import { makeStyles } from '@material-ui/core/styles';
 import IngredientFruit from '../app/IngredientFruit.js';
@@ -306,6 +306,16 @@ class InventoryPanel extends Component {
         })
     }
 
+    // function to populate user's inventory with a bunch of premade ingredients
+    populateInventoryHandler = event => {
+        // get the token & user_email
+        const token = isAuthenticated().token;
+        const user_email = this.state.user_email;
+
+        // call populateInventory function in apiInventory
+        populateInventory(token, user_email);
+    } 
+
     render() {
         return (
             <div>
@@ -357,6 +367,9 @@ class InventoryPanel extends Component {
                     </Button>
                     <Button variant="contained" onClick={this.clickClearAllIngredients}>
                     Test: Clear All Ingredients
+                    </Button>
+                    <Button variant="contained" onClick={this.populateInventoryHandler}>
+                    Test: Populate Inventory
                     </Button>
                     {/* Meat Card */}
                     <div className='categoryCard'>
@@ -411,7 +424,8 @@ class InventoryPanel extends Component {
                             {/* This section performs the Ingredient Component creation and information
                             mapping */}
                             {this.state.vegetables.map((item, index) => (
-                                <IngredientVegetable vegetableName={item.name} vegetableUnit={item.unit}
+                                <IngredientVegetable ingredientId={item._id}
+                                                    vegetableName={item.name} vegetableUnit={item.unit}
                                                     vegetableAmount={item.amount}
                                                     user_email={this.state.user_email}
                                                     userId={this.state.userId}/>
@@ -441,7 +455,8 @@ class InventoryPanel extends Component {
                             {/* This section performs the Ingredient Component creation and information
                             mapping */}
                             {this.state.fruit.map((item, index) => (
-                                <IngredientFruit fruitName={item.name} fruitUnit={item.unit}
+                                <IngredientFruit ingredientId={item._id}
+                                                fruitName={item.name} fruitUnit={item.unit}
                                                 fruitAmount={item.amount}
                                                 user_email={this.state.user_email}
                                                 userId={this.state.userId}/>
@@ -471,7 +486,8 @@ class InventoryPanel extends Component {
                             {/* This section performs the Ingredient Component creation and information
                             mapping */}
                             {this.state.dairy.map((item, index) => (
-                                <IngredientDairy dairyName={item.name} dairyUnit={item.unit}
+                                <IngredientDairy ingredientId={item._id}
+                                                dairyName={item.name} dairyUnit={item.unit}
                                                 dairyAmount={item.amount}
                                                 user_email={this.state.user_email}
                                                 userId={this.state.userId}/>
@@ -501,7 +517,8 @@ class InventoryPanel extends Component {
                             {/* This section performs the Ingredient Component creation and information
                             mapping */}
                             {this.state.spices.map((item, index) => (
-                                <IngredientSpices spicesName={item.name} spicesUnit={item.unit}
+                                <IngredientSpices ingredientId={item._id}
+                                                spicesName={item.name} spicesUnit={item.unit}
                                                 spicesAmount={item.amount}
                                                 user_email={this.state.user_email}
                                                 userId={this.state.userId}/>
@@ -531,7 +548,8 @@ class InventoryPanel extends Component {
                             {/* This section performs the Ingredient Component creation and information
                             mapping */}
                             {this.state.miscellaneous.map((item, index) => (
-                                <IngredientMiscellaneous miscellaneousName={item.name} miscellaneousUnit={item.unit}
+                                <IngredientMiscellaneous ingredientId={item._id}
+                                                        miscellaneousName={item.name} miscellaneousUnit={item.unit}
                                                         miscellaneousAmount={item.amount}
                                                         user_email={this.state.user_email}
                                                         userId={this.state.userId}/>

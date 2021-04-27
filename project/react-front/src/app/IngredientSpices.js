@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, InputLabel, MenuItem, FormHelperText, FormControl, Select } from '@material-ui/core';
 import Image from 'react-bootstrap/Image';
 import GenericSpicesPicture from '../images/GenericSpices.jpg';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone';
 import EditTwoToneIcon from '@material-ui/icons/EditTwoTone';
-import { deleteIngredient } from '../apiCalls/apiInventory.js';
+import { deleteIngredient, updateIngredient } from '../apiCalls/apiInventory.js';
 import { isAuthenticated } from "../auth";
 
 class IngredientSpices extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            ingredientId: "",
+            name: "",
+            unit: "",
+            amount: "",
+            newName: "",
+            newUnit: "",
+            newAmount: "",
+            showAddForm: false,
+        }
+    }
 
     // function to handle deleting this ingredient
     clickDeleteSelf = event => {

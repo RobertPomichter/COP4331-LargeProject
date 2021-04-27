@@ -214,52 +214,46 @@ export const updateIngredient = ( token, updateIngredientForm, ingredientId ) =>
     .catch(err => console.log(err));
 }
 
-/* REFERENCE NOTE: UPDATE INGREDIENT API ENDPOINT FROM BACKEND 
-exports.updateIngredients = (req, res, next) => {
-    // grab the form
+// Populate Inventory with a Bunch of Ingredients
+export const populateInventory = ( token, user_email ) => {
+    const email = user_email;
 
-    let form = new formidable.IncomingForm();
-    
-    // keep the extensions
-    form.keepExtensions = true;
-
-    //parse the form
-    form.parse(req, (err, fields, files) => {
-        // handle any errors
-        if(err){
-            return res.status(400).json({
-                error: "Failed to upload file"
-            });
-        }
-
-        // get the ingredient from the request profile (from ingredientById function)
-        let ingredient = req.profile;
-
-        // use lodash extends function to update user
-        // with data from form fields (name, email, etc.)
-        ingredient = _.extend(ingredient, fields);
-
-        // update the user updated property
-        ingredient.updated = Date.now();
-
-        // if there is a photo in the files of the form
-        if(files.photo){
-            // set the photo data of the user object
-            ingredient.photo.data = fs.readFileSync(files.photo.path);
-            ingredient.photo.contentType = files.photo.type;
-        }
-
-        // save the ingredient to the db
-        ingredient.save( (err, result) => {
-            // handle any errors
-            if(err){
-                return res.status(400).json({
-                    error: "An error occured saving updates to the database."
-                });
-            }
-
-            // if no errors send json response
-            res.json(ingredient);
-        });
-    });
-} */
+    var addIngredientPackage = { name:  "Chicken Wings", category: "meat", unit: "", amount: "6", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Salmon", category: "meat", unit: "lbs", amount: "2", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Broccoli", category: "vegetable", unit: "heads", amount: "2", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Spinach", category: "vegetable", unit: "oz", amount: "8", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Potatoes", category: "vegetable", unit: "lbs", amount: "5", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Mango", category: "fruit", unit: "", amount: "4", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Bananas", category: "fruit", unit: "", amount: "3", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Apples", category: "fruit", unit: "", amount: "6", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Cheddar Cheese", category: "dairy", unit: "oz", amount: "12", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Grated Parmesan", category: "dairy", unit: "oz", amount: "8", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Whole Milk", category: "dairy", unit: "gallon", amount: "1", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Salt", category: "spices", unit: "oz", amount: "12", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Paprika", category: "spices", unit: "oz", amount: "6", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Chicken Wings", category: "spices", unit: "", amount: "6", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Flour", category: "miscellaneous", unit: "lbs", amount: "5", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Eggs", category: "miscellaneous", unit: "carton", amount: "2", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Pinto Beans", category: "miscellaneous", unit: "oz", amount: "16", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Vegetable Oil", category: "miscellaneous", unit: "fl oz", amount: "16", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Nori", category: "miscellaneous", unit: "sheets", amount: "12", user_email: email }
+    addIngredient( token, addIngredientPackage );
+}
