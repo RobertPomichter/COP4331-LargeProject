@@ -356,6 +356,8 @@ export const populateInventory = ( token, user_email ) => {
     addIngredient( token, addIngredientPackage );
     addIngredientPackage = { name:  "Tilapia", category: "meat", unit: "lbs", amount: "2", user_email: email }
     addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Ground Beef", category: "meat", unit: "lbs", amount: "0", user_email: email }
+    addIngredient( token, addIngredientPackage );
     addIngredientPackage = { name:  "Broccoli", category: "vegetable", unit: "heads", amount: "2", user_email: email }
     addIngredient( token, addIngredientPackage );
     addIngredientPackage = { name:  "Spinach", category: "vegetable", unit: "oz", amount: "8", user_email: email }
@@ -388,7 +390,9 @@ export const populateInventory = ( token, user_email ) => {
     addIngredient( token, addIngredientPackage );
     addIngredientPackage = { name:  "Garlic Powder", category: "spices", unit: "oz", amount: "6", user_email: email }
     addIngredient( token, addIngredientPackage );
-    addIngredientPackage = { name:  "Ground Black Pepper", category: "spices", unit: "", amount: "6", user_email: email }
+    addIngredientPackage = { name:  "Ground Black Pepper", category: "spices", unit: "oz", amount: "6", user_email: email }
+    addIngredient( token, addIngredientPackage );
+    addIngredientPackage = { name:  "Onion Salt", category: "spices", unit: "oz", amount: "0", user_email: email }
     addIngredient( token, addIngredientPackage );
     addIngredientPackage = { name:  "Flour", category: "miscellaneous", unit: "lbs", amount: "5", user_email: email }
     addIngredient( token, addIngredientPackage );
