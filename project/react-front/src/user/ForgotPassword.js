@@ -49,9 +49,8 @@ class ForgotPassword extends Component {
                 </div>
                 <form className="landingPageForm">
                     <div className="form-group mt-5">
-                        <input
+                        <input className='inputField'
                             type="email"
-                            className="form-control"
                             placeholder="Your email address"
                             value={this.state.email}
                             name="email"

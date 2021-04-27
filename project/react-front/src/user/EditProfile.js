@@ -133,48 +133,48 @@ class EditProfile extends Component {
     updateForm = (name, email, about, password) => {
         return (<form>
                     <div className='form-group'>
-                        <label className='text-muted'>Profile Image</label>
                         <input 
                             onChange={this.handleChange("photo")} 
                             type="file"
                             accept='image/*' 
-                            className='form-control' 
+                            className='inputField'
+                            placeholder='Photo'
                         />
                     </div>                    
                     <div className='form-group'>
-                        <label className='text-muted'>Name</label>
                         <input 
                             onChange={this.handleChange("name")} 
                             type='text' 
-                            className='form-control'
-                            value={name} 
+                            className='inputField'
+                            value={name}
+                            placeholder='Name'
                         />
                     </div>
                     <div className='form-group'>
-                        <label className='text-muted'>Email</label>
                         <input 
                             onChange={this.handleChange("email")} 
                             type='email' 
-                            className='form-control'
-                            value={email} 
+                            className='inputField'
+                            value={email}
+                            placeholder='Email'
                         />
                     </div>
                     <div className='form-group'>
-                        <label className='text-muted'>About</label>
                         <textarea 
                             onChange={this.handleChange("about")} 
                             type='text' 
-                            className='form-control'
-                            value={about} 
+                            className='inputField'
+                            value={about}
+                            placeholder='About'
                         />
                     </div>
                     <div className='form-group'>
-                        <label className='text-muted'>Password</label>
                         <input 
                             onChange={this.handleChange("password")} 
                             type='password' 
-                            className='form-control' 
-                            value={password}    
+                            className='inputField' 
+                            value={password}
+                            placeholder='Password'    
                         />
                     </div>
                     <button onClick={this.clickSubmit} 

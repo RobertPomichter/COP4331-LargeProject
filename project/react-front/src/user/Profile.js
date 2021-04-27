@@ -77,9 +77,9 @@ class Profile extends Component {
                     </div>
                     <div className='col-md-8'>
                         <div className='lead mt-5'>
-                            <p>Hello, {user.name}</p>
-                            <p>Email: {user.email}</p>
-                            <p>Account Created: {new Date(user.created).toDateString()}</p>
+                            <p className="ProfileText">Hello, {user.name}</p>
+                            <p className="ProfileText">Email: {user.email}</p>
+                            <p className="ProfileText">Account Created: {new Date(user.created).toDateString()}</p>
                         </div>
                         
                         {isAuthenticated().user && isAuthenticated().user._id === user._id && (
