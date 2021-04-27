@@ -49,6 +49,11 @@ class Form2 extends React.Component{
           error: "",
         });
         this.props.navigation.navigate('Login');
+
+        this.setState({name: ""});
+        this.setState({email: ""});
+        this.setState({password: ""}); 
+        this.setState({error: ""});
       }
     });
 
@@ -61,6 +66,7 @@ class Form2 extends React.Component{
         <TextInput clearButtonMode="always" style={styles.inputBox}
         underlineColorAndroid='black'
         onChangeText = { (text) => {this.setState({name: text})}}
+        value={this.state.name}
         placeholder="Name..."/>
         
         <View style={styles.separation}></View>
@@ -68,6 +74,7 @@ class Form2 extends React.Component{
         <TextInput clearButtonMode="always" style={styles.inputBox} 
         underlineColorAndroid='black'
         onChangeText = { (text) => {this.setState({email: text})}}
+        value={this.state.email}
         placeholder="Email..."/>
         
         <View style={styles.separation}></View>
@@ -75,6 +82,7 @@ class Form2 extends React.Component{
         <TextInput clearButtonMode="always" style={styles.inputBox}
         underlineColorAndroid='black'
         onChangeText = { (text) => {this.setState({password: text})}}
+        value={this.state.password}
         placeholder="Password..."
         secureTextEntry={true}/>
       
