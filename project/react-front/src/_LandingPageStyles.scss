@@ -4,23 +4,23 @@
 
 .landingPageContainer {
     background-image: url('./images/Background1440p.png');
-    filter: blur(8px);
-    -webkit-filter: blur(8px);
     background-size: cover;
+    // filter: blur(8px);
+    // -webkit-filter: blur(8px);
     //overflow-y: hidden;
     //overflow-x: hidden;
     // These lines control the scaling & positioning of the homeContainer, and the
     // background image by extension
     height: 100vh;   // original height value
-    background-position: center;
+    background-repeat: no-repeat;
 }
-
 
 .landingPageUIContainer {
     padding-top: 10%;   // used to vertical positioning of the Home UI (280px = old)
     padding-bottom: 30%;
-    width: 1000px;
-    height: 70%;    // inherit height from homeContainer
+    width: 50%;
+    top: 25%;
+    height: 50%;    // inherit height from homeContainer
     margin: auto;   // auto-centers the UI container horizontally
 }
 

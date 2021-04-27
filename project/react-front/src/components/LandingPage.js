@@ -41,6 +41,7 @@ class LandingPage extends Component {
     render() {
         return (
             <div className='landingPageContainer'>
+                <div className="bgImage"></div>
                 <div className='landingPageUIContainer'>
                     <div className='logoHeader'>
                         <img className='logo' src={logo} />

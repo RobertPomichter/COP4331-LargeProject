@@ -7,6 +7,14 @@
     margin: auto;
 }
 
+.centered {
+    height: 30px;
+    padding: 30px 0px 30px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
 @mixin inventoryCardSetup {
     width: 70%;
     //max-width: 70%;
