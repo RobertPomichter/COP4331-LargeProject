@@ -8,8 +8,18 @@ import Alert from "./Alert";
 import { v4 } from "uuid";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// function useAsync(asyncFn, onSuccess) {
+//     const useEffect(() => {
+//       let isMounted = true;
+//       asyncFn().then(data => {
+//         if (isMounted) onSuccess(data);
+//       });
+//       return () => { isMounted = false };
+//     }, [asyncFn, onSuccess]);
+// }
 
 function RecipeSearch () {
+    
     const [q, setQuery] = useState("");
     const [recipes, setRecipes] = useState([]);
     const [alert, setAlert] = useState("");
@@ -52,17 +62,22 @@ function RecipeSearch () {
             <div className="jumbotron">
                 <h2 className="display-3">Search Recipes Here</h2>
             </div>
-            <div className="d-flex align-items-center">
-                <form className="searchBar" onSubmit={displayRecipes}> 
-                    {alert !== "" && <Alert alert={alert} />}
-                    <input type="text" 
-                    className="form-control form-control-lg" 
-                    name="q" 
-                    placeholder="Search Recipes" 
-                    autoComplete="off" 
-                    onChange={onChange} value={q}/>
-                    <button className="btn btn-dark" type="button" value="Search" />
-                </form>
+            <div className="align-items-center">
+                <div className="search-container">
+                    <form className="searchBar" onSubmit={displayRecipes}> 
+                        {alert !== "" && <Alert alert={alert} />}
+                        <input type="text" 
+                        className="form-control" 
+                        name="q" 
+                        placeholder="Search Recipes..." 
+                        autoComplete="off" 
+                        name="search"
+                        onChange={onChange} value={q}/>
+                        <button className="btn btn-primary" type="submit" value="Search">
+                            <i className="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
             <div className="recipes">
                 {recipes != [] && recipes.map(recipe => <Recipe key={v4()} recipe={recipe} />)}
