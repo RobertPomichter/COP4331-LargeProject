@@ -1,12 +1,11 @@
-
 // Styling sheet for the only Landing Page's UI
 
 // Code from full page example: https://mdbootstrap.com/docs/react/css/background-image/
 
 .landingPageContainer {
     background-image: url('./images/Background1440p.png');
-    overflow-y: hidden;
-    overflow-x: hidden;
+    //overflow-y: hidden;
+    //overflow-x: hidden;
     // These lines control the scaling & positioning of the homeContainer, and the
     // background image by extension
     height: 100vh;   // original height value
@@ -18,7 +17,7 @@
     padding-top: 10%;   // used to vertical positioning of the Home UI (280px = old)
     padding-bottom: 30%;
     width: 1000px;
-    height: inherit;    // inherit height from homeContainer
+    height: 70%;    // inherit height from homeContainer
     margin: auto;   // auto-centers the UI container horizontally
 }
 
@@ -47,7 +46,7 @@
 }
 
 .carouselSlide {
-    height: 800px;  // height must be specified here in order to force all carousel slides
+    //height: 20%;  // height must be specified here in order to force all carousel slides
                     // to be the same size, which fixes a rendering glitch when changing
                     // slides
 }
@@ -73,9 +72,9 @@
     height: 100%;    // inherit the height of form-group (the input field containers)
     width: 100%;
     border-radius: 50px;
-    padding-top: 15px;
-    padding-left: 28px;
-    padding-bottom: 16px;
+    //padding-top: 15px;
+    //padding-left: 28px;
+    //padding-bottom: 16px;
     font-size: 32px;
 }
 
@@ -139,4 +138,23 @@
 .resetPasswordSpacer {
     display: block;
     height: 30px;
+}
+
+.inputField {
+    width: 94%;
+    height: 100%;
+    border-radius: 50px;
+    border: none;
+    margin-left: 25px;
+
+    font-size: 32px;
+}
+
+.inputField:focus {
+    outline: none;
+}
+
+.inputField::placeholder {
+    
+    font-size: 32px;
 }

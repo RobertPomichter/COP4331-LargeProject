@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, InputLabel, MenuItem, FormHelperText, FormControl, Select } from '@material-ui/core';
 import Image from 'react-bootstrap/Image';
 import GenericVegetablePicture from '../images/GenericVegetable.png';
+//import GenericVegetablePicture from '../images/GenericVegetable2.jpg';
+//import GenericVegetablePicture from '../images/GenericVegetable3.jpg';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteTwoToneIcon from '@material-ui/icons/DeleteTwoTone';
 import EditTwoToneIcon from '@material-ui/icons/EditTwoTone';
