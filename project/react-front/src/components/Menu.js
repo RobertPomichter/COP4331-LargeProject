@@ -53,7 +53,7 @@ const Menu = ({history}) => (
                             style={isActive(history, '/users')}
                             to='/dashboard/recipeSearch'
                         >
-                                Recipe API Testing
+                                Recipe API
                         </Link>
                     </li>
                     <li className="nav-item">
